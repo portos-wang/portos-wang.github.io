@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill packs · OhPie Wiki</title>
+<meta name="description" content="25 bundled packs, grouped by the job they actually do, plus how they load and how to write one.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/skill-packs.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html" aria-current="page"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">04 / 07</span>
+          <h1>Skill packs</h1>
+          <p>25 bundled packs, grouped by the job they actually do, plus how they load and how to write one.</p>
+        </header>
+        <p>A Skill Pack is a folder with a <code>SKILL.md</code> and whatever references, scripts and templates that method needs. It is not a prompt snippet: the full body loads only when the agent decides the pack matches the task, which keeps the base conversation small and lets a pack carry real checklists.</p>
+<p>OhPie ships <strong>25 packs</strong> and <strong>5 plugins</strong>. Every pack below is in this repository under <code>builtin-skills/</code>; nothing in the list is a hosted service.</p>
+<h2 id="finding-and-judging-literature"><a href="#finding-and-judging-literature">Finding and judging literature</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pack</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>academic-research-skills</code></td>
+<td>The full research cycle: PRISMA 2020 double-blind screening, multi-perspective literature mining, structured drafting, two-stage blind review.</td>
+</tr>
+<tr>
+<td><code>literature-close-read</code></td>
+<td>Turns a paper&#39;s full text into a structured close-reading report instead of a summary.</td>
+</tr>
+<tr>
+<td><code>literature-lineage</code></td>
+<td>Traces predecessors and successors from a seed paper and checks real citations rather than assumed lineage.</td>
+</tr>
+<tr>
+<td><code>claim-challenge-search</code></td>
+<td>Searches for counter-evidence, boundary conditions and alternative explanations behind an existing scientific claim.</td>
+</tr>
+<tr>
+<td><code>topic-overlap-check</code></td>
+<td>Cross-terminology search for near-identical work before a topic is committed, with the closest work recorded.</td>
+</tr>
+<tr>
+<td><code>research-idea-assessment</code></td>
+<td>Compares nearby work first, then searches for support, challenges and a discriminating test.</td>
+</tr>
+<tr>
+<td><code>figure-first-paper-reader</code></td>
+<td>Reads a paper figure by figure before re-integrating the narrative, so weak panels surface early.</td>
+</tr>
+<tr>
+<td><code>study-design-extractor</code></td>
+<td>Extracts study design field by field — subjects, groups, sample size, intervention, endpoints — keeping quoted evidence.</td>
+</tr>
+<tr>
+<td><code>public-data-access</code></td>
+<td>Plans and validates acquisition from GEO/GSE, SRA/ENA, TCGA/GDC, GTEx, DepMap and similar repositories, with a delivery manifest.</td>
+</tr>
+</tbody></table></div>
+<h2 id="analysis-figures-and-environment"><a href="#analysis-figures-and-environment">Analysis, figures and environment</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pack</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>analysis-workflow</code></td>
+<td>The entry point for cleaning, QC, Python/R statistics, modelling and publication plotting, ending in <code>.ipynb</code> plus <code>.qmd</code>.</td>
+</tr>
+<tr>
+<td><code>figure-integrity</code></td>
+<td>Screens figure panels for duplication and reuse and produces evidence views for human review. It reports candidates; it does not declare misconduct.</td>
+</tr>
+<tr>
+<td><code>env-setup</code></td>
+<td>Prepares the machine: Python interpreters and virtual environments, R <code>renv</code>, <code>scimaster-cli</code>, and the API credentials the other packs expect.</td>
+</tr>
+</tbody></table></div>
+<h2 id="writing-review-and-funding"><a href="#writing-review-and-funding">Writing, review and funding</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pack</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nature-skills</code></td>
+<td>A journal-standard composite: figure-by-figure X-ray reading, evidence cards, bilingual manuscript companion, literature pipeline and figure conventions.</td>
+</tr>
+<tr>
+<td><code>structured-paper-drafting</code></td>
+<td>Workspace-aware drafting: provenance boundaries, the three kinds of gap, self-contained figures, archive locations.</td>
+</tr>
+<tr>
+<td><code>research-peer-review</code></td>
+<td>Simulated multi-expert blind review selected by document type, with every comment tied to a location in the text.</td>
+</tr>
+<tr>
+<td><code>w77-nfsc-pipeline</code></td>
+<td>NSFC and key R&amp;D programme proposals end to end: policy mining, real literature retrieval, Draw.io roadmaps and Gantt charts, simulated blind review.</td>
+</tr>
+</tbody></table></div>
+<h2 id="documents-clinical-work-and-tooling"><a href="#documents-clinical-work-and-tooling">Documents, clinical work and tooling</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pack</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docx</code> · <code>pdf</code> · <code>pptx</code></td>
+<td>Create, read and edit Word, PDF and PowerPoint files, including templates and slide decks.</td>
+</tr>
+<tr>
+<td><code>clinical-trial-protocol-skill</code></td>
+<td>Drafts drug, biologic or device protocols from a sourced feasibility assessment and design hand-over.</td>
+</tr>
+<tr>
+<td><code>tooluniverse-clinical-trial-design</code></td>
+<td>Defines endpoints, population and controls, checks prior trials and regulatory grounds, then hands over a sourced design record.</td>
+</tr>
+<tr>
+<td><code>find-skills</code></td>
+<td>Discovers and installs additional skills when a task needs one that is not bundled.</td>
+</tr>
+<tr>
+<td><code>skill-creator</code></td>
+<td>Builds, edits and measures new skills, including description tuning for reliable triggering.</td>
+</tr>
+<tr>
+<td><code>pi-session-pattern-miner</code></td>
+<td>Mines past sessions for repeated work and turns it into the smallest deterministic script or skill.</td>
+</tr>
+<tr>
+<td><code>field-onboarding</code></td>
+<td>Builds a sourced concept map, evolution path and reading order for an unfamiliar field.</td>
+</tr>
+</tbody></table></div>
+<h2 id="how-packs-load"><a href="#how-packs-load">How packs load</a></h2>
+<p>Packs are discovered from two scopes, exactly like the rest of the configuration:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Location</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Global</td>
+<td><code>~/.ohpie/skills/</code></td>
+<td>Methods you want in every project.</td>
+</tr>
+<tr>
+<td>Project</td>
+<td><code>./.ohpie/skills/</code></td>
+<td>A pack pinned to one study, travelling with the repository.</td>
+</tr>
+</tbody></table></div>
+<p>The agent sees each pack&#39;s name and description first and loads the body on demand, so a pack can be long without costing context on every turn. Project entries override or extend global ones with the same name.</p>
+<div class="note" data-label="NOTE"><p>A pack supplies method and tool guidance. It does not guarantee that a citation, a statistic or a conclusion is correct — several packs exist precisely to make that gap visible.</p></div>
+<h2 id="writing-your-own"><a href="#writing-your-own">Writing your own</a></h2>
+<p>Start from <code>skill-creator</code>, keep the <code>SKILL.md</code> frontmatter honest (a description that never triggers is a dead pack), and put long material in <code>references/</code> rather than in the body. A pack that needs a tool should say what happens when the tool is missing.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workflow.html"><div class="dir">Previous</div><div class="t">Workflow</div></a>
+        <a class="next" href="./bioinformatics.html"><div class="dir">Next</div><div class="t">Bioinformatics</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

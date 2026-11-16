@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The workspace · OhPie Wiki</title>
+<meta name="description" content="Ordinary folders hold the research; one hidden folder holds the agent's state.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/workspace.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html" aria-current="page"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">02 / 07</span>
+          <h1>The workspace</h1>
+          <p>Ordinary folders hold the research; one hidden folder holds the agent's state.</p>
+        </header>
+        <p>A Research Workspace is a plain directory. Nothing about it is proprietary: papers are PDFs, analysis is Python or R, figures are images, and the manuscript is text. The only special folder is <code>.ohpie/</code>, which keeps the conversation and the agent&#39;s configuration next to the material it operated on.</p>
+<h2 id="the-folder-contract"><a href="#the-folder-contract">The folder contract</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>research-topic/
+├── literature/                       # PDFs, BibTeX, reviews, retrieval code
+├── experiments/
+│   ├── 1_original_data/              # Immutable raw archives
+│   ├── 2_cleaned_data/               # Cleaned matrices (CSV/TSV/Parquet)
+│   ├── 3_analysis/                   # Scripts, notebooks, archived cells
+│   │   ├── 01_data_cleaning.ipynb
+│   │   ├── 01_data_cleaning.qmd
+│   │   ├── 02_statistical_analysis.ipynb
+│   │   └── 02_statistical_analysis.qmd
+│   ├── 4_results/
+│   │   ├── figures/
+│   │   ├── tables/
+│   │   └── passport.yaml             # Material Passport
+│   └── 5_report/                     # Analysis plans and progress reports
+├── manuscript/                       # Drafts, proposals, reviews, rebuttals
+├── notes/                            # Per-paper reading and figure audits
+└── .ohpie/
+    ├── agent/sessions/               # Project conversation history
+    ├── skills/
+    ├── plugins/
+    ├── mcp.json
+    └── research-actions.json
+</code></pre></figure>
+<h2 id="what-each-folder-is-for"><a href="#what-each-folder-is-for">What each folder is for</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Contents</th>
+<th>Touch policy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>literature/</code></td>
+<td>Papers, bibliographic data, screening notes, retrieval code.</td>
+<td>Append-only in normal use.</td>
+</tr>
+<tr>
+<td><code>experiments/1_original_data/</code></td>
+<td>Raw files exactly as received.</td>
+<td>Read-only; never overwrite.</td>
+</tr>
+<tr>
+<td><code>experiments/2_cleaned_data/</code></td>
+<td>Reproducible cleaned matrices.</td>
+<td>Regenerate from raw data.</td>
+</tr>
+<tr>
+<td><code>experiments/3_analysis/</code></td>
+<td>Notebooks, scripts and the exported <code>.qmd</code> pairs.</td>
+<td>The record of how a number was produced.</td>
+</tr>
+<tr>
+<td><code>experiments/4_results/</code></td>
+<td>Figures, tables and <code>passport.yaml</code>.</td>
+<td>Publication outputs.</td>
+</tr>
+<tr>
+<td><code>experiments/5_report/</code></td>
+<td>Statistical analysis plans and progress reports.</td>
+<td>Narrative outputs.</td>
+</tr>
+<tr>
+<td><code>manuscript/</code></td>
+<td>Drafts, proposals, referee material, rebuttals.</td>
+<td>Living documents.</td>
+</tr>
+<tr>
+<td><code>notes/</code></td>
+<td>Reading notes and figure-audit cards.</td>
+<td>Per-paper working notes.</td>
+</tr>
+</tbody></table></div>
+<h2 id="two-configuration-scopes"><a href="#two-configuration-scopes">Two configuration scopes</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Holds</th>
+<th>Travels with the repository</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>~/.ohpie/</code></td>
+<td>Model configuration, provider credentials, global Skills, Plugins, MCP servers and Quick Actions.</td>
+<td>No.</td>
+</tr>
+<tr>
+<td><code>./.ohpie/</code></td>
+<td>This project&#39;s conversations plus project-scoped Skills, Plugins, MCP servers and Quick Actions.</td>
+<td>Yes.</td>
+</tr>
+</tbody></table></div>
+<p>Project entries are resolved together with global ones. A project definition overrides or extends the corresponding global configuration, which is how one study can pin a different MCP server or a stricter Quick Action without disturbing anything else.</p>
+<div class="note" data-label="NOTE"><p>Conversation history lives inside the project on purpose. Move or clone the repository and the discussion of why a figure changed moves with it.</p></div>
+<h2 id="backups-and-sharing"><a href="#backups-and-sharing">Backups and sharing</a></h2>
+<p>Back up a workspace to keep its research files and its conversation history. Back up <code>~/.ohpie/</code> separately for shared settings, credentials and global extensions.</p>
+<p>Before sharing or publishing a workspace, read <code>.ohpie/</code> and the session files for credentials or unpublished material. Archiving a project and publishing a project are different decisions, and <code>.ohpie/</code> is where the difference shows up.</p>
+<details>
+<summary>Advanced runtime overrides</summary><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OHPIE_HOME_DIR</code></td>
+<td>Selects the home directory that contains <code>.ohpie</code>.</td>
+</tr>
+<tr>
+<td><code>PI_CODING_AGENT_DIR</code></td>
+<td>Explicitly overrides the agent configuration directory.</td>
+</tr>
+<tr>
+<td><code>OHPIE_PROJECT_LOCAL_SESSIONS=0</code></td>
+<td>Disables the default project-local session mode.</td>
+</tr>
+<tr>
+<td><code>OHPIE_PORT</code></td>
+<td>Requests a local server port; an occupied port can fall back to an available one.</td>
+</tr>
+</tbody></table></div>
+</details>
+
+        <nav class="pagenav">
+        <a class="prev" href="./quick-start.html"><div class="dir">Previous</div><div class="t">Quick start</div></a>
+        <a class="next" href="./workflow.html"><div class="dir">Next</div><div class="t">Workflow</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

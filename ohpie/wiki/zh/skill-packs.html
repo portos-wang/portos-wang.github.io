@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技能包 · OhPie Wiki</title>
+<meta name="description" content="25 个内置技能包，按真实用途分组，附加载方式与自写规范。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/skill-packs.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html" aria-current="page"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">04 / 07</span>
+          <h1>技能包</h1>
+          <p>25 个内置技能包，按真实用途分组，附加载方式与自写规范。</p>
+        </header>
+        <p>一个技能包就是一个含 <code>SKILL.md</code> 的文件夹，加上这套方法需要的参考资料、脚本和模板。它不是一段提示词：只有智能体判断该包与任务匹配时，正文才会被加载。这让基础对话保持精简，也让技能包能承载真正的检查清单。</p>
+<p>OhPie 随应用提供 <strong>25 个技能包</strong>与 <strong>5 个插件</strong>。下列每一个都在本仓库 <code>builtin-skills/</code> 下，没有一项依赖托管服务。</p>
+<h2 id="文献检索与判断"><a href="#文献检索与判断">文献检索与判断</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技能包</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>academic-research-skills</code></td>
+<td>全流程：PRISMA 2020 双盲初筛、多视角文献挖掘、结构化起草、双阶段盲审。</td>
+</tr>
+<tr>
+<td><code>literature-close-read</code></td>
+<td>把论文全文转成结构化精读报告，而不是一段摘要。</td>
+</tr>
+<tr>
+<td><code>literature-lineage</code></td>
+<td>从种子论文追查前驱与后续，核对真实引用，而不是假设的谱系。</td>
+</tr>
+<tr>
+<td><code>claim-challenge-search</code></td>
+<td>围绕既有科学主张检索相反结果、适用边界与替代解释。</td>
+</tr>
+<tr>
+<td><code>topic-overlap-check</code></td>
+<td>立项前跨术语检索相近工作，并记录最接近的那几篇。</td>
+</tr>
+<tr>
+<td><code>research-idea-assessment</code></td>
+<td>先比较已有相近工作，再检索支持、挑战与可区分的验证方案。</td>
+</tr>
+<tr>
+<td><code>figure-first-paper-reader</code></td>
+<td>先逐图读，再重建叙述，让薄弱面板尽早暴露。</td>
+</tr>
+<tr>
+<td><code>study-design-extractor</code></td>
+<td>逐字段抽取研究设计——对象、分组、样本量、干预、终点——并保留原文证据。</td>
+</tr>
+<tr>
+<td><code>public-data-access</code></td>
+<td>为 GEO/GSE、SRA/ENA、TCGA/GDC、GTEx、DepMap 等仓库制定获取与校验计划，并生成交付 manifest。</td>
+</tr>
+</tbody></table></div>
+<h2 id="分析-图表与环境"><a href="#分析-图表与环境">分析、图表与环境</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技能包</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>analysis-workflow</code></td>
+<td>清洗、质控、Python/R 统计、建模与发表级绘图的总入口，最终交付 <code>.ipynb</code> 与 <code>.qmd</code>。</td>
+</tr>
+<tr>
+<td><code>figure-integrity</code></td>
+<td>筛查图像面板的重复与复用，生成供人工复核的证据视图。它只产出候选，不下学术不端结论。</td>
+</tr>
+<tr>
+<td><code>env-setup</code></td>
+<td>准备机器：Python 解释器与虚拟环境、R <code>renv</code>、<code>scimaster-cli</code>，以及其他技能包需要的 API 凭据。</td>
+</tr>
+</tbody></table></div>
+<h2 id="写作-评审与基金"><a href="#写作-评审与基金">写作、评审与基金</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技能包</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nature-skills</code></td>
+<td>顶刊标准复合包：逐图 X 光精读、证据卡片、中英双语伴读、文献调研流水线与绘图规范。</td>
+</tr>
+<tr>
+<td><code>structured-paper-drafting</code></td>
+<td>工作区适配的结构化写作：凭证边界、三类缺口标注、图表自足与归档位置。</td>
+</tr>
+<tr>
+<td><code>research-peer-review</code></td>
+<td>按文稿类型选择模拟多专家盲审，每条意见都定位到正文位置。</td>
+</tr>
+<tr>
+<td><code>w77-nfsc-pipeline</code></td>
+<td>国自然与重点研发计划申报书全流程：政策挖掘、真实文献检索、Draw.io 路线图与甘特图、模拟盲审。</td>
+</tr>
+</tbody></table></div>
+<h2 id="文档-临床与工具"><a href="#文档-临床与工具">文档、临床与工具</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>技能包</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docx</code> · <code>pdf</code> · <code>pptx</code></td>
+<td>创建、读取与编辑 Word、PDF、PowerPoint，包括模板与幻灯片。</td>
+</tr>
+<tr>
+<td><code>clinical-trial-protocol-skill</code></td>
+<td>从有来源的可行性评估与设计交接记录起草药物、生物制品或器械方案。</td>
+</tr>
+<tr>
+<td><code>tooluniverse-clinical-trial-design</code></td>
+<td>明确终点、人群与对照，核查既往试验与监管依据，交付有来源的设计记录。</td>
+</tr>
+<tr>
+<td><code>find-skills</code></td>
+<td>任务需要未内置的能力时，发现并安装新的技能。</td>
+</tr>
+<tr>
+<td><code>skill-creator</code></td>
+<td>创建、修改与评测技能，包括为可靠触发调优描述。</td>
+</tr>
+<tr>
+<td><code>pi-session-pattern-miner</code></td>
+<td>从过往会话里挖出重复劳动，提炼成最小的确定性脚本或技能。</td>
+</tr>
+<tr>
+<td><code>field-onboarding</code></td>
+<td>为陌生领域建立有来源的概念地图、演化脉络与阅读顺序。</td>
+</tr>
+</tbody></table></div>
+<h2 id="技能包如何加载"><a href="#技能包如何加载">技能包如何加载</a></h2>
+<p>技能包与其他配置一样，从两个作用域发现：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>位置</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局</td>
+<td><code>~/.ohpie/skills/</code></td>
+<td>每个课题都想用的方法。</td>
+</tr>
+<tr>
+<td>项目</td>
+<td><code>./.ohpie/skills/</code></td>
+<td>固定在一项研究上、随仓库一起走的包。</td>
+</tr>
+</tbody></table></div>
+<p>智能体先看到名称与描述，按需加载正文，因此技能包可以写得很长而不占用每一轮的上下文。同名时项目条目覆盖或补充全局条目。</p>
+<div class="note" data-label="注意"><p>技能包提供方法与工具指引，但不保证某条引文、某个统计量或某个结论正确——好几个包存在的意义，正是把这个缺口显形。</p></div>
+<h2 id="自己写一个"><a href="#自己写一个">自己写一个</a></h2>
+<p>从 <code>skill-creator</code> 开始；把 <code>SKILL.md</code> 的 frontmatter 写实（一个永远不会被触发的描述等于一个死包）；长材料放进 <code>references/</code> 而不是正文。需要调用工具的技能包，要写清工具缺失时会怎样。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workflow.html"><div class="dir">上一页</div><div class="t">科研流程</div></a>
+        <a class="next" href="./bioinformatics.html"><div class="dir">下一页</div><div class="t">生物信息 MCP</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

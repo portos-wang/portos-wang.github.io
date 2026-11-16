@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build and maintenance · OhPie Wiki</title>
+<meta name="description" content="Checks, entry updates in isolated worktrees, packaging and local synchronisation.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/maintenance.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html" aria-current="page"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">06 / 07</span>
+          <h1>Build and maintenance</h1>
+          <p>Checks, entry updates in isolated worktrees, packaging and local synchronisation.</p>
+        </header>
+        <p>The maintenance command is how bundled components move: Pi SDK and the UI layer, the built-in Skill Packs and Plugins, and the external MCP service definitions. It never edits your working branch directly. Candidates are prepared in a separate Git worktree, verified there, and only then packaged or synced.</p>
+<h2 id="the-loop"><a href="#the-loop">The loop</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- check
+npm run maintain -- update pi-sdk --no-verify
+npm run maintain -- verify --run &lt;Run-ID&gt;
+</code></pre></figure>
+<p>Without <code>--no-verify</code>, <code>update</code> continues straight into installing and verifying. Stable releases are preferred; when a Git project has no stable tag, the report says so explicitly and pins the actual commit.</p>
+<h2 id="reading-the-status"><a href="#reading-the-status">Reading the status</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prepared</code></td>
+<td>The candidate exists but has not passed verification.</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td>The candidate passed every check in its manifest.</td>
+</tr>
+<tr>
+<td><code>blocked</code> / <code>conflict</code></td>
+<td>A source, an old baseline or a merge conflict needs a decision. Reports and conflict files are kept.</td>
+</tr>
+<tr>
+<td><code>verification-failed</code></td>
+<td>Some checks failed; read the report and the adjacent <code>commands.log</code>.</td>
+</tr>
+</tbody></table></div>
+<p>Every command prints the candidate directory, branch, Run ID and report path. Reports live under <code>ohpie-maintenance/runs/&lt;Run-ID&gt;/</code> inside the Git common directory. Your original checkout keeps its branch, index and uncommitted changes.</p>
+<h2 id="scoped-updates"><a href="#scoped-updates">Scoped updates</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- update pi-web
+npm run maintain -- update pi-sdk --version 1.3.0
+npm run maintain -- update ui
+npm run maintain -- update plugins --only pi-web-access
+npm run maintain -- update skills --only pdf
+npm run maintain -- update mcp
+</code></pre></figure>
+<p>The eight Pi SDK packages (<code>pi-agent-core</code>, <code>pi-ai</code>, <code>pi-codemode</code>, <code>pi-coding-agent</code>, <code>pi-mcp</code>, <code>pi-schema</code>, <code>pi-telemetry</code>, <code>pi-tui</code>) move to the same exact version. Skills and Plugins are merged from the real previous upstream, the new upstream and the current OhPie content, so local adaptations survive. A missing source or old baseline is reported as a blocker rather than silently ignored; pass <code>--baseline-ref</code> once you have identified the old commit, or <code>--ref</code> to pin a target commit or tag.</p>
+<h2 id="packaging-and-local-sync"><a href="#packaging-and-local-sync">Packaging and local sync</a></h2>
+<p>Review the candidate diff first, then choose one or both:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- package --run &lt;Run-ID&gt;
+npm run maintain -- sync-local --run &lt;Run-ID&gt;
+</code></pre></figure>
+<p><code>package</code> builds only inside the candidate directory and delivers the portable folder and installer into the original checkout&#39;s <code>dist/</code>, keeping earlier output. <code>sync-local</code> updates the installed Skills and Plugins while preserving configuration and keys; MCP environments are still installed explicitly by the Windows installer.</p>
+<p>Further edits to the candidate invalidate the previous verification — run <code>verify</code> again before packaging.</p>
+<h2 id="baselines-and-conflicts"><a href="#baselines-and-conflicts">Baselines and conflicts</a></h2>
+<p>Local sync prefers the baseline recorded at install time in <code>~/.ohpie/agent/.ohpie-builtin-baselines/</code>, then records the new one. LF/CRLF differences are not treated as user edits; binary content is still compared byte for byte.</p>
+<p>When an old installation has no recorded baseline, the candidate snapshot is adopted only if the content matches it exactly. Otherwise the command returns <code>needs-baseline</code> — the new fixes must not be mistaken for a common ancestor of an older install. Overlapping local edits produce a conflict and keep the three-way files; nothing is force-overwritten.</p>
+<h2 id="conventions-for-tests"><a href="#conventions-for-tests">Conventions for tests</a></h2>
+<p>Tests that import a module whose relative imports lack file extensions must bridge through <code>jiti</code>, because Node&#39;s native ESM resolver rejects them:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>javascript</span></div><pre><code>import { createJiti } from &quot;jiti&quot;;
+const { resolveSubagentProfile } = await createJiti(import.meta.url).import(&quot;./subagents.ts&quot;);
+</code></pre></figure>
+<p>Pure explicit-extension modules can be imported directly. This keeps the native <code>node --test</code> runner working against TypeScript sources.</p>
+<div class="note" data-label="NOTE"><p>Maintenance operations never merge a candidate back into your branch. When you are satisfied, merge the candidate branch with normal Git, after dealing with any existing uncommitted work.</p></div>
+
+        <nav class="pagenav">
+        <a class="prev" href="./bioinformatics.html"><div class="dir">Previous</div><div class="t">Bioinformatics</div></a>
+        <a class="next" href="./faq.html"><div class="dir">Next</div><div class="t">FAQ</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

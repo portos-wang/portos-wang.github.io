@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科研流程 · OhPie Wiki</title>
+<meta name="description" content="四个阶段、一条回边，以及一份并不构成结论的来源记录。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/workflow.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html" aria-current="page"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">03 / 07</span>
+          <h1>科研流程</h1>
+          <p>四个阶段、一条回边，以及一份并不构成结论的来源记录。</p>
+        </header>
+        <p>在 OhPie 里，一项研究是一个闭环而不是流水线。阅读改变分析，分析改变草稿，而审查会把某一条论断送回它本该依据的原始文献。</p>
+<h2 id="四个阶段"><a href="#四个阶段">四个阶段</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>一个代表性请求</th>
+<th>落到磁盘上的东西</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>检索</td>
+<td>&quot;检索这个问题的原始研究，记录检索策略，并区分来自全文的证据和仅依据摘要的发现。&quot;</td>
+<td><code>literature/</code> 与 <code>notes/</code> 中的题录、筛选记录与阅读卡片。</td>
+</tr>
+<tr>
+<td>分析</td>
+<td>&quot;检查这个数据集，先提出分析方案，再运行确认后的 Python 或 R 分析，保存图和表。&quot;</td>
+<td><code>experiments/3_analysis/</code> 的笔记本与脚本，<code>2_cleaned_data/</code> 的清洗数据，<code>4_results/</code> 的输出。</td>
+</tr>
+<tr>
+<td>写作</td>
+<td>&quot;依据已核实的证据和分析结果起草本节，并生成可编辑的技术路线图。&quot;</td>
+<td><code>manuscript/</code> 的章节与申报书，结果目录中的 Draw.io 图。</td>
+</tr>
+<tr>
+<td>审查</td>
+<td>&quot;逐条核对引文是否支持对应论断，审查研究方法，并在修改前列出尚未解决的证据缺口。&quot;</td>
+<td>引证核查、模拟审稿报告与修改材料。</td>
+</tr>
+</tbody></table></div>
+<h2 id="审查是一条回边"><a href="#审查是一条回边">审查是一条回边</a></h2>
+<p>最后一个阶段不是审批环节。一份模拟审稿意见或引证核查，只有能指到具体句子、具体引文和具体缺失条件时才有用。一旦指到了，它产出的就是一个新的检索问题——这正是闭环回到&quot;检索&quot;的原因。</p>
+<p>这也是为什么审查类技能包要求证据，而不是要求认同。只确认作者结论的审稿人，没有产出任何值得保留的东西。</p>
+<h2 id="实验凭证"><a href="#实验凭证">实验凭证</a></h2>
+<p>对于受支持的本地分析，OhPie 会登记<strong>实验凭证</strong>：归档代码、分析声明的输入、运行环境与内容指纹。这些记录汇入同一个文件：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>yaml</span></div><pre><code># experiments/4_results/passport.yaml
+# 每登记一个产物对应一条记录：
+#   artifact   -&gt; 保存的文件
+#   code       -&gt; 产出它的归档代码单元或脚本
+#   inputs     -&gt; 声明的数据输入及其指纹
+#   runtime    -&gt; 解释器、依赖包、宿主信息
+</code></pre></figure>
+<p>意义在于可证伪。带凭证的图可以追回到产出它的代码与数据；不带凭证的图，只是文件夹里的一张图片。</p>
+<div class="note" data-label="注意"><p>执行成功、来源已登记、科学结论成立，是三件不同的事。代码可以跑通，文件可以登记，而结论仍然可能是错的。OhPie 记录前两件；第三件仍由研究者负责。</p></div>
+<h2 id="流程刻意不包含什么"><a href="#流程刻意不包含什么">流程刻意不包含什么</a></h2>
+<p>OhPie 不判断方法是否合适、样本量是否足够、期刊是否会接受。这些都不是工具输出。技能包的写法是把缺口摊开——缺一个对照、一条无法核实的引文、一处说过头的论断——而不是把它盖住。</p>
+<p>继续阅读<a href="./skill-packs.html">技能包</a>看哪个包覆盖哪个阶段，或看<a href="./workspace.html">研究工作区</a>了解每种产物应该放在哪里。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workspace.html"><div class="dir">上一页</div><div class="t">研究工作区</div></a>
+        <a class="next" href="./skill-packs.html"><div class="dir">下一页</div><div class="t">技能包</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

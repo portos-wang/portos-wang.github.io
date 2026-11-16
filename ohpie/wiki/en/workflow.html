@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research workflow · OhPie Wiki</title>
+<meta name="description" content="Four stages, one return edge, and a provenance record that is not a verdict.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/workflow.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html" aria-current="page"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">03 / 07</span>
+          <h1>Research workflow</h1>
+          <p>Four stages, one return edge, and a provenance record that is not a verdict.</p>
+        </header>
+        <p>A study in OhPie is a loop rather than a pipeline. Reading changes the analysis, the analysis changes the draft, and the review sends individual claims back to the sources that were supposed to support them.</p>
+<h2 id="the-four-stages"><a href="#the-four-stages">The four stages</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>A representative request</th>
+<th>What lands on disk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Discover</td>
+<td>“Find primary studies on this question, record the search strategy, and separate full-text evidence from abstract-only findings.”</td>
+<td>Bibliographic records, screening notes and reading cards in <code>literature/</code> and <code>notes/</code>.</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>“Inspect this dataset, propose an analysis plan, then run the agreed Python or R analysis and save the figures and tables.”</td>
+<td>Notebooks and scripts in <code>experiments/3_analysis/</code>, clean data in <code>2_cleaned_data/</code>, outputs in <code>4_results/</code>.</td>
+</tr>
+<tr>
+<td>Draft</td>
+<td>“Draft this section from the verified evidence and analysis results, and build an editable technical roadmap.”</td>
+<td>Sections and proposals in <code>manuscript/</code>, Draw.io diagrams in the results directory.</td>
+</tr>
+<tr>
+<td>Review</td>
+<td>“Check whether each citation supports its claim, review the methods, and list the unresolved evidence gaps before revising.”</td>
+<td>Claim audits, simulated referee reports and revision material.</td>
+</tr>
+</tbody></table></div>
+<h2 id="review-is-the-return-edge"><a href="#review-is-the-return-edge">Review is the return edge</a></h2>
+<p>The last stage is not an approval step. A simulated referee report or a claim audit is useful only when it points at a specific sentence, a specific citation and a specific missing condition. When it does, the result is a new search question, which is why the loop closes back on <code>Discover</code>.</p>
+<p>This is also why the review packs are written to ask for evidence rather than agreement. A reviewer that only confirms the author&#39;s conclusion has produced nothing worth keeping.</p>
+<h2 id="the-material-passport"><a href="#the-material-passport">The Material Passport</a></h2>
+<p>For supported local analyses, OhPie records <strong>Experiment Provenance</strong>: the archived code, the inputs declared by the analysis, runtime details and a content fingerprint. Those records collect in one file:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>yaml</span></div><pre><code># experiments/4_results/passport.yaml
+# one entry per registered artifact:
+#   artifact   -&gt; the saved file
+#   code       -&gt; the archived cell or script that produced it
+#   inputs     -&gt; declared data inputs and their fingerprints
+#   runtime    -&gt; interpreter, packages, host details
+</code></pre></figure>
+<p>The point is falsifiability. A figure with a passport entry can be traced back to the code and the data that produced it; a figure without one is just an image in a folder.</p>
+<div class="note" data-label="NOTE"><p>Execution success, recorded provenance and scientific validity are three different facts. A cell can run, a file can be registered, and the conclusion can still be wrong. OhPie records the first two; the third stays with you.</p></div>
+<h2 id="what-the-workflow-deliberately-leaves-out"><a href="#what-the-workflow-deliberately-leaves-out">What the workflow deliberately leaves out</a></h2>
+<p>OhPie does not decide whether a method is appropriate, whether a sample size is adequate, or whether a journal will accept the result. Those judgements are not tool outputs. The packs are written to expose the gap — a missing control, an unverifiable citation, an overstated claim — rather than to paper over it.</p>
+<p>Continue with <a href="./skill-packs.html">skill packs</a> to see which pack covers which stage, or <a href="./workspace.html">the workspace</a> for where each artifact belongs.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workspace.html"><div class="dir">Previous</div><div class="t">Workspace</div></a>
+        <a class="next" href="./skill-packs.html"><div class="dir">Next</div><div class="t">Skill packs</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>构建与维护 · OhPie Wiki</title>
+<meta name="description" content="检查、在独立 worktree 中准备候选、验证、打包与同步本机。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/maintenance.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html" aria-current="page"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">06 / 07</span>
+          <h1>构建与维护</h1>
+          <p>检查、在独立 worktree 中准备候选、验证、打包与同步本机。</p>
+        </header>
+        <p>维护命令负责内置组件的更新：Pi SDK 与界面层、内置技能包与插件、外部 MCP 服务定义。它从不直接改动你当前的分支——候选在独立的 Git worktree 里准备、验证，之后才被打包或同步。</p>
+<h2 id="工作循环"><a href="#工作循环">工作循环</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- check
+npm run maintain -- update pi-sdk --no-verify
+npm run maintain -- verify --run &lt;Run-ID&gt;
+</code></pre></figure>
+<p>不加 <code>--no-verify</code> 时，<code>update</code> 会直接继续安装与验证。默认选稳定版；Git 项目没有稳定标签时，报告会明确写出这一点，并固定实际提交。</p>
+<h2 id="看懂状态"><a href="#看懂状态">看懂状态</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prepared</code></td>
+<td>候选已就绪，但尚未通过验证。</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td>候选通过了清单中的全部检查。</td>
+</tr>
+<tr>
+<td><code>blocked</code> / <code>conflict</code></td>
+<td>来源、旧版本基线或合并冲突需要处理；报告与冲突文件都会保留。</td>
+</tr>
+<tr>
+<td><code>verification-failed</code></td>
+<td>部分检查未通过；查看报告与旁边的 <code>commands.log</code>。</td>
+</tr>
+</tbody></table></div>
+<p>每条命令都会打印候选目录、分支、Run ID 与报告位置。报告位于 Git 公共目录下的 <code>ohpie-maintenance/runs/&lt;Run-ID&gt;/</code>。原检出目录保留自己的分支、索引与未提交改动。</p>
+<h2 id="限定更新范围"><a href="#限定更新范围">限定更新范围</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- update pi-web
+npm run maintain -- update pi-sdk --version 1.3.0
+npm run maintain -- update ui
+npm run maintain -- update plugins --only pi-web-access
+npm run maintain -- update skills --only pdf
+npm run maintain -- update mcp
+</code></pre></figure>
+<p>Pi SDK 的八个包（<code>pi-agent-core</code>、<code>pi-ai</code>、<code>pi-codemode</code>、<code>pi-coding-agent</code>、<code>pi-mcp</code>、<code>pi-schema</code>、<code>pi-telemetry</code>、<code>pi-tui</code>）使用同一个精确版本。技能与插件按真实的旧版上游、新版上游和 OhPie 当前内容三方合并，因此本地适配能保留下来。缺少来源或旧版本基线会被报告为阻断项，不能靠检查绕过；确认旧版提交后可传 <code>--baseline-ref</code>，或传 <code>--ref</code> 固定目标提交或标签。</p>
+<h2 id="打包与本机同步"><a href="#打包与本机同步">打包与本机同步</a></h2>
+<p>先在候选目录查看差异，再选择一项或两项：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run maintain -- package --run &lt;Run-ID&gt;
+npm run maintain -- sync-local --run &lt;Run-ID&gt;
+</code></pre></figure>
+<p><code>package</code> 只在候选目录构建，成功后把便携目录与安装器交付到原仓库的 <code>dist/</code>，保留之前的输出。<code>sync-local</code> 更新本机已装的技能与插件，保留配置与密钥；MCP 环境仍由 Windows 安装器显式安装。</p>
+<p>继续修改候选内容会让上一次验证失效——打包前重新跑 <code>verify</code>。</p>
+<h2 id="基线与冲突"><a href="#基线与冲突">基线与冲突</a></h2>
+<p>本机同步优先使用安装时记录的基线（<code>~/.ohpie/agent/.ohpie-builtin-baselines/</code>），成功后再记录新基线。LF/CRLF 差异不会被当成用户改动，二进制内容仍按字节比较。</p>
+<p>旧安装没有记录基线时，只有内容与候选起始快照完全一致才会采用它；否则命令返回 <code>needs-baseline</code>——不能把候选里的新修复误当成旧安装的共同祖先。重叠的本地改动会返回冲突并保留三方文件，不会强制覆盖。</p>
+<h2 id="测试的导入约定"><a href="#测试的导入约定">测试的导入约定</a></h2>
+<p>导入的模块若存在不带扩展名的相对引用，测试必须通过 <code>jiti</code> 桥接，因为 Node 原生 ESM 解析器不接受这种写法：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>javascript</span></div><pre><code>import { createJiti } from &quot;jiti&quot;;
+const { resolveSubagentProfile } = await createJiti(import.meta.url).import(&quot;./subagents.ts&quot;);
+</code></pre></figure>
+<p>全部使用显式扩展名的模块可以直接导入。这样 Node 原生 <code>node --test</code> 就能直接跑 TypeScript 源码。</p>
+<div class="note" data-label="注意"><p>维护操作永远不会把候选合并回你的分支。确认满意后，先处理原有的未提交工作，再按正常 Git 流程合并候选分支。</p></div>
+
+        <nav class="pagenav">
+        <a class="prev" href="./bioinformatics.html"><div class="dir">上一页</div><div class="t">生物信息 MCP</div></a>
+        <a class="next" href="./faq.html"><div class="dir">下一页</div><div class="t">常见问题</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

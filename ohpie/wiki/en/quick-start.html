@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick start · OhPie Wiki</title>
+<meta name="description" content="Install from source or the Windows package, configure a model, and open your first workspace.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/quick-start.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html" aria-current="page"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">01 / 07</span>
+          <h1>Quick start</h1>
+          <p>Install from source or the Windows package, configure a model, and open your first workspace.</p>
+        </header>
+        <p>OhPie is distributed as source in this repository and as a <strong>Windows x64</strong> desktop package. Both paths end in the same place: a local server on your machine, a model you configured, and a workspace folder where every result is written as an ordinary file.</p>
+<h2 id="what-you-need"><a href="#what-you-need">What you need</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Git</td>
+<td>Clone the repository.</td>
+</tr>
+<tr>
+<td>Node.js 22.19.0 or newer</td>
+<td>Run the local server and the build.</td>
+</tr>
+<tr>
+<td>A model provider</td>
+<td>Sign in with OAuth or paste an API key.</td>
+</tr>
+<tr>
+<td>Windows x64</td>
+<td>Only for the packaged desktop application.</td>
+</tr>
+<tr>
+<td>Python or R</td>
+<td>Only for local data analysis, with the packages your analysis imports.</td>
+</tr>
+<tr>
+<td>Network access</td>
+<td>Only for model calls and the external MCP services you enable.</td>
+</tr>
+</tbody></table></div>
+<h2 id="run-from-source"><a href="#run-from-source">Run from source</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>bash</span></div><pre><code>git clone https://github.com/portos-wang/OhPie.git
+cd OhPie
+npm ci
+npm run dev
+</code></pre></figure>
+<p>The launcher picks a free port, prints the URL and opens your browser. The current server record is written to <code>.next/ohpie-server.json</code>, so you can always find the healthy process for this checkout.</p>
+<p>For the desktop window, keep that terminal running and open a second one:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>bash</span></div><pre><code>npm run electron:start
+</code></pre></figure>
+<p>Startup flags such as <code>npm run dev -- --no-open</code> or <code>npm run dev -- --port 8080</code> must be chosen before launch. One checkout shares one development server and one <code>.next</code> directory, so stop the running process before changing them.</p>
+<h2 id="build-the-desktop-package"><a href="#build-the-desktop-package">Build the desktop package</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm run dist:dir</code></td>
+<td>Portable application folder at <code>dist/win-unpacked/OhPie.exe</code>.</td>
+</tr>
+<tr>
+<td><code>npm run dist:win</code></td>
+<td>The portable folder plus an NSIS installer under <code>dist/</code>.</td>
+</tr>
+</tbody></table></div>
+<p>Keep a portable folder together and launch <code>OhPie.exe</code> from inside it. The installer additionally prepares Puppeteer, ToolUniverse and BioMCP in a user-scoped environment under <code>~/.ohpie/mcp/</code>; that step needs network access and preserves existing MCP choices. There is no macOS or Linux installer today.</p>
+<h2 id="first-run"><a href="#first-run">First run</a></h2>
+<ol>
+<li><strong>Open a Research Workspace.</strong> Pick the folder for a topic or paper and let OhPie initialize the research directories described in <a href="./workspace.html">the workspace</a>.</li>
+<li><strong>Configure a model.</strong> In <strong>Models</strong>, sign in to a provider or add an API key, then choose a model and a reasoning level.</li>
+<li><strong>Add research credentials only if you need them.</strong> <strong>Settings → Credentials</strong> holds literature and database API keys and contact addresses.</li>
+<li><strong>Test the services your task needs.</strong> <strong>Settings → MCP</strong> can test each connection; project-scoped servers follow the workspace trust rules.</li>
+<li><strong>Ask for something real.</strong> Type a request or pick a Quick Action, then open the generated document, notebook, diagram or figure in the canvas beside the conversation.</li>
+</ol>
+<div class="note" data-label="NOTE"><p>The interface is available in English, Simplified Chinese and Traditional Chinese. Changing the language does not change where files are stored or which model is selected.</p></div>
+<h2 id="where-to-go-next"><a href="#where-to-go-next">Where to go next</a></h2>
+<ul>
+<li><a href="./workspace.html">The workspace</a> explains every folder and both configuration scopes.</li>
+<li><a href="./workflow.html">Research workflow</a> shows what a full study looks like end to end.</li>
+<li><a href="./skill-packs.html">Skill packs</a> lists what the 25 bundled packs actually do.</li>
+</ul>
+
+        <nav class="pagenav">
+        <span class="empty"></span>
+        <a class="next" href="./workspace.html"><div class="dir">Next</div><div class="t">Workspace</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

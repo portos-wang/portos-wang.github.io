@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速开始 · OhPie Wiki</title>
+<meta name="description" content="从源码或 Windows 安装包安装，配置模型，打开第一个研究工作区。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/quick-start.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html" aria-current="page"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">01 / 07</span>
+          <h1>快速开始</h1>
+          <p>从源码或 Windows 安装包安装，配置模型，打开第一个研究工作区。</p>
+        </header>
+        <p>OhPie 有两种获取方式：从仓库拉源码运行，或使用 <strong>Windows x64</strong> 桌面安装包。两条路径终点相同：本机上的一个本地服务、你配置好的模型，以及一个把每个结果都写成普通文件的工作区目录。</p>
+<h2 id="需要准备什么"><a href="#需要准备什么">需要准备什么</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>需要</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Git</td>
+<td>克隆仓库。</td>
+</tr>
+<tr>
+<td>Node.js 22.19.0 或更高</td>
+<td>运行本地服务与构建。</td>
+</tr>
+<tr>
+<td>一个模型供应商</td>
+<td>通过 OAuth 登录，或填入 API Key。</td>
+</tr>
+<tr>
+<td>Windows x64</td>
+<td>仅桌面安装包需要。</td>
+</tr>
+<tr>
+<td>Python 或 R</td>
+<td>仅本地数据分析需要，并且要装好分析所导入的包。</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>仅模型调用与你启用的外部 MCP 服务需要。</td>
+</tr>
+</tbody></table></div>
+<h2 id="从源码运行"><a href="#从源码运行">从源码运行</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>bash</span></div><pre><code>git clone https://github.com/portos-wang/OhPie.git
+cd OhPie
+npm ci
+npm run dev
+</code></pre></figure>
+<p>启动器会选择可用端口、输出地址并打开浏览器。当前服务记录写入 <code>.next/ohpie-server.json</code>，因此始终能找到这份检出目录对应的健康进程。</p>
+<p>需要桌面窗口时，保持该终端运行，另开一个终端：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>bash</span></div><pre><code>npm run electron:start
+</code></pre></figure>
+<p><code>npm run dev -- --no-open</code>、<code>npm run dev -- --port 8080</code> 这类参数必须在启动前确定。一份检出目录共用一个开发服务和同一个 <code>.next</code> 目录，修改参数前先停止正在运行的进程。</p>
+<h2 id="构建桌面安装包"><a href="#构建桌面安装包">构建桌面安装包</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>产物</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm run dist:dir</code></td>
+<td>位于 <code>dist/win-unpacked/OhPie.exe</code> 的便携应用目录。</td>
+</tr>
+<tr>
+<td><code>npm run dist:win</code></td>
+<td>便携目录，以及 <code>dist/</code> 下的 NSIS 安装器。</td>
+</tr>
+</tbody></table></div>
+<p>便携目录必须整体保留，从目录内启动 <code>OhPie.exe</code>。安装器还会在 <code>~/.ohpie/mcp/</code> 下准备 Puppeteer、ToolUniverse 与 BioMCP 的用户级环境；该步骤需要联网，并会保留已有的 MCP 配置选择。目前没有 macOS 或 Linux 安装包。</p>
+<h2 id="首次运行"><a href="#首次运行">首次运行</a></h2>
+<ol>
+<li><strong>打开研究工作区。</strong> 为课题或论文选一个文件夹，让 OhPie 初始化<a href="./workspace.html">工作区目录</a>中描述的研究结构。</li>
+<li><strong>配置模型。</strong> 在**模型（Models）**中登录供应商或填入 API Key，再选择模型与推理强度。</li>
+<li><strong>按需填写科研凭据。</strong> <strong>设置 → 凭据</strong>保存文献与数据库的 API Key、联系邮箱。</li>
+<li><strong>测试任务需要的服务。</strong> <strong>设置 → MCP</strong> 可逐项测试连接；项目作用域的服务遵循工作区信任规则。</li>
+<li><strong>提出一个真实任务。</strong> 输入需求或选择快捷操作，然后在对话旁的画布中打开生成的文档、笔记本、图或图表。</li>
+</ol>
+<div class="note" data-label="注意"><p>界面支持英文、简体中文与繁体中文。切换语言不会改变文件位置，也不会改变已选择的模型。</p></div>
+<h2 id="接下来读什么"><a href="#接下来读什么">接下来读什么</a></h2>
+<ul>
+<li><a href="./workspace.html">研究工作区</a>：每个目录做什么，两个配置作用域如何分工。</li>
+<li><a href="./workflow.html">科研流程</a>：一项完整研究从头到尾长什么样。</li>
+<li><a href="./skill-packs.html">技能包</a>：25 个内置技能包实际能做什么。</li>
+</ul>
+
+        <nav class="pagenav">
+        <span class="empty"></span>
+        <a class="next" href="./workspace.html"><div class="dir">下一页</div><div class="t">研究工作区</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

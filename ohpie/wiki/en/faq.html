@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ · OhPie Wiki</title>
+<meta name="description" content="Short answers about platforms, dependencies, data location, proxies and licensing.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/faq.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html" aria-current="page"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">07 / 07</span>
+          <h1>FAQ</h1>
+          <p>Short answers about platforms, dependencies, data location, proxies and licensing.</p>
+        </header>
+        <h2 id="is-there-a-macos-or-linux-build"><a href="#is-there-a-macos-or-linux-build">Is there a macOS or Linux build?</a></h2>
+<p>Not today. Desktop packaging targets Windows x64 and produces a portable folder plus an NSIS installer. Running from source works anywhere Node.js 22.19.0 or newer is available, but the Electron shell is only packaged and verified on Windows.</p>
+<h2 id="do-i-need-python-or-r"><a href="#do-i-need-python-or-r">Do I need Python or R?</a></h2>
+<p>Only for local data analysis, and only with the packages your analysis imports. Chat, document reading, the file canvas and the MCP tool calls work without either interpreter. The analysis kernel uses whatever Python and R are installed on the machine.</p>
+<h2 id="does-closing-the-window-stop-the-work"><a href="#does-closing-the-window-stop-the-work">Does closing the window stop the work?</a></h2>
+<p>It depends on the close behaviour you chose: the app can minimise to the tray or quit. Quitting from the tray stops the backend processes the application owns. Jobs running on external services continue or stop according to those services&#39; rules.</p>
+<h2 id="can-model-requests-go-through-an-http-proxy"><a href="#can-model-requests-go-through-an-http-proxy">Can model requests go through an HTTP proxy?</a></h2>
+<p>Yes. Server-side model and API requests honour the standard <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code> and <code>NO_PROXY</code> variables. Set them before launching OhPie and keep local addresses such as <code>localhost</code> and <code>127.0.0.1</code> outside the proxy.</p>
+<h2 id="where-do-conversations-and-settings-live"><a href="#where-do-conversations-and-settings-live">Where do conversations and settings live?</a></h2>
+<p>Conversations live in the project: <code>&lt;workspace&gt;/.ohpie/agent/sessions/</code>. Shared settings, provider credentials, global Skills and Plugins and the known-workspace registry live in <code>~/.ohpie/</code>. <a href="./workspace.html">The workspace page</a> has the full table, including how to override both locations.</p>
+<h2 id="is-this-a-fork-of-pi-web"><a href="#is-this-a-fork-of-pi-web">Is this a fork of pi-web?</a></h2>
+<p>The interface is built on a customised fork of <a href="https://github.com/agegr/pi-web" target="_blank" rel="noopener">pi-web</a>; the agent engine is the integrated <a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">Pi Coding Agent</a>. OhPie adds the research workspace layout, the analysis canvas, the provenance record, the desktop lifecycle and the isolated <code>.ohpie</code> storage.</p>
+<h2 id="does-it-need-an-account-or-a-subscription"><a href="#does-it-need-an-account-or-a-subscription">Does it need an account or a subscription?</a></h2>
+<p>No OhPie account and no OhPie cloud. You pay whichever model provider you configure, and external scientific services may have their own keys and quotas. The application itself is MIT licensed.</p>
+<h2 id="can-i-use-it-offline"><a href="#can-i-use-it-offline">Can I use it offline?</a></h2>
+<p>Local chat against a local model, file reading, the canvas and local Python/R analysis work without a network. Model calls to hosted providers, literature search and any MCP service need connectivity. Service environments prepared by the installer are downloaded once.</p>
+<h2 id="why-does-a-citation-check-sometimes-come-back-unresolved"><a href="#why-does-a-citation-check-sometimes-come-back-unresolved">Why does a citation check sometimes come back “unresolved”?</a></h2>
+<p>Because the evidence was not available, not because the tool failed quietly. A claim check can only confirm what it can read: with no full text, no accessible source or an ambiguous identifier, the honest result is unresolved, together with what would be needed to settle it. Treat that as a task list, not a verdict.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./maintenance.html"><div class="dir">Previous</div><div class="t">Maintenance</div></a>
+        <span class="empty"></span>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

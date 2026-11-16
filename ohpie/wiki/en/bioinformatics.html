@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bioinformatics MCP · OhPie Wiki</title>
+<meta name="description" content="ToolUniverse and BioMCP run as external MCP services; OhPie supplies the conversation, discovery and file canvas.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/bioinformatics.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>Workspace</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>Workflow</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>Skill packs</span></a></li>
+        <li><a href="./bioinformatics.html" aria-current="page"><span class="num">05</span><span>Bioinformatics</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>Maintenance</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>FAQ</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">05 / 07</span>
+          <h1>Bioinformatics MCP</h1>
+          <p>ToolUniverse and BioMCP run as external MCP services; OhPie supplies the conversation, discovery and file canvas.</p>
+        </header>
+        <p>OhPie does not embed a bioinformatics pipeline. It calls <strong>ToolUniverse</strong> and <strong>BioMCP</strong> through its MCP client, and those services own the databases, the methods, the job state and the answer. OhPie supplies the conversation, tool discovery, connection management and the file canvas that shows what came back.</p>
+<p>That boundary is deliberate. When a query returns nothing, the useful question is which service tool ran, with which identifiers and which background — not which local form was filled in incorrectly.</p>
+<h2 id="what-the-windows-installer-prepares"><a href="#what-the-windows-installer-prepares">What the Windows installer prepares</a></h2>
+<p>Before setup completes, the installer fetches Puppeteer, ToolUniverse and BioMCP plus an isolated Node.js/npm and Python for them. Puppeteer reuses your installed Chrome or Edge and only downloads a browser when none is found. Service environments live in <code>~/.ohpie/mcp/</code>, retries back off automatically, and failures are logged to <code>install.log</code> in the same directory.</p>
+<p>After a fresh install, open <strong>Settings → MCP → Global</strong> and run <strong>Test connection</strong> on all three. Upgrades preserve existing configuration, disabled states and recorded removals.</p>
+<h2 id="credentials"><a href="#credentials">Credentials</a></h2>
+<p>Open <strong>Settings → Credentials</strong>, enter the API keys and contact addresses you need, then <strong>Save and sync</strong>. The bundled <code>w77-nfsc-pipeline</code> pack, the local ToolUniverse and BioMCP pick these up automatically — no <code>.env</code> editing and no hand-written <code>mcp.json</code> environment block.</p>
+<p>PubMed (NCBI), OpenAlex and Semantic Scholar already have entries. For anything else, <strong>Add custom credential</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Credential</th>
+<th>Variables it sets</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NCI</td>
+<td><code>NCI_API_KEY</code></td>
+</tr>
+<tr>
+<td>DisGeNET</td>
+<td><code>DISGENET_API_KEY</code></td>
+</tr>
+<tr>
+<td>UMLS</td>
+<td><code>UMLS_API_KEY</code></td>
+</tr>
+<tr>
+<td>OpenFDA</td>
+<td><code>OPENFDA_API_KEY</code></td>
+</tr>
+<tr>
+<td>AlphaGenome</td>
+<td><code>ALPHAGENOME_API_KEY</code></td>
+</tr>
+<tr>
+<td>OncoKB</td>
+<td><code>ONCOKB_TOKEN</code>, <code>ONCOKB_API_KEY</code></td>
+</tr>
+<tr>
+<td>ORCID</td>
+<td><code>ORCID_ACCESS_TOKEN</code></td>
+</tr>
+</tbody></table></div>
+<p>Any other English name generates <code>&lt;NAME&gt;_API_KEY</code> and <code>&lt;NAME&gt;_EMAIL</code>. If a service expects different variable names, fill the optional API key and email variable fields in the same form. Clearing or deleting a credential revokes the corresponding environment variables on the next message.</p>
+<p>Explicit <code>env</code> values in an existing MCP entry win over inherited ones. A self-deployed HTTP MCP can reference credential variables in its auth headers, but the databases behind a remote service are that service&#39;s responsibility.</p>
+<h2 id="add-or-customise-a-server"><a href="#add-or-customise-a-server">Add or customise a server</a></h2>
+<ol>
+<li>Install or deploy the service outside OhPie. ToolUniverse documents <code>uvx tooluniverse</code>; BioMCP documents <code>uv tool install biomcp-cli</code> followed by <code>biomcp serve</code>.</li>
+<li>Open <strong>Settings → MCP → Add</strong>, paste the configuration, choose global or project scope, and review the parsed result before saving.</li>
+<li>Run <strong>Test</strong> on each entry to confirm the connection, the tools it exposes and the credentials it needs. Project scope follows the existing trust rules.</li>
+<li>Ask for a research task in the conversation. The agent discovers capabilities from the service&#39;s current tool schema.</li>
+</ol>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>json</span></div><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;tooluniverse&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [&quot;tooluniverse&quot;],
+      &quot;env&quot;: { &quot;PYTHONIOENCODING&quot;: &quot;utf-8&quot; },
+      &quot;exposure&quot;: &quot;deferred&quot;
+    },
+    &quot;biomcp&quot;: {
+      &quot;command&quot;: &quot;biomcp&quot;,
+      &quot;args&quot;: [&quot;serve&quot;],
+      &quot;exposure&quot;: &quot;deferred&quot;
+    }
+  }
+}
+</code></pre></figure>
+<p><code>deferred</code> keeps tools discoverable on demand instead of declaring all of them in every turn. For a server you already run over HTTP, point at the real address — OhPie does not deploy it for you:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>json</span></div><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;biomcp&quot;: { &quot;url&quot;: &quot;http://127.0.0.1:8080/mcp&quot;, &quot;exposure&quot;: &quot;deferred&quot; }
+  }
+}
+</code></pre></figure>
+<p>Commands must be resolvable from the OhPie process. If the desktop app did not inherit a freshly edited <code>PATH</code>, give the absolute path of the installed command and test again.</p>
+<h2 id="example-requests"><a href="#example-requests">Example requests</a></h2>
+<ul>
+<li>“Query the ClinVar record for BRAF V600E through BioMCP, list the related studies, and give source links with the scope of what was returned.”</li>
+<li>“Search ToolUniverse for public datasets on this topic, then list candidate studies with their real file information before anything is downloaded.”</li>
+<li>“Find enrichment tools in ToolUniverse, check whether the one you pick supports mouse, a custom background and the correction method I need, and only then run it.”</li>
+</ul>
+<div class="note" data-label="NOTE"><p>A successful query means that one call returned that result. Empty results, failures, truncation and unknown completeness are reported separately, and methods, species, identifiers, backgrounds and corrections are reported as the service defines them.</p></div>
+<h2 id="what-ohpie-still-does-locally"><a href="#what-ohpie-still-does-locally">What OhPie still does locally</a></h2>
+<p>The generic Python/R kernel, notebook export, CSV/TSV tables, XLSX sheet metadata and the artifact canvas keep working on whatever the services save into the workspace. What OhPie no longer provides is the old first-generation pipeline: no built-in count-import, QC/DE/ORA forms, analysis queue or dependency preparation. New analyses use the services&#39; tools and state.</p>
+<p>See <a href="https://github.com/portos-wang/OhPie/blob/main/docs/adr/0014-bioinformatics-through-external-mcp.md" target="_blank" rel="noopener">ADR 0014</a> for the decision record, and the <a href="./maintenance.html">maintenance page</a> for how the bundled service versions are updated and verified.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./skill-packs.html"><div class="dir">Previous</div><div class="t">Skill packs</div></a>
+        <a class="next" href="./maintenance.html"><div class="dir">Next</div><div class="t">Maintenance</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物信息 MCP · OhPie Wiki</title>
+<meta name="description" content="ToolUniverse 与 BioMCP 作为外部 MCP 服务运行，OhPie 负责对话、发现与文件画布。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/bioinformatics.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html" aria-current="page"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">05 / 07</span>
+          <h1>生物信息 MCP</h1>
+          <p>ToolUniverse 与 BioMCP 作为外部 MCP 服务运行，OhPie 负责对话、发现与文件画布。</p>
+        </header>
+        <p>OhPie 不内嵌生信分析流水线。它通过 MCP 客户端调用 <strong>ToolUniverse</strong> 与 <strong>BioMCP</strong>，数据库、方法、任务状态和答案都由这些服务负责。OhPie 提供的是对话、工具发现、连接管理，以及展示返回结果的文件画布。</p>
+<p>这条边界是刻意的。当一次查询没有返回时，值得追问的是哪个服务工具跑了、用了哪些标识符和哪种背景，而不是本机哪个表单填错了。</p>
+<h2 id="windows-安装器准备了什么"><a href="#windows-安装器准备了什么">Windows 安装器准备了什么</a></h2>
+<p>安装完成前，安装器会联网获取 Puppeteer、ToolUniverse、BioMCP，并为它们准备独立的 Node.js/npm 与 Python。Puppeteer 优先复用本机已装的 Chrome 或 Edge，找不到浏览器时才下载。服务环境位于 <code>~/.ohpie/mcp/</code>，下载失败会自动退避重试，日志写在同一目录的 <code>install.log</code>。</p>
+<p>全新安装完成后，打开 <strong>设置 → MCP → 全局</strong>，对三个服务分别执行 <strong>测试连接</strong>。升级会保留已有配置、禁用状态与已记录的移除操作。</p>
+<h2 id="凭据"><a href="#凭据">凭据</a></h2>
+<p>打开 <strong>设置 → 凭据</strong>，填写需要的 API Key 与联系邮箱，点击 <strong>保存并同步</strong>。内置的 <code>w77-nfsc-pipeline</code>、本地 ToolUniverse 与 BioMCP 会自动取用这些凭据——不必再编辑 <code>.env</code>，也不用在 <code>mcp.json</code> 里手写环境变量块。</p>
+<p>PubMed（NCBI）、OpenAlex 与 Semantic Scholar 已有条目。其他数据库点 <strong>添加自定义凭据</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>凭据名称</th>
+<th>会设置的变量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NCI</td>
+<td><code>NCI_API_KEY</code></td>
+</tr>
+<tr>
+<td>DisGeNET</td>
+<td><code>DISGENET_API_KEY</code></td>
+</tr>
+<tr>
+<td>UMLS</td>
+<td><code>UMLS_API_KEY</code></td>
+</tr>
+<tr>
+<td>OpenFDA</td>
+<td><code>OPENFDA_API_KEY</code></td>
+</tr>
+<tr>
+<td>AlphaGenome</td>
+<td><code>ALPHAGENOME_API_KEY</code></td>
+</tr>
+<tr>
+<td>OncoKB</td>
+<td><code>ONCOKB_TOKEN</code>、<code>ONCOKB_API_KEY</code></td>
+</tr>
+<tr>
+<td>ORCID</td>
+<td><code>ORCID_ACCESS_TOKEN</code></td>
+</tr>
+</tbody></table></div>
+<p>其他英文名称会自动生成 <code>&lt;名称&gt;_API_KEY</code> 与 <code>&lt;名称&gt;_EMAIL</code>。服务要求别的变量名时，在同一表单的可选 API Key / 邮箱变量字段里填写。清空或删除凭据会在下一次发消息时撤销对应的环境变量。</p>
+<p>已有 MCP 配置中的显式 <code>env</code> 值优先于继承值。自行部署的 HTTP MCP 可以在认证请求头中引用凭据变量，但远程服务背后的数据库凭据由该服务端管理。</p>
+<h2 id="添加或自定义服务"><a href="#添加或自定义服务">添加或自定义服务</a></h2>
+<ol>
+<li>在 OhPie 之外安装或部署服务。ToolUniverse 官方给出 <code>uvx tooluniverse</code>；BioMCP 官方给出 <code>uv tool install biomcp-cli</code>，随后 <code>biomcp serve</code>。</li>
+<li>打开 <strong>设置 → MCP → 添加</strong>，粘贴配置，选择全局或项目作用域，检查解析结果后保存。</li>
+<li>对每个条目执行 <strong>Test</strong>，确认真实连接、暴露的工具和所需凭据。项目作用域沿用既有信任规则。</li>
+<li>回到对话提出研究任务，智能体按服务当前的工具 schema 发现并调用能力。</li>
+</ol>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>json</span></div><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;tooluniverse&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [&quot;tooluniverse&quot;],
+      &quot;env&quot;: { &quot;PYTHONIOENCODING&quot;: &quot;utf-8&quot; },
+      &quot;exposure&quot;: &quot;deferred&quot;
+    },
+    &quot;biomcp&quot;: {
+      &quot;command&quot;: &quot;biomcp&quot;,
+      &quot;args&quot;: [&quot;serve&quot;],
+      &quot;exposure&quot;: &quot;deferred&quot;
+    }
+  }
+}
+</code></pre></figure>
+<p><code>deferred</code> 让工具保持按需发现，而不是每一轮都把全部工具声明塞进对话。若服务已自行以 HTTP 方式运行，直接指向真实地址——OhPie 不会替你部署它：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>json</span></div><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;biomcp&quot;: { &quot;url&quot;: &quot;http://127.0.0.1:8080/mcp&quot;, &quot;exposure&quot;: &quot;deferred&quot; }
+  }
+}
+</code></pre></figure>
+<p>命令必须能从 OhPie 进程解析到。桌面应用没有继承到刚改过的 <code>PATH</code> 时，填写已安装命令的绝对路径，然后重新测试。</p>
+<h2 id="对话示例"><a href="#对话示例">对话示例</a></h2>
+<ul>
+<li>&quot;通过 BioMCP 查询 BRAF V600E 的 ClinVar 记录及相关研究，给出来源链接，并说明返回范围。&quot;</li>
+<li>&quot;通过 ToolUniverse 检索这个主题的公开数据集，先列出候选研究及其真实文件信息，再决定是否下载。&quot;</li>
+<li>&quot;在 ToolUniverse 里找富集分析工具，确认它支持小鼠、自定义背景和我需要的校正方法，满足后再调用。&quot;</li>
+</ul>
+<div class="note" data-label="注意"><p>查询成功只代表那一次调用返回了那个结果。无结果、失败、截断与完整性未知分别说明；方法、物种、标识符、背景与校正按服务自身的语义报告。</p></div>
+<h2 id="ohpie-仍然在本地做什么"><a href="#ohpie-仍然在本地做什么">OhPie 仍然在本地做什么</a></h2>
+<p>通用 Python/R 内核、笔记本导出、CSV/TSV 表格、XLSX 工作表清单与成果画布继续可用，处理的是服务写进工作区的文件。OhPie 不再提供第一代内置管线：没有内置的 count 导入、QC/DE/ORA 表单、分析队列或依赖准备。新分析使用服务的工具与状态接口。</p>
+<p>决策记录见 <a href="https://github.com/portos-wang/OhPie/blob/main/docs/adr/0014-bioinformatics-through-external-mcp.md" target="_blank" rel="noopener">ADR 0014</a>；内置服务版本如何更新与验证，见<a href="./maintenance.html">构建与维护</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./skill-packs.html"><div class="dir">上一页</div><div class="t">技能包</div></a>
+        <a class="next" href="./maintenance.html"><div class="dir">下一页</div><div class="t">构建与维护</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

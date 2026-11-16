@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OhPie Wiki · OhPie Wiki</title>
+<meta name="description" content="How to install OhPie, where every file lands, what the 25 bundled Skill Packs actually do, and how the analysis, citation and provenance boundaries work in practice.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/index.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-intro reveal">
+      <span class="label-caps">OHPIE WIKI</span>
+      <h1>An AI research workbench,<br>documented from the <span class="hl">workspace</span> out.</h1>
+      <p class="lede">How to install OhPie, where every file lands, what the 25 bundled Skill Packs actually do, and how the analysis, citation and provenance boundaries work in practice.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="./quick-start.html">Start with installation <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="./workflow.html">Read the workflow</a>
+      </div>
+    </div>
+    <div class="hero-art reveal reveal-d2">
+      <img src="../assets/hero.svg" alt="OhPie workspace anatomy" width="1200" height="420">
+      <span class="stamp">one workspace</span>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="strip reveal">
+    <span><b>25 SKILL PACKS</b></span>
+    <span><b>5 PLUGINS</b></span>
+    <span><b>3 UI LANGUAGES</b></span>
+    <span><b>WINDOWS x64</b></span>
+    <span><b>MIT</b></span>
+</div></div>
+
+<section class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="num">01</span>
+      <h2>Seven pages, one system</h2>
+      <p>Each page answers one question a new user asks before trusting the tool with a real dataset.</p>
+    </header>
+    <div class="card-grid">
+      <a class="card reveal reveal-d1" href="./quick-start.html">
+          <span class="n">01</span>
+          <h3>Quick start</h3>
+          <p>Install from source or the Windows package, configure a model, and open your first workspace.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./workspace.html">
+          <span class="n">02</span>
+          <h3>Workspace</h3>
+          <p>Ordinary folders hold the research; one hidden folder holds the agent's state.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./workflow.html">
+          <span class="n">03</span>
+          <h3>Workflow</h3>
+          <p>Four stages, one return edge, and a provenance record that is not a verdict.</p>
+        </a>
+      <a class="card reveal reveal-d4" href="./skill-packs.html">
+          <span class="n">04</span>
+          <h3>Skill packs</h3>
+          <p>25 bundled packs, grouped by the job they actually do, plus how they load and how to write one.</p>
+        </a>
+      <a class="card reveal reveal-d1" href="./bioinformatics.html">
+          <span class="n">05</span>
+          <h3>Bioinformatics</h3>
+          <p>ToolUniverse and BioMCP run as external MCP services; OhPie supplies the conversation, discovery and file canvas.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./maintenance.html">
+          <span class="n">06</span>
+          <h3>Maintenance</h3>
+          <p>Checks, entry updates in isolated worktrees, packaging and local synchronisation.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./faq.html">
+          <span class="n">07</span>
+          <h3>FAQ</h3>
+          <p>Short answers about platforms, dependencies, data location, proxies and licensing.</p>
+        </a>
+    </div>
+  </div>
+</section>
+
+<section class="section dark-panel">
+  <div class="container dark-grid reveal">
+    <div>
+      <span class="label-caps">THE HONEST PART</span>
+      <blockquote>A cell can run, a file can be registered, and the conclusion can still be <em>wrong</em>.</blockquote>
+    </div>
+    <div>
+      <p>OhPie records execution and provenance. It does not certify that a method, a citation or a statistic is correct. The peer-review and claim-audit packs are built to ask for evidence rather than agreement.</p>
+      <span class="hand">three different facts.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="num">02</span>
+      <h2>How the pieces fit</h2>
+      <p>One process, four layers. Nothing leaves your machine unless you configure a service that needs to.</p>
+    </header>
+    <div class="steps">
+      <div class="step reveal"><h3>Workspace</h3><p>Ordinary folders hold research material: literature, experiments, manuscript, notes.</p></div>
+      <div class="step reveal"><h3>Agent</h3><p>The Pi Coding Agent runtime reads the workspace and writes real files back into it.</p></div>
+      <div class="step reveal"><h3>Kernel</h3><p>Python or R runs locally, keeping variables across cells and turns while it stays open.</p></div>
+      <div class="step reveal"><h3>Artifacts</h3><p>Figures, tables, notebooks and a provenance record land where the manuscript can cite them.</p></div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+    <p class="footer-note">OhPie is free and open source under the MIT License. Page design adapts the layout and component grammar of <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a> by ESTHER不二 (CC BY-NC-SA 4.0), rebuilt with the OhPie palette and identity. These wiki pages are shared under the same CC BY-NC-SA 4.0 terms.</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

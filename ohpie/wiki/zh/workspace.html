@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究工作区 · OhPie Wiki</title>
+<meta name="description" content="科研材料放在普通文件夹里，只用一个隐藏目录保存智能体状态。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/workspace.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <ol>
+        <li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li>
+        <li><a href="./workspace.html" aria-current="page"><span class="num">02</span><span>研究工作区</span></a></li>
+        <li><a href="./workflow.html"><span class="num">03</span><span>科研流程</span></a></li>
+        <li><a href="./skill-packs.html"><span class="num">04</span><span>技能包</span></a></li>
+        <li><a href="./bioinformatics.html"><span class="num">05</span><span>生物信息 MCP</span></a></li>
+        <li><a href="./maintenance.html"><span class="num">06</span><span>构建与维护</span></a></li>
+        <li><a href="./faq.html"><span class="num">07</span><span>常见问题</span></a></li>
+        </ol>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">02 / 07</span>
+          <h1>研究工作区</h1>
+          <p>科研材料放在普通文件夹里，只用一个隐藏目录保存智能体状态。</p>
+        </header>
+        <p>研究工作区就是一个普通目录。它没有任何私有格式：论文是 PDF，分析是 Python 或 R，图是图片，手稿是文本。唯一特殊的是 <code>.ohpie/</code>——它把对话与智能体配置，放在被处理过的材料旁边。</p>
+<h2 id="目录约定"><a href="#目录约定">目录约定</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>research-topic/
+├── literature/                       # 论文、BibTeX、综述、检索代码
+├── experiments/
+│   ├── 1_original_data/              # 不可变原始数据归档
+│   ├── 2_cleaned_data/               # 清洗后的数据（CSV/TSV/Parquet）
+│   ├── 3_analysis/                   # 脚本、笔记本、代码单元归档
+│   │   ├── 01_data_cleaning.ipynb
+│   │   ├── 01_data_cleaning.qmd
+│   │   ├── 02_statistical_analysis.ipynb
+│   │   └── 02_statistical_analysis.qmd
+│   ├── 4_results/
+│   │   ├── figures/
+│   │   ├── tables/
+│   │   └── passport.yaml             # 实验凭证清单
+│   └── 5_report/                     # 分析计划与进度报告
+├── manuscript/                       # 草稿、申报书、审稿、回复材料
+├── notes/                            # 单篇阅读笔记与图件核查
+└── .ohpie/
+    ├── agent/sessions/               # 项目对话历史
+    ├── skills/
+    ├── plugins/
+    ├── mcp.json
+    └── research-actions.json
+</code></pre></figure>
+<h2 id="每个目录负责什么"><a href="#每个目录负责什么">每个目录负责什么</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>内容</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>literature/</code></td>
+<td>论文、题录、筛选记录、检索代码。</td>
+<td>正常使用中只追加。</td>
+</tr>
+<tr>
+<td><code>experiments/1_original_data/</code></td>
+<td>收到即归档的原始文件。</td>
+<td>只读，永不覆盖。</td>
+</tr>
+<tr>
+<td><code>experiments/2_cleaned_data/</code></td>
+<td>可复现的清洗后矩阵。</td>
+<td>由原始数据重新生成。</td>
+</tr>
+<tr>
+<td><code>experiments/3_analysis/</code></td>
+<td>笔记本、脚本，以及导出的 <code>.qmd</code> 配对文件。</td>
+<td>某个数字是怎么算出来的记录。</td>
+</tr>
+<tr>
+<td><code>experiments/4_results/</code></td>
+<td>图、表与 <code>passport.yaml</code>。</td>
+<td>发表级产物。</td>
+</tr>
+<tr>
+<td><code>experiments/5_report/</code></td>
+<td>统计分析计划与进度报告。</td>
+<td>叙述性产物。</td>
+</tr>
+<tr>
+<td><code>manuscript/</code></td>
+<td>草稿、申报书、审稿与回复材料。</td>
+<td>持续变动的文档。</td>
+</tr>
+<tr>
+<td><code>notes/</code></td>
+<td>阅读笔记与图件核查卡片。</td>
+<td>单篇论文的工作记录。</td>
+</tr>
+</tbody></table></div>
+<h2 id="两个配置作用域"><a href="#两个配置作用域">两个配置作用域</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>保存什么</th>
+<th>是否随仓库带走</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>~/.ohpie/</code></td>
+<td>模型配置、供应商凭据、全局技能与插件、MCP 服务、快捷操作。</td>
+<td>否。</td>
+</tr>
+<tr>
+<td><code>./.ohpie/</code></td>
+<td>本项目对话，以及项目作用域的技能、插件、MCP 服务与快捷操作。</td>
+<td>是。</td>
+</tr>
+</tbody></table></div>
+<p>项目条目与全局条目一起解析：项目定义会覆盖或补充对应的全局配置。这就是为什么一项研究可以单独固定某个 MCP 服务或某个更严格的快捷操作，而不影响其他课题。</p>
+<div class="note" data-label="注意"><p>对话历史被特意放在项目内部。移动或克隆仓库时，&quot;这张图为什么改过&quot;的讨论会一起跟过去。</p></div>
+<h2 id="备份与分享"><a href="#备份与分享">备份与分享</a></h2>
+<p>备份工作区可保留研究文件与对话历史；共享设置、凭据与全局扩展需要单独备份 <code>~/.ohpie/</code>。</p>
+<p>分享或公开工作区之前，先检查 <code>.ohpie/</code> 与会话文件中是否含凭据或未公开材料。归档一个课题和公开一个课题是两个不同的决定，差别正好落在 <code>.ohpie/</code> 上。</p>
+<details>
+<summary>高级运行配置</summary><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OHPIE_HOME_DIR</code></td>
+<td>指定包含 <code>.ohpie</code> 的用户主目录。</td>
+</tr>
+<tr>
+<td><code>PI_CODING_AGENT_DIR</code></td>
+<td>显式指定智能体配置目录。</td>
+</tr>
+<tr>
+<td><code>OHPIE_PROJECT_LOCAL_SESSIONS=0</code></td>
+<td>关闭默认的项目本地会话模式。</td>
+</tr>
+<tr>
+<td><code>OHPIE_PORT</code></td>
+<td>指定期望端口；被占用时可回退到其他可用端口。</td>
+</tr>
+</tbody></table></div>
+</details>
+
+        <nav class="pagenav">
+        <a class="prev" href="./quick-start.html"><div class="dir">上一页</div><div class="t">快速开始</div></a>
+        <a class="next" href="./workflow.html"><div class="dir">下一页</div><div class="t">科研流程</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+    <p class="footer-note">OhPie 以 MIT 许可证开源。页面设计沿用 <a href="https://github.com/esthersjw/esther-design-system">esther-design-system</a>（作者 ESTHER不二，CC BY-NC-SA 4.0）的布局与组件语法，并按 OhPie 的配色与身份重做。本 wiki 页面以相同协议 CC BY-NC-SA 4.0 共享。</p>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>
