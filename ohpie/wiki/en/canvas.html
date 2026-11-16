@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas and files · OhPie Wiki</title>
+<meta name="description" content="Which formats the right panel opens, and which of them refresh on disk changes.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/canvas.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html" aria-current="page"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">05 / 19</span>
+          <h1>Canvas and files</h1>
+          <p>Which formats the right panel opens, and which of them refresh on disk changes.</p>
+        </header>
+        <p>The right panel is not a preview window; it is part of the workbench. It reads real files from the workspace, so the figure you see here is the figure on disk.</p>
+<h2 id="supported-formats"><a href="#supported-formats">Supported formats</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What you can do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PDF</td>
+<td>Scroll and zoom; pair with the conversation for page-by-page reading</td>
+</tr>
+<tr>
+<td>DOCX</td>
+<td>Read body and structure, e.g. a manuscript returned by a co-author</td>
+</tr>
+<tr>
+<td>Markdown / LaTeX</td>
+<td>Rendered reading; LaTeX keeps its structure</td>
+</tr>
+<tr>
+<td>Jupyter notebooks</td>
+<td>Cells with code and outputs, long output folded</td>
+</tr>
+<tr>
+<td>CSV / TSV</td>
+<td>Virtualised table view; large files do not render all rows at once</td>
+</tr>
+<tr>
+<td>XLSX</td>
+<td>Read-only worksheet names, without parsing the whole workbook</td>
+</tr>
+<tr>
+<td>Images, audio, video</td>
+<td>Direct preview for checking artefacts</td>
+</tr>
+<tr>
+<td>Draw.io</td>
+<td>Open <code>.drawio</code> / <code>.dio</code> files and edit them in place</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>Run commands in the workspace directory</td>
+</tr>
+<tr>
+<td>Subagent</td>
+<td>Read a subagent&#39;s full conversation</td>
+</tr>
+</tbody></table></div>
+<h2 id="tab-behaviour"><a href="#tab-behaviour">Tab behaviour</a></h2>
+<ul>
+<li>The file tree, paths in the conversation and <code>@</code> results all open tabs.</li>
+<li>Re-opening a file reuses its tab instead of piling up duplicates.</li>
+<li>Tabs close and switch normally; content refreshes when the file changes on disk.</li>
+<li>Artefacts open read-only unless you explicitly ask an editing tool to change them.</li>
+</ul>
+<h2 id="draw-io"><a href="#draw-io">Draw.io</a></h2>
+<p><code>.drawio</code> and <code>.dio</code> are editable in the canvas: move nodes, draw connectors, change labels, save back to the original file. Because the artefact is XML, roadmaps and study-design diagrams can live in version control.</p>
+<h2 id="notebooks"><a href="#notebooks">Notebooks</a></h2>
+<p><code>.ipynb</code> opens cell by cell — Markdown, code and output (text, table, image) fold separately. In the analysis studio you can keep executing cells, with variables persisting in the kernel.</p>
+<h2 id="terminal"><a href="#terminal">Terminal</a></h2>
+<p>A terminal tab starts in the workspace directory, so <code>git status</code>, file inspection and scripts work immediately. Its environment is isolated from the app&#39;s own command environment: host secrets are not passed through.</p>
+<h2 id="artifacts-panel"><a href="#artifacts-panel">Artifacts panel</a></h2>
+<p>The artifacts panel collects figures, tables and reports from <code>experiments/4_results/</code> in one place, grouped by type. It is an index, not a new copy — the files stay in their directories.</p>
+<div class="note" data-label="NOTE"><p>The canvas does not tidy files for you. Where an artefact lands depends on what the request (or the skill pack) says — see <a href="./workspace.html">the workspace</a>.</p></div>
+<p>Next: <a href="./workspace.html">The workspace</a> explains each folder.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./sessions.html"><div class="dir">Previous</div><div class="t">Sessions</div></a>
+        <a class="next" href="./workspace.html"><div class="dir">Next</div><div class="t">Workspace</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

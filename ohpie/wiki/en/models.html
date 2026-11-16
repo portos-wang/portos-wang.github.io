@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Models and providers · OhPie Wiki</title>
+<meta name="description" content="Sign in or paste a key, choose which models show up, set the default and the reasoning level.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/models.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html" aria-current="page"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">14 / 19</span>
+          <h1>Models and providers</h1>
+          <p>Sign in or paste a key, choose which models show up, set the default and the reasoning level.</p>
+        </header>
+        <p>Model configuration has two layers: <strong>providers</strong> decide what is available, and <strong>model switches</strong> decide what appears in the list. Both are changed in Settings, without editing configuration files.</p>
+<h2 id="providers"><a href="#providers">Providers</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>For</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OAuth sign-in</td>
+<td>Providers that support account authorisation</td>
+<td>Completed in the browser; the token stays local</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>Providers that issue keys</td>
+<td>Stored encrypted under <code>~/.ohpie/</code></td>
+</tr>
+<tr>
+<td>Custom provider</td>
+<td>OpenAI-compatible endpoints</td>
+<td>Needs a base URL and model names</td>
+</tr>
+</tbody></table></div>
+<p>Custom providers live in <code>~/.ohpie/agent/models.json</code>, editable in the models configuration panel or by pasting JSON.</p>
+<h2 id="model-switches"><a href="#model-switches">Model switches</a></h2>
+<p>A provider can return dozens of models. The switches decide which ones appear in the sidebar and the picker. Unselected models do not disappear — they just stop taking up space.</p>
+<h2 id="default-model-and-reasoning"><a href="#default-model-and-reasoning">Default model and reasoning</a></h2>
+<ul>
+<li><strong>Default model</strong>: what a new conversation starts with.</li>
+<li><strong>Reasoning level</strong>: the default effort; lower is faster, higher goes deeper.</li>
+<li>Changing the model inside a conversation affects that session only.</li>
+</ul>
+<p>Available reasoning levels come from the model catalog and differ per model. Switching models resets to that model&#39;s supported default.</p>
+<h2 id="refreshing-the-catalog"><a href="#refreshing-the-catalog">Refreshing the catalog</a></h2>
+<p>Providers add and retire models regularly. Refreshing re-fetches the list and keeps your existing switches; newly discovered models start disabled.</p>
+<h2 id="credentials"><a href="#credentials">Credentials</a></h2>
+<p>Model keys and research database keys are managed separately: models under <strong>Settings → Models</strong>, research APIs under <strong>Settings → Credentials</strong>. The latter is picked up automatically by ToolUniverse, BioMCP and <code>w77-nfsc-pipeline</code>.</p>
+<h2 id="proxy"><a href="#proxy">Proxy</a></h2>
+<p>Server-side model and API requests honour <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code> and <code>NO_PROXY</code>. Set them before launch and keep local addresses (<code>localhost</code>, <code>127.0.0.1</code>) outside the proxy, or local services will be routed through it.</p>
+<h2 id="cost"><a href="#cost">Cost</a></h2>
+<p>OhPie does not bill anything: charges happen at the provider you configured. Usage indicators in Settings reflect what the provider returns and are informational — the provider dashboard is authoritative.</p>
+<div class="note" data-label="NOTE"><p>Switching models changes answer style and tool-calling habits. After a critical analysis, re-run the core steps with the new model so the conclusion is not a model artefact.</p></div>
+<p>Next: <a href="./mcp.html">MCP servers</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./bioinformatics.html"><div class="dir">Previous</div><div class="t">Bioinformatics</div></a>
+        <a class="next" href="./mcp.html"><div class="dir">Next</div><div class="t">MCP</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

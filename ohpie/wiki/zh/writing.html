@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写作与投稿 · OhPie Wiki</title>
+<meta name="description" content="结构化起草、图表核验、模拟盲审、基金申报与修回。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/writing.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html" aria-current="page"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">11 / 19</span>
+          <h1>写作与投稿</h1>
+          <p>结构化起草、图表核验、模拟盲审、基金申报与修回。</p>
+        </header>
+        <p>写作阶段最常见的问题不是&quot;写不出来&quot;，而是<strong>写出来的东西没有对应的证据</strong>。这一页的动作都围绕&quot;每句话后面有什么&quot;。</p>
+<h2 id="结构化起草"><a href="#结构化起草">结构化起草</a></h2>
+<p><code>顶刊结构化论文起草</code> 按章节组织：先确定每一节要证明什么，再决定写哪些句子，最后检查每句的支撑。工作区适配意味着它会引用 <code>experiments/</code> 和 <code>manuscript/</code> 里的真实文件，而不是凭空补数据。</p>
+<p>产出落在 <code>manuscript/manuscript/</code>，中间稿与终稿分开命名。</p>
+<h2 id="图表与统计"><a href="#图表与统计">图表与统计</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>动作</th>
+<th>快捷操作</th>
+<th>检查什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>统计核验</td>
+<td>Nature标准统计核验</td>
+<td>检验选择、效应量、置信区间、报告格式</td>
+</tr>
+<tr>
+<td>复合面板图</td>
+<td>顶刊双栏复合面板图</td>
+<td>尺寸、字号、面板标注、图注自足</td>
+</tr>
+<tr>
+<td>图序审查</td>
+<td>全文图序审查</td>
+<td>正文引用顺序与图的出现顺序是否一致</td>
+</tr>
+</tbody></table></div>
+<h2 id="模拟盲审"><a href="#模拟盲审">模拟盲审</a></h2>
+<p><code>多专家独立模拟盲审</code> 会按文稿类型选择评审流程，每个专家独立出意见，意见都要定位到具体句子或图表。它的价值在于提前看到&quot;审稿人一定会问的那三个问题&quot;。</p>
+<p><code>审稿修回矩阵与答辩</code> 把真实审稿意见逐条拆开：意见、回应、改动位置、证据，形成一张可交付的表格。</p>
+<h2 id="基金申报"><a href="#基金申报">基金申报</a></h2>
+<p><code>w77-nfsc-pipeline</code> 覆盖国自然与重点研发计划：</p>
+<ol>
+<li>指南与资助倾向挖掘（政策原文 + 近年立项）</li>
+<li>多源真实文献检索与前期基础梳理</li>
+<li>科学问题与方法路线</li>
+<li>Draw.io 技术路线图与甘特图</li>
+<li>模拟盲审，按函评口径给意见</li>
+</ol>
+<p>产出在 <code>manuscript/manuscript/</code> 与结果目录的图里，保持与正文同一套证据。</p>
+<h2 id="术语与语言"><a href="#术语与语言">术语与语言</a></h2>
+<p>中文稿与英文稿各自维护，不要用机翻互相生成。<code>nature-skills</code> 的语言部分处理学术英语的地道表达，但<strong>不替你决定结论的口径</strong>。</p>
+<h2 id="投稿前的自检"><a href="#投稿前的自检">投稿前的自检</a></h2>
+<ul>
+<li>每个图都能在正文里被引用到，且顺序一致。</li>
+<li>每条引文都能指到支持它那句论断的具体位置。</li>
+<li>统计报告写到了效应量与不确定性，而不只是 p 值。</li>
+<li>局限性与未解决问题写在正文里，不是藏在补充材料。</li>
+</ul>
+<div class="note" data-label="注意"><p>写作类技能包不保证录用。它们保证的是：交出去之前，缺口是被写明过的，而不是被盖住的。</p></div>
+<p>下一步：<a href="./skill-packs.html">技能包</a> 全部 25 个的用途一览。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./provenance.html"><div class="dir">上一页</div><div class="t">实验凭证</div></a>
+        <a class="next" href="./skill-packs.html"><div class="dir">下一页</div><div class="t">技能包</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

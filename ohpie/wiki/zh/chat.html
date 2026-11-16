@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对话与工具 · OhPie Wiki</title>
+<meta name="description" content="一轮对话包含什么、工具权限怎么给、长对话怎么收。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/chat.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html" aria-current="page"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">03 / 19</span>
+          <h1>对话与工具</h1>
+          <p>一轮对话包含什么、工具权限怎么给、长对话怎么收。</p>
+        </header>
+        <p>一次提问不是一次文本生成。OhPie 把模型的思考、工具调用、工具结果和最终回答都展开在同一条消息流里，所以你能看见&quot;这个数字是怎么来的&quot;，而不只是结论。</p>
+<h2 id="一轮对话里发生什么"><a href="#一轮对话里发生什么">一轮对话里发生什么</a></h2>
+<ol>
+<li><strong>思考</strong>：模型先想，思考块默认收起，可展开。</li>
+<li><strong>工具调用</strong>：每次调用一张卡片，显示工具名、参数与状态。</li>
+<li><strong>工具结果</strong>：文件内容、命令输出、搜索结果，失败会明确标出。</li>
+<li><strong>写入</strong>：改动落在工作区里的真实文件上，可以对比、可以回滚。</li>
+<li><strong>回答</strong>：最后才是给你看的那段话。</li>
+</ol>
+<h2 id="引用工作区文件"><a href="#引用工作区文件">引用工作区文件</a></h2>
+<p>在输入框敲 <code>@</code> 会打开文件索引，把文件引用进当前这一轮。引用的是路径而不是副本：模型读的是磁盘上那份，改的也是那一份。</p>
+<p>对话里出现的文件路径也可以点击，直接在右侧画布打开。</p>
+<h2 id="工具权限"><a href="#工具权限">工具权限</a></h2>
+<p>输入框上方可以切换工具预设。给的权限越大，能做的事越多，风险也越大：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>预设</th>
+<th>开放的工具</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Configured</td>
+<td>跟随设置里的逐项开关</td>
+<td>想自定义时</td>
+</tr>
+<tr>
+<td>None</td>
+<td>无</td>
+<td>纯对话，不碰文件</td>
+</tr>
+<tr>
+<td>Read only</td>
+<td><code>read</code> <code>grep</code> <code>find</code> <code>ls</code></td>
+<td>只读审查、代码讲解</td>
+</tr>
+<tr>
+<td>Default</td>
+<td><code>read</code> <code>bash</code> <code>edit</code> <code>write</code></td>
+<td>日常分析</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>上面全部，加上 <code>grep</code> <code>find</code> <code>ls</code></td>
+<td>需要检索与批量改动</td>
+</tr>
+</tbody></table></div>
+<h2 id="模型与推理强度"><a href="#模型与推理强度">模型与推理强度</a></h2>
+<p>模型选择器同时决定两件事：用哪个模型，以及推理强度。可用档位由模型目录提供，切换模型会重置为它支持的默认档。同一段对话里换模型是允许的，但换过之后的行为差异要自己留意。</p>
+<h2 id="附件与图片"><a href="#附件与图片">附件与图片</a></h2>
+<p>图片可以粘贴或拖入，随消息一起发送，用于读图、读表截图、对照示意图。附件有数量与体积上限，超出时会直接拒绝而不是静默截断。</p>
+<h2 id="长对话"><a href="#长对话">长对话</a></h2>
+<p>上下文快满时，会话会被压缩成摘要，之前的完整内容仍保留在 <code>.jsonl</code> 里。压缩之后模型看到的是摘要，不是你原来的措辞——需要精确复述时，重新引用文件比依赖记忆可靠。</p>
+<div class="note" data-label="注意"><p>生成失败或网络中断会显示重试提示，重试沿用同一轮输入。不要在一个失败轮次上继续追加问题，先让它重试或停止。</p></div>
+<p>下一步：<a href="./sessions.html">会话管理</a> 讲怎么在几十次对话里找到想要的那一条。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./interface.html"><div class="dir">上一页</div><div class="t">界面导览</div></a>
+        <a class="next" href="./sessions.html"><div class="dir">下一页</div><div class="t">会话管理</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

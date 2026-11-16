@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Research Workbench · OhPie Wiki</title>
-<meta name="description" content="How to install OhPie, where every file lands, what the 25 bundled Skill Packs actually do, and how the analysis, citation and provenance boundaries work in practice.">
+<meta name="description" content="Nineteen pages on installing it, running a study end to end, configuring models and MCP, and shipping the result — written from the workspace outward.">
 <!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
     <div class="hero-intro reveal">
       <span class="label-caps">OHPIE WIKI</span>
       <h1>An AI research workbench,<br>documented from the <span class="hl">workspace</span> out.</h1>
-      <p class="lede">How to install OhPie, where every file lands, what the 25 bundled Skill Packs actually do, and how the analysis, citation and provenance boundaries work in practice.</p>
+      <p class="lede">Nineteen pages on installing it, running a study end to end, configuring models and MCP, and shipping the result — written from the workspace outward.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="./quick-start.html">Start with installation <span aria-hidden="true">→</span></a>
         <a class="btn btn-ghost" href="./workflow.html">Read the workflow</a>
@@ -55,8 +55,8 @@
   <div class="container">
     <header class="section-head reveal">
       <span class="num">01</span>
-      <h2>Seven pages, one system</h2>
-      <p>Each page answers one question a new user asks before trusting the tool with a real dataset.</p>
+      <h2>Start</h2>
+      <p>Get it running, then learn the layout.</p>
     </header>
     <div class="card-grid">
       <a class="card reveal reveal-d1" href="./quick-start.html">
@@ -64,35 +64,37 @@
           <h3>Quick start</h3>
           <p>Install from source or the Windows package, configure a model, and open your first workspace.</p>
         </a>
-      <a class="card reveal reveal-d2" href="./workspace.html">
+      <a class="card reveal reveal-d2" href="./interface.html">
           <span class="n">02</span>
-          <h3>Workspace</h3>
-          <p>Ordinary folders hold the research; one hidden folder holds the agent's state.</p>
+          <h3>Interface</h3>
+          <p>Sessions on the left, conversation in the middle, files on the right — plus every control above the input.</p>
         </a>
-      <a class="card reveal reveal-d3" href="./workflow.html">
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="num">02</span>
+      <h2>Daily use</h2>
+      <p>Conversation, history and canvas — the surface you touch every day.</p>
+    </header>
+    <div class="card-grid">
+      <a class="card reveal reveal-d1" href="./chat.html">
           <span class="n">03</span>
-          <h3>Workflow</h3>
-          <p>Four stages, one return edge, and a provenance record that is not a verdict.</p>
+          <h3>Conversation</h3>
+          <p>What one turn contains, how much tool permission to grant, and how long threads are compacted.</p>
         </a>
-      <a class="card reveal reveal-d4" href="./skill-packs.html">
+      <a class="card reveal reveal-d2" href="./sessions.html">
           <span class="n">04</span>
-          <h3>Skill packs</h3>
-          <p>25 bundled packs, grouped by the job they actually do, plus how they load and how to write one.</p>
+          <h3>Sessions</h3>
+          <p>Project-local history, search, branching and export — including subagent transcripts.</p>
         </a>
-      <a class="card reveal reveal-d1" href="./bioinformatics.html">
+      <a class="card reveal reveal-d3" href="./canvas.html">
           <span class="n">05</span>
-          <h3>Bioinformatics</h3>
-          <p>ToolUniverse and BioMCP run as external MCP services; OhPie supplies the conversation, discovery and file canvas.</p>
-        </a>
-      <a class="card reveal reveal-d2" href="./maintenance.html">
-          <span class="n">06</span>
-          <h3>Maintenance</h3>
-          <p>Checks, entry updates in isolated worktrees, packaging and local synchronisation.</p>
-        </a>
-      <a class="card reveal reveal-d3" href="./faq.html">
-          <span class="n">07</span>
-          <h3>FAQ</h3>
-          <p>Short answers about platforms, dependencies, data location, proxies and licensing.</p>
+          <h3>Canvas</h3>
+          <p>Which formats the right panel opens, and which of them refresh on disk changes.</p>
         </a>
     </div>
   </div>
@@ -111,18 +113,106 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="num">03</span>
+      <h2>Research</h2>
+      <p>From the first search to the submitted manuscript, and where each stage lands.</p>
+    </header>
+    <div class="card-grid">
+      <a class="card reveal reveal-d1" href="./workspace.html">
+          <span class="n">06</span>
+          <h3>Workspace</h3>
+          <p>Ordinary folders hold the research; one hidden folder holds the agent's state.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./workflow.html">
+          <span class="n">07</span>
+          <h3>Workflow</h3>
+          <p>Four stages, one return edge, and a provenance record that is not a verdict.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./literature.html">
+          <span class="n">08</span>
+          <h3>Literature</h3>
+          <p>Search, screening, close reading, claim-level citation checks and counter-evidence.</p>
+        </a>
+      <a class="card reveal reveal-d1" href="./analysis.html">
+          <span class="n">09</span>
+          <h3>Analysis</h3>
+          <p>A persistent kernel, the notebook standard, publication figures and artifact registration.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./provenance.html">
+          <span class="n">10</span>
+          <h3>Provenance</h3>
+          <p>What the Material Passport records, and what it does not prove.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./writing.html">
+          <span class="n">11</span>
+          <h3>Writing</h3>
+          <p>Structured drafting, figure and statistics checks, simulated review, grants and rebuttals.</p>
+        </a>
+      <a class="card reveal reveal-d1" href="./skill-packs.html">
+          <span class="n">12</span>
+          <h3>Skill packs</h3>
+          <p>25 bundled packs, grouped by the job they actually do, plus how they load and how to write one.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./bioinformatics.html">
+          <span class="n">13</span>
+          <h3>Bioinformatics</h3>
+          <p>ToolUniverse and BioMCP run as external MCP services; OhPie supplies the conversation, discovery and file canvas.</p>
+        </a>
+    </div>
+  </div>
+</section>
 <section class="section section--alt">
   <div class="container">
     <header class="section-head reveal">
-      <span class="num">02</span>
-      <h2>How the pieces fit</h2>
-      <p>One process, four layers. Nothing leaves your machine unless you configure a service that needs to.</p>
+      <span class="num">04</span>
+      <h2>Configuration</h2>
+      <p>Models, MCP servers and extensions, resolved per scope.</p>
     </header>
-    <div class="steps">
-      <div class="step reveal"><h3>Workspace</h3><p>Ordinary folders hold research material: literature, experiments, manuscript, notes.</p></div>
-      <div class="step reveal"><h3>Agent</h3><p>The Pi Coding Agent runtime reads the workspace and writes real files back into it.</p></div>
-      <div class="step reveal"><h3>Kernel</h3><p>Python or R runs locally, keeping variables across cells and turns while it stays open.</p></div>
-      <div class="step reveal"><h3>Artifacts</h3><p>Figures, tables, notebooks and a provenance record land where the manuscript can cite them.</p></div>
+    <div class="card-grid">
+      <a class="card reveal reveal-d1" href="./models.html">
+          <span class="n">14</span>
+          <h3>Models</h3>
+          <p>Sign in or paste a key, choose which models show up, set the default and the reasoning level.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./mcp.html">
+          <span class="n">15</span>
+          <h3>MCP</h3>
+          <p>Two scopes, testing, OAuth sign-in, project trust, and how tools are exposed.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./extensions.html">
+          <span class="n">16</span>
+          <h3>Extensions</h3>
+          <p>Installing and updating skills and plugins, both scopes, and how subagents are configured.</p>
+        </a>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="num">05</span>
+      <h2>Desktop & operations</h2>
+      <p>Desktop behaviour, packaging and troubleshooting.</p>
+    </header>
+    <div class="card-grid">
+      <a class="card reveal reveal-d1" href="./desktop.html">
+          <span class="n">17</span>
+          <h3>Desktop</h3>
+          <p>Window behaviour, tray, ports, update checks and what works offline.</p>
+        </a>
+      <a class="card reveal reveal-d2" href="./maintenance.html">
+          <span class="n">18</span>
+          <h3>Maintenance</h3>
+          <p>Checks, entry updates in isolated worktrees, packaging and local synchronisation.</p>
+        </a>
+      <a class="card reveal reveal-d3" href="./faq.html">
+          <span class="n">19</span>
+          <h3>FAQ</h3>
+          <p>Short answers about platforms, dependencies, data location, proxies and licensing.</p>
+        </a>
     </div>
   </div>
 </section>

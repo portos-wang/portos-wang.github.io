@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessions · OhPie Wiki</title>
+<meta name="description" content="Project-local history, search, branching and export — including subagent transcripts.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/sessions.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html" aria-current="page"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">04 / 19</span>
+          <h1>Sessions</h1>
+          <p>Project-local history, search, branching and export — including subagent transcripts.</p>
+        </header>
+        <p>A session is one continuous record of a conversation. OhPie stores it inside the project rather than in one global list, so moving or archiving a study takes its discussion with it.</p>
+<h2 id="where-it-lives"><a href="#where-it-lives">Where it lives</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>&lt;workspace&gt;/.ohpie/agent/sessions/&lt;timestamp&gt;_&lt;uuid&gt;.jsonl
+</code></pre></figure>
+<p>One <code>.jsonl</code> file per session, recording messages, tool calls, model changes and compaction summaries line by line. A text format means it can be diffed, scripted over, and backed up on its own.</p>
+<h2 id="organising"><a href="#organising">Organising</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rename / alias</td>
+<td>A readable name in the tree</td>
+</tr>
+<tr>
+<td>Pin</td>
+<td>Keep an active study at the top</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Move a finished conversation out of the main list</td>
+</tr>
+<tr>
+<td>Project order</td>
+<td>Decide which workspace comes first</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Remove the session and its subagent transcripts</td>
+</tr>
+</tbody></table></div>
+<h2 id="search"><a href="#search">Search</a></h2>
+<p>Sidebar search matches the body text of sessions and returns snippets with their session. It searches the records on disk, so a session does not need to be open to be found.</p>
+<h2 id="branching-and-forking"><a href="#branching-and-forking">Branching and forking</a></h2>
+<ul>
+<li><strong>In-session branch</strong>: start a new branch from any message; the original stays and you can navigate between branches.</li>
+<li><strong>Disk-level fork</strong>: copy the whole session file into a new one with a random suffix — try a different approach without touching the original record.</li>
+</ul>
+<p>The difference is visible on disk: branching shares one session file, forking produces two.</p>
+<h2 id="export"><a href="#export">Export</a></h2>
+<p>A session can be exported as a single static HTML page with messages, tool calls and results preserved. It is a snapshot for collaborators or for archiving a stage; later changes are not reflected.</p>
+<h2 id="subagent-transcripts"><a href="#subagent-transcripts">Subagent transcripts</a></h2>
+<p>When a subagent finishes, its full conversation is stored as its own record and can be opened in the canvas. The parent session keeps one summary card — the detail lives in the child.</p>
+<h2 id="before-deleting"><a href="#before-deleting">Before deleting</a></h2>
+<p>Deletion is not reversible. Export the HTML first, or back up the workspace: <code>.ohpie/agent/sessions/</code> is the entire history.</p>
+<div class="note" data-label="NOTE"><p>Sessions contain unpublished data, local paths and sometimes credentials. Read before sharing a workspace or an export — the same check you would do before submitting a paper.</p></div>
+<p>Next: <a href="./canvas.html">Canvas and files</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./chat.html"><div class="dir">Previous</div><div class="t">Conversation</div></a>
+        <a class="next" href="./canvas.html"><div class="dir">Next</div><div class="t">Canvas</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

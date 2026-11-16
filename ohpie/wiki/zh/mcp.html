@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP 服务 · OhPie Wiki</title>
+<meta name="description" content="全局与项目两套连接、测试、登录、信任与工具暴露方式。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/mcp.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html" aria-current="page"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">15 / 19</span>
+          <h1>MCP 服务</h1>
+          <p>全局与项目两套连接、测试、登录、信任与工具暴露方式。</p>
+        </header>
+        <p>MCP 是 OhPie 接入外部工具的唯一入口：文献数据库、生信服务、内部系统都走它。连接本身属于配置，能不能用取决于服务是否可达、凭据是否齐全。</p>
+<h2 id="两个作用域"><a href="#两个作用域">两个作用域</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>文件</th>
+<th>谁在用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局</td>
+<td><code>~/.ohpie/mcp.json</code></td>
+<td>所有工作区</td>
+</tr>
+<tr>
+<td>项目</td>
+<td><code>&lt;workspace&gt;/.ohpie/mcp.json</code></td>
+<td>这个课题</td>
+</tr>
+</tbody></table></div>
+<p>同名时项目定义覆盖全局。把只在某个课题需要的服务放进项目作用域，换项目就不会误连。</p>
+<h2 id="添加一个服务"><a href="#添加一个服务">添加一个服务</a></h2>
+<ol>
+<li><strong>设置 → MCP → 添加</strong>，粘贴配置（支持常见客户端格式），或手动选择 stdio / HTTP。</li>
+<li>选择作用域，检查解析结果后再保存。</li>
+<li>点 <strong>Test</strong>，确认真实连接、暴露的工具和所需凭据。</li>
+<li>需要授权的服务走 <strong>Sign in</strong>，在浏览器完成 OAuth。</li>
+</ol>
+<p>stdio 服务写 <code>command</code> + <code>args</code> + 可选 <code>env</code>；远程服务写 <code>url</code>。命令必须能从 OhPie 进程解析到——桌面应用没继承新 <code>PATH</code> 时，填绝对路径。</p>
+<h2 id="工具暴露方式"><a href="#工具暴露方式">工具暴露方式</a></h2>
+<p>一个工具很多的服务，一次把全部工具声明进对话会挤掉上下文。两种处理方式：</p>
+<ul>
+<li><strong>deferred</strong>：工具按需发现，模型先看到服务，需要时再列工具。</li>
+<li><strong>code mode</strong>：模型写代码调用工具，而不是逐个工具调用。</li>
+</ul>
+<p>两者都属于连接配置，不是&quot;高级选项&quot;；服务工具超过十几个时建议从一开始就设成 deferred。</p>
+<h2 id="信任"><a href="#信任">信任</a></h2>
+<p>项目作用域的 MCP 配置来自仓库本身，因此需要信任确认：打开一个陌生工作区时，OhPie 不会自动运行它 <code>.ohpie/mcp.json</code> 里定义的命令。确认过的项目会记住这个决定。</p>
+<h2 id="凭据"><a href="#凭据">凭据</a></h2>
+<ul>
+<li>服务自己的密钥写在连接的 <code>env</code> 或认证头里。</li>
+<li>科研数据库的密钥放在<strong>设置 → 凭据</strong>，由内置服务自动取用。</li>
+<li>显式 <code>env</code> 优先于继承值。</li>
+</ul>
+<h2 id="排错顺序"><a href="#排错顺序">排错顺序</a></h2>
+<ol>
+<li><strong>设置 → MCP → Test</strong> 看连接本身是否通。</li>
+<li>看服务返回的错误：命令找不到、超时、401、工具名为空，各自对应不同问题。</li>
+<li>检查命令路径与 <code>PATH</code>（stdio）、端口与地址（HTTP）。</li>
+<li>检查凭据是否在正确的层：连接 <code>env</code> 还是全局凭据。</li>
+<li>换一个最小请求验证，不要一上来就问复杂问题。</li>
+</ol>
+<div class="note" data-label="注意"><p>连接成功只说明握手成功。工具能不能给出你要的答案，取决于服务本身的数据与方法——见<a href="./bioinformatics.html">生物信息 MCP</a> 的边界说明。</p></div>
+<p>下一步：<a href="./extensions.html">扩展与子代理</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./models.html"><div class="dir">上一页</div><div class="t">模型与供应商</div></a>
+        <a class="next" href="./extensions.html"><div class="dir">下一页</div><div class="t">扩展与子代理</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

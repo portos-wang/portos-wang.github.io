@@ -124,8 +124,10 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: start;
 }
 
-.sidenav { position: sticky; top: 96px; }
+.sidenav { position: sticky; top: 96px; max-height: calc(100vh - 116px); overflow-y: auto; padding-right: 4px; }
 .sidenav .label-caps { margin-bottom: 14px; }
+.sidenav .nav-group + .nav-group { margin-top: 18px; }
+.sidenav .nav-group > .label-caps { margin: 0 0 6px 12px; font-size: .64rem; letter-spacing: .16em; }
 .sidenav ol { list-style: none; display: grid; gap: 2px; }
 .sidenav a {
   display: grid;
@@ -487,10 +489,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--clay);
 }
 
-.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 28px); }
-.card-grid .card:last-child:nth-child(3n+1) { grid-column: 1 / -1; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; }
-.card-grid .card:last-child:nth-child(3n+1) h3 { margin: 0; font-size: 1.18rem; }
-.card-grid .card:last-child:nth-child(3n+1) p { flex: 1 1 320px; margin: 0; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
 .card {
   display: block;
   background: var(--paper);
@@ -586,15 +585,12 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-art .stamp { display: none; }
   .dark-grid { grid-template-columns: 1fr; align-items: start; gap: 24px; }
   .shell { grid-template-columns: 1fr; padding-top: 20px; }
-  .sidenav { position: static; margin-bottom: 8px; }
-  .sidenav ol {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scrollbar-width: none;
-  }
-  .sidenav ol::-webkit-scrollbar { display: none; }
+  .sidenav { position: static; margin-bottom: 8px; max-height: none; overflow: visible; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+  .sidenav::-webkit-scrollbar { display: none; }
+  .sidenav > .label-caps, .sidenav .back { display: none; }
+  .sidenav .nav-group { display: contents; }
+  .sidenav .nav-group > .label-caps { display: none; }
+  .sidenav ol { display: contents; }
   .sidenav a {
     grid-template-columns: auto;
     white-space: nowrap;
@@ -604,7 +600,6 @@ img { max-width: 100%; height: auto; display: block; }
     background: var(--paper);
   }
   .sidenav a .num { display: none; }
-  .sidenav .back { display: none; }
   .topbar nav .hide-sm { display: none; }
   .topbar-inner { min-height: 60px; }
   .card-grid { grid-template-columns: 1fr; }

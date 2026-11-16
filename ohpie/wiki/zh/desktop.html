@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桌面与更新 · OhPie Wiki</title>
+<meta name="description" content="窗口行为、托盘、端口、更新检查与离线能力。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/desktop.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html" aria-current="page"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">17 / 19</span>
+          <h1>桌面与更新</h1>
+          <p>窗口行为、托盘、端口、更新检查与离线能力。</p>
+        </header>
+        <p>OhPie 是桌面应用而不是网页：它自己管理窗口、托盘、后端进程和更新检查。了解这些行为，能解释大部分&quot;为什么它没按我想的方式退出&quot;。</p>
+<h2 id="单实例与托盘"><a href="#单实例与托盘">单实例与托盘</a></h2>
+<ul>
+<li>同一时间只跑一个实例；再次启动会把已有窗口带到前台。</li>
+<li>关闭窗口的行为取决于你的选择：缩到托盘，或直接退出。</li>
+<li>从托盘菜单 <strong>退出</strong> 会停止应用拥有的后端进程（本地服务、内核、终端）。</li>
+<li>缩到托盘不等于停止工作：正在跑的分析会继续。</li>
+</ul>
+<h2 id="端口与服务记录"><a href="#端口与服务记录">端口与服务记录</a></h2>
+<p>启动器选一个可用端口，把当前服务记录写入 <code>.next/ohpie-server.json</code>。这个文件是&quot;这份检出目录当前的健康服务在哪&quot;的唯一依据：</p>
+<ul>
+<li>端口被占用会自动回退到其他可用端口。</li>
+<li>需要固定端口时用 <code>OHPIE_PORT</code>。</li>
+<li>换了端口不需要改配置，记录会更新。</li>
+</ul>
+<h2 id="更新"><a href="#更新">更新</a></h2>
+<p>桌面版会检查公开的更新清单，有新版本时在版本行提示并链接到更新说明页。它检查的是 OhPie 自己的发布，不是上游项目。</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>更新清单：https://softs.portos.wang/ohpie/latest.json
+说明页：  https://softs.portos.wang/ohpie/
+</code></pre></figure>
+<p>安装包由作者直接分发，不经过应用商店。</p>
+<h2 id="多显示器与尺寸"><a href="#多显示器与尺寸">多显示器与尺寸</a></h2>
+<p>窗口大小、面板宽度、标签状态会记住。侧栏与画布的拖动分界线会被限制在合理范围，避免拖成一条缝。</p>
+<h2 id="离线能做什么"><a href="#离线能做什么">离线能做什么</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>能力</th>
+<th>需要联网？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打开文件、阅读、搜索本地内容</td>
+<td>否</td>
+</tr>
+<tr>
+<td>本地 Python/R 分析</td>
+<td>否</td>
+</tr>
+<tr>
+<td>已缓存的会话与历史</td>
+<td>否</td>
+</tr>
+<tr>
+<td>模型调用</td>
+<td>是（除非用本地模型）</td>
+</tr>
+<tr>
+<td>文献检索、MCP 服务</td>
+<td>是</td>
+</tr>
+<tr>
+<td>更新检查</td>
+<td>是</td>
+</tr>
+</tbody></table></div>
+<h2 id="数据在哪里"><a href="#数据在哪里">数据在哪里</a></h2>
+<ul>
+<li>应用与运行时：安装目录，卸载即删。</li>
+<li>配置、凭据、全局技能：<code>~/.ohpie/</code>。</li>
+<li>会话与项目资源：各自的工作区 <code>.ohpie/</code>。</li>
+<li>服务环境（Puppeteer / ToolUniverse / BioMCP）：<code>~/.ohpie/mcp/</code>。</li>
+</ul>
+<p>备份按这三层分别做；卸载应用不会删掉 <code>~/.ohpie/</code>，也不会删掉你的工作区。</p>
+<div class="note" data-label="注意"><p>关窗口、退托盘、卸载应用是三件不同的事，影响的数据范围依次扩大。不确定时先看托盘菜单，再决定。</p></div>
+<p>下一步：<a href="./maintenance.html">构建与维护</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./extensions.html"><div class="dir">上一页</div><div class="t">扩展与子代理</div></a>
+        <a class="next" href="./maintenance.html"><div class="dir">下一页</div><div class="t">构建与维护</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

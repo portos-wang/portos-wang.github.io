@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP servers · OhPie Wiki</title>
+<meta name="description" content="Two scopes, testing, OAuth sign-in, project trust, and how tools are exposed.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/mcp.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html" aria-current="page"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">15 / 19</span>
+          <h1>MCP servers</h1>
+          <p>Two scopes, testing, OAuth sign-in, project trust, and how tools are exposed.</p>
+        </header>
+        <p>MCP is the only way OhPie reaches external tools: literature databases, bioinformatics services, internal systems. The connection is configuration; whether it works depends on reachability and credentials.</p>
+<h2 id="two-scopes"><a href="#two-scopes">Two scopes</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>File</th>
+<th>Who uses it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Global</td>
+<td><code>~/.ohpie/mcp.json</code></td>
+<td>Every workspace</td>
+</tr>
+<tr>
+<td>Project</td>
+<td><code>&lt;workspace&gt;/.ohpie/mcp.json</code></td>
+<td>This study only</td>
+</tr>
+</tbody></table></div>
+<p>Project definitions win on name collisions. Put study-specific servers in the project scope so switching projects cannot connect to the wrong thing.</p>
+<h2 id="adding-a-server"><a href="#adding-a-server">Adding a server</a></h2>
+<ol>
+<li><strong>Settings → MCP → Add</strong>, paste a configuration (common client formats are accepted) or pick stdio / HTTP manually.</li>
+<li>Choose the scope, review the parsed result, then save.</li>
+<li>Press <strong>Test</strong> to confirm the connection, the exposed tools and the credentials it needs.</li>
+<li>Services that require authorisation use <strong>Sign in</strong> and complete OAuth in the browser.</li>
+</ol>
+<p>stdio servers take <code>command</code> + <code>args</code> + optional <code>env</code>; remote servers take <code>url</code>. The command must resolve from the OhPie process — if the desktop app did not inherit a new <code>PATH</code>, use the absolute path.</p>
+<h2 id="how-tools-are-exposed"><a href="#how-tools-are-exposed">How tools are exposed</a></h2>
+<p>Declaring every tool of a large service in every turn crowds out the conversation. Two options:</p>
+<ul>
+<li><strong>deferred</strong> — tools are discovered on demand; the model sees the service first and lists tools when needed.</li>
+<li><strong>code mode</strong> — the model writes code that calls tools instead of calling each tool individually.</li>
+</ul>
+<p>Both are connection settings, not advanced extras. For a service with more than a dozen tools, start with deferred.</p>
+<h2 id="trust"><a href="#trust">Trust</a></h2>
+<p>Project-scoped MCP configuration comes from the repository itself, so it needs a trust decision: opening an unfamiliar workspace does not automatically run the commands in its <code>.ohpie/mcp.json</code>. The decision is remembered per project.</p>
+<h2 id="credentials"><a href="#credentials">Credentials</a></h2>
+<ul>
+<li>Service-specific keys go in the connection&#39;s <code>env</code> or auth headers.</li>
+<li>Research database keys go under <strong>Settings → Credentials</strong> and are picked up by the bundled services.</li>
+<li>Explicit <code>env</code> values override inherited ones.</li>
+</ul>
+<h2 id="troubleshooting-order"><a href="#troubleshooting-order">Troubleshooting order</a></h2>
+<ol>
+<li><strong>Settings → MCP → Test</strong>: does the connection itself work?</li>
+<li>Read the error: command not found, timeout, 401 and empty tool list are different problems.</li>
+<li>Check the command path and <code>PATH</code> (stdio), or the port and address (HTTP).</li>
+<li>Check which layer holds the credential: connection <code>env</code> or global credentials.</li>
+<li>Verify with the smallest possible request before asking a complex question.</li>
+</ol>
+<div class="note" data-label="NOTE"><p>A successful connection means the handshake worked. Whether the tool can answer your question is up to the service&#39;s data and methods — see the boundary notes in <a href="./bioinformatics.html">Bioinformatics</a>.</p></div>
+<p>Next: <a href="./extensions.html">Extensions and subagents</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./models.html"><div class="dir">Previous</div><div class="t">Models</div></a>
+        <a class="next" href="./extensions.html"><div class="dir">Next</div><div class="t">Extensions</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

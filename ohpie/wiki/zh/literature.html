@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文献与证据 · OhPie Wiki</title>
+<meta name="description" content="检索、筛选、精读、引文核验，以及反证检索。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/literature.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html" aria-current="page"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">08 / 19</span>
+          <h1>文献与证据</h1>
+          <p>检索、筛选、精读、引文核验，以及反证检索。</p>
+        </header>
+        <p>文献工作的难点不是&quot;找到论文&quot;，而是<strong>读完之后能说清哪条证据支持哪句话</strong>。OhPie 把这条链拆成几个可以分别执行的动作。</p>
+<h2 id="检索与来源"><a href="#检索与来源">检索与来源</a></h2>
+<p>文献来源通过 MCP 服务或 API 凭据接入（PubMed / OpenAlex / Semantic Scholar 等）。检索结果会连同策略一起记录，而不是只留一串链接：</p>
+<ul>
+<li>检索式、数据库、日期范围</li>
+<li>命中数量与筛选后的数量</li>
+<li>全文可得与仅摘要可得分开标注</li>
+</ul>
+<h2 id="筛选"><a href="#筛选">筛选</a></h2>
+<p><code>PRISMA 2020 双盲初筛</code>（快捷操作或 <code>academic-research-skills</code>）按 PRISMA 流程做两轮筛选，记录排除理由与数量。产出的是可写进 Methods 的流程图数据，不是&quot;我看了一些文章&quot;。</p>
+<h2 id="精读"><a href="#精读">精读</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>快捷操作</th>
+<th>得到什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>X 光透视</td>
+<td>X光透视精读</td>
+<td>按图、方法、结论拆解，指出证据强度</td>
+</tr>
+<tr>
+<td>逐图精读</td>
+<td>图表证据审计</td>
+<td>逐个面板核对，标出可疑与缺失</td>
+</tr>
+<tr>
+<td>全文伴读</td>
+<td>双语全文伴读</td>
+<td>中英对照，边读边注</td>
+</tr>
+<tr>
+<td>结构化抽取</td>
+<td>试验设计主体抽取</td>
+<td>对象、分组、样本量、干预、终点逐字段</td>
+</tr>
+</tbody></table></div>
+<h2 id="引文核验"><a href="#引文核验">引文核验</a></h2>
+<p><code>论点配引与声称审计</code> 做的是<strong>声称级</strong>核对：把正文里的每一句论断拆出来，检查引用它的文献是否真的支持这句话，以及支持到什么程度。常见结论有三种：</p>
+<ul>
+<li>支持（并说明支持的是哪一部分）</li>
+<li>部分支持（条件、人群或终点不一致）</li>
+<li>无法判定（没有全文、来源不可达、标识符有歧义）</li>
+</ul>
+<p>第三种不是失败，是需要补证据的任务项。</p>
+<h2 id="反证与边界"><a href="#反证与边界">反证与边界</a></h2>
+<p><code>反证与边界检索</code> 主动找相反结果、适用边界、替代解释和方法学问题。写 Discussion 时它比再找十篇支持文献有用。</p>
+<h2 id="谱系与选题"><a href="#谱系与选题">谱系与选题</a></h2>
+<ul>
+<li><code>文献溯源</code>：从种子论文追前驱与后续，核对真实引用关系。</li>
+<li><code>选题撞车检测</code>：跨术语检索相近工作，逐篇比较拟议贡献。</li>
+<li><code>立项前证据评估</code> / <code>选题地狱抗辩</code>：在正式投入前把证据基础问一遍。</li>
+</ul>
+<div class="note" data-label="注意"><p>检索成功不等于证据成立。数据库返回的是记录，不是结论；每一条&quot;支持&quot;都要能指到具体位置。</p></div>
+<p>下一步：<a href="./analysis.html">数据分析与成果</a> 接着讲拿到数据之后。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workflow.html"><div class="dir">上一页</div><div class="t">科研流程</div></a>
+        <a class="next" href="./analysis.html"><div class="dir">下一页</div><div class="t">数据分析</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

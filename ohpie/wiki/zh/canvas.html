@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画布与文件 · OhPie Wiki</title>
+<meta name="description" content="右侧标签能打开哪些格式，哪些会随文件刷新。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/canvas.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html" aria-current="page"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">05 / 19</span>
+          <h1>画布与文件</h1>
+          <p>右侧标签能打开哪些格式，哪些会随文件刷新。</p>
+        </header>
+        <p>右侧不是预览窗口，是工作台的一部分。它读的是工作区里的真实文件，所以你在这里看到的图和写在磁盘上的图是同一份。</p>
+<h2 id="支持的格式"><a href="#支持的格式">支持的格式</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>能做什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PDF</td>
+<td>滚动阅读、缩放，配合对话做逐页精读</td>
+</tr>
+<tr>
+<td>DOCX</td>
+<td>查看正文与结构，适合读合作者发回的稿件</td>
+</tr>
+<tr>
+<td>Markdown / LaTeX</td>
+<td>渲染阅读；LaTeX 保留公式结构</td>
+</tr>
+<tr>
+<td>Jupyter 笔记本</td>
+<td>逐单元展开代码与输出，折叠长输出</td>
+</tr>
+<tr>
+<td>CSV / TSV</td>
+<td>虚拟化表格视图，大文件也不会一次渲染全部行</td>
+</tr>
+<tr>
+<td>XLSX</td>
+<td>只读列出工作表名称，不解析整本数据</td>
+</tr>
+<tr>
+<td>图片 / 音视频</td>
+<td>直接预览，用于核对图件</td>
+</tr>
+<tr>
+<td>Draw.io</td>
+<td>打开 <code>.drawio</code> / <code>.dio</code> 并可编辑保存</td>
+</tr>
+<tr>
+<td>终端</td>
+<td>在工作区目录里执行命令</td>
+</tr>
+<tr>
+<td>子代理</td>
+<td>阅读子代理的完整对话</td>
+</tr>
+</tbody></table></div>
+<h2 id="标签行为"><a href="#标签行为">标签行为</a></h2>
+<ul>
+<li>左侧文件树、对话里的路径、<code>@</code> 引用都能打开标签。</li>
+<li>同一个文件重复打开会复用已有标签，不会开出一排重复项。</li>
+<li>标签可以关闭、切换，文件被外部修改后内容会刷新。</li>
+<li>文件编辑器对产物是只读打开，除非你明确用编辑类工具去改。</li>
+</ul>
+<h2 id="draw-io"><a href="#draw-io">Draw.io</a></h2>
+<p><code>.drawio</code> 和 <code>.dio</code> 在画布里可以直接编辑：拖节点、连线、改文字，保存写回原文件。技术路线图、流程图、实验设计图都用它，好处是产物是 XML，可以进版本库。</p>
+<h2 id="notebook"><a href="#notebook">Notebook</a></h2>
+<p><code>.ipynb</code> 以单元为单位展示：Markdown 说明、代码、输出（文本、表格、图）分开折叠。分析工作室里还能继续执行单元，变量在内核里保留。</p>
+<h2 id="终端"><a href="#终端">终端</a></h2>
+<p>终端标签以工作区为当前目录启动，可以跑 <code>git status</code>、查看文件、执行脚本。它和应用自己的命令执行环境是隔离的：宿主进程的敏感变量不会传进去。</p>
+<h2 id="成果面板"><a href="#成果面板">成果面板</a></h2>
+<p>成果面板把 <code>experiments/4_results/</code> 下的图、表、报告聚到一处，按类型浏览，直接打开。它只是索引，文件仍在原来的目录里。</p>
+<div class="note" data-label="注意"><p>画布不会替你整理文件。产物落在哪个目录，取决于你（或技能包）在请求里怎么说——目录约定见<a href="./workspace.html">研究工作区</a>。</p></div>
+<p>下一步：<a href="./workspace.html">研究工作区</a> 把每个目录的职责讲清楚。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./sessions.html"><div class="dir">上一页</div><div class="t">会话管理</div></a>
+        <a class="next" href="./workspace.html"><div class="dir">下一页</div><div class="t">研究工作区</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

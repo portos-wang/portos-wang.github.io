@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会话管理 · OhPie Wiki</title>
+<meta name="description" content="项目本地历史、搜索、分支与导出，以及子代理的对话。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/sessions.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html" aria-current="page"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">04 / 19</span>
+          <h1>会话管理</h1>
+          <p>项目本地历史、搜索、分支与导出，以及子代理的对话。</p>
+        </header>
+        <p>会话就是一次连续的对话记录。OhPie 默认把它存进项目，而不是存进一个全局列表——这样换电脑、换目录、归档课题时，讨论跟着材料走。</p>
+<h2 id="保存在哪里"><a href="#保存在哪里">保存在哪里</a></h2>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>&lt;workspace&gt;/.ohpie/agent/sessions/&lt;timestamp&gt;_&lt;uuid&gt;.jsonl
+</code></pre></figure>
+<p>一个会话一个 <code>.jsonl</code> 文件，逐条记录消息、工具调用、模型切换和压缩摘要。文本格式意味着它可以被 diff、被脚本处理、被单独备份。</p>
+<h2 id="组织会话"><a href="#组织会话">组织会话</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>重命名 / 别名</td>
+<td>让列表里显示的名字可读</td>
+</tr>
+<tr>
+<td>置顶</td>
+<td>正在进行的课题固定在顶部</td>
+</tr>
+<tr>
+<td>归档</td>
+<td>结束但仍要保留的会话移出主列表</td>
+</tr>
+<tr>
+<td>项目分组与排序</td>
+<td>多个工作区时决定先后</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>连同其子代理记录一起删除</td>
+</tr>
+</tbody></table></div>
+<h2 id="搜索"><a href="#搜索">搜索</a></h2>
+<p>侧栏搜索对会话正文做全文匹配，返回命中的片段与所属会话。它搜的是磁盘上的记录，不会因为会话没打开就搜不到。</p>
+<h2 id="分支与-fork"><a href="#分支与-fork">分支与 fork</a></h2>
+<ul>
+<li><strong>会话内分支</strong>：在任意一条消息上开新分支，原分支保留，可以在分支之间来回切换。</li>
+<li><strong>磁盘级 fork</strong>：复制整份会话文件另起一份（名字带随机后缀），用于&quot;从这里开始试另一种做法&quot;而完全不碰原记录。</li>
+</ul>
+<p>两者的区别在文件层面：分支共享同一个会话文件，fork 产生新文件。</p>
+<h2 id="导出"><a href="#导出">导出</a></h2>
+<p>会话可以导出为一页静态 HTML：消息、工具调用与结果都保留，适合发给合作者或作为阶段记录存档。导出的是一份快照，之后的变化不会同步。</p>
+<h2 id="子代理会话"><a href="#子代理会话">子代理会话</a></h2>
+<p>子代理跑完任务后，它的完整对话会作为独立记录保存，并能在右侧画布打开。父会话只留一张摘要卡片，细节都在子会话里。</p>
+<h2 id="删除之前"><a href="#删除之前">删除之前</a></h2>
+<p>删除是不可撤销的。要保留的记录先导出 HTML，或者把工作区整体备份——<code>.ohpie/agent/sessions/</code> 就是会话的全部。</p>
+<div class="note" data-label="注意"><p>会话里可能含有未公开的数据、路径和凭据片段。分享工作区或导出记录前先读一遍，这和发布论文前的检查是同一件事。</p></div>
+<p>下一步：<a href="./canvas.html">画布</a> 讲右侧那些标签能打开什么。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./chat.html"><div class="dir">上一页</div><div class="t">对话与工具</div></a>
+        <a class="next" href="./canvas.html"><div class="dir">下一页</div><div class="t">画布与文件</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

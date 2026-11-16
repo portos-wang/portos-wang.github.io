@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literature and evidence · OhPie Wiki</title>
+<meta name="description" content="Search, screening, close reading, claim-level citation checks and counter-evidence.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/literature.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html" aria-current="page"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">08 / 19</span>
+          <h1>Literature and evidence</h1>
+          <p>Search, screening, close reading, claim-level citation checks and counter-evidence.</p>
+        </header>
+        <p>The hard part of literature work is not finding papers. It is being able to say <strong>which piece of evidence supports which sentence</strong>. OhPie splits that chain into actions you can run separately.</p>
+<h2 id="search-and-sources"><a href="#search-and-sources">Search and sources</a></h2>
+<p>Sources arrive through MCP services or API credentials (PubMed, OpenAlex, Semantic Scholar and others). Results are recorded together with the strategy, not just a list of links:</p>
+<ul>
+<li>query, database, date range</li>
+<li>hits found and hits kept</li>
+<li>full text available versus abstract only, marked separately</li>
+</ul>
+<h2 id="screening"><a href="#screening">Screening</a></h2>
+<p><code>PRISMA 2020 double-blind screening</code> runs two screening rounds with recorded exclusion reasons and counts. The output is flowchart data you can put in Methods, not &quot;I read some papers&quot;.</p>
+<h2 id="close-reading"><a href="#close-reading">Close reading</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Quick action</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>X-ray read</td>
+<td>X光透视精读</td>
+<td>Figure, method and claim breakdown with evidence strength</td>
+</tr>
+<tr>
+<td>Figure audit</td>
+<td>图表证据审计</td>
+<td>Panel-by-panel check, suspicious or missing panels flagged</td>
+</tr>
+<tr>
+<td>Bilingual read</td>
+<td>双语全文伴读</td>
+<td>Side-by-side reading with annotations</td>
+</tr>
+<tr>
+<td>Design extraction</td>
+<td>试验设计主体抽取</td>
+<td>Subjects, groups, sample size, intervention, endpoints</td>
+</tr>
+</tbody></table></div>
+<h2 id="citation-checks"><a href="#citation-checks">Citation checks</a></h2>
+<p><code>Claim-to-citation audit</code> works at the level of the <strong>claim</strong>: every assertion in the draft is isolated and the cited work is checked for whether it actually supports that sentence, and how far. Three outcomes are normal:</p>
+<ul>
+<li>supports it (and which part it supports)</li>
+<li>partially supports it (different conditions, population or endpoint)</li>
+<li>unresolved (no full text, unreachable source, ambiguous identifier)</li>
+</ul>
+<p>The third is not a failure; it is a task list of evidence still to find.</p>
+<h2 id="counter-evidence"><a href="#counter-evidence">Counter-evidence</a></h2>
+<p><code>Counter-evidence and boundary search</code> looks for opposite results, boundary conditions, alternative explanations and methodological objections. That is more useful for a Discussion section than ten more supporting papers.</p>
+<h2 id="lineage-and-topic-checks"><a href="#lineage-and-topic-checks">Lineage and topic checks</a></h2>
+<ul>
+<li><code>Literature lineage</code>: trace predecessors and successors from a seed paper, verifying real citations.</li>
+<li><code>Topic overlap check</code>: cross-terminology search for near-identical work.</li>
+<li><code>Pre-project evidence assessment</code> / <code>Adversarial idea grilling</code>: question the evidence base before committing.</li>
+</ul>
+<div class="note" data-label="NOTE"><p>A successful query is not established evidence. A database returns records, not conclusions; every &quot;supports&quot; has to point somewhere specific.</p></div>
+<p>Next: <a href="./analysis.html">Analysis and artifacts</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./workflow.html"><div class="dir">Previous</div><div class="t">Workflow</div></a>
+        <a class="next" href="./analysis.html"><div class="dir">Next</div><div class="t">Analysis</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

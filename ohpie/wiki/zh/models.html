@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模型与供应商 · OhPie Wiki</title>
+<meta name="description" content="登录或填 Key、启用哪些模型、默认模型与推理强度、代理。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/models.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html" aria-current="page"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">14 / 19</span>
+          <h1>模型与供应商</h1>
+          <p>登录或填 Key、启用哪些模型、默认模型与推理强度、代理。</p>
+        </header>
+        <p>模型配置分两层：<strong>供应商</strong>决定能用哪些模型，<strong>模型开关</strong>决定列表里显示哪些。两者都在设置里改，不用编辑配置文件。</p>
+<h2 id="供应商"><a href="#供应商">供应商</a></h2>
+<p>支持两类接入方式：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适用</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OAuth 登录</td>
+<td>提供账号授权的供应商</td>
+<td>浏览器完成，令牌存在本机</td>
+</tr>
+<tr>
+<td>API Key</td>
+<td>提供密钥的供应商</td>
+<td>密钥加密保存在 <code>~/.ohpie/</code></td>
+</tr>
+<tr>
+<td>自定义供应商</td>
+<td>OpenAI 兼容端点</td>
+<td>需要 base URL 与模型名</td>
+</tr>
+</tbody></table></div>
+<p>自定义供应商写在 <code>~/.ohpie/agent/models.json</code>，可以在设置里的 models 配置界面直接编辑，也能贴 JSON。</p>
+<h2 id="模型开关"><a href="#模型开关">模型开关</a></h2>
+<p>供应商可能返回几十个模型，模型开关决定侧栏与选择器里出现哪些。选中的模型会出现在对话的模型选择器里；没选的不会消失，只是不占位置。</p>
+<h2 id="默认模型与推理强度"><a href="#默认模型与推理强度">默认模型与推理强度</a></h2>
+<ul>
+<li><strong>默认模型</strong>：新会话开始时用哪个。</li>
+<li><strong>推理强度</strong>：默认档位，越低越快、越高越深。</li>
+<li>单次对话里改模型只影响这次会话。</li>
+</ul>
+<p>可用的推理档位由模型目录决定，不同模型不一样。切换模型后会回到该模型支持的默认档。</p>
+<h2 id="刷新目录"><a href="#刷新目录">刷新目录</a></h2>
+<p>供应商上下线模型是常态。刷新目录会重新拉取可用列表，并保留你已有的开关选择；新出现的模型默认不启用。</p>
+<h2 id="凭据"><a href="#凭据">凭据</a></h2>
+<p>模型密钥与科研数据库密钥分开管理：模型在<strong>设置 → 模型</strong>里配，科研 API 在<strong>设置 → 凭据</strong>里配。后者会被 ToolUniverse、BioMCP 与 <code>w77-nfsc-pipeline</code> 自动取用。</p>
+<h2 id="代理"><a href="#代理">代理</a></h2>
+<p>服务端的模型与 API 请求遵循 <code>HTTP_PROXY</code>、<code>HTTPS_PROXY</code>、<code>NO_PROXY</code>。启动前设好，本地地址（<code>localhost</code>、<code>127.0.0.1</code>）要排除，否则本地服务会被代理拦住。</p>
+<h2 id="费用与额度"><a href="#费用与额度">费用与额度</a></h2>
+<p>OhPie 不代收费用：账单发生在你选的供应商那里。设置里的用量提示来自供应商返回的信息，仅供参考，以供应商后台为准。</p>
+<div class="note" data-label="注意"><p>换模型会改变回答风格与工具调用习惯。关键分析换模型后，至少重跑一次核心步骤，确认结论不是模型特性带来的。</p></div>
+<p>下一步：<a href="./mcp.html">MCP 服务</a> 把外部工具接进来。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./bioinformatics.html"><div class="dir">上一页</div><div class="t">生物信息 MCP</div></a>
+        <a class="next" href="./mcp.html"><div class="dir">下一页</div><div class="t">MCP 服务</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据分析与成果 · OhPie Wiki</title>
+<meta name="description" content="持久化内核、笔记本标准、绘图与成果登记。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/analysis.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html" aria-current="page"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">09 / 19</span>
+          <h1>数据分析与成果</h1>
+          <p>持久化内核、笔记本标准、绘图与成果登记。</p>
+        </header>
+        <p>分析在 OhPie 里不是&quot;生成一段代码让你去跑&quot;，而是在本地内核里<strong>真的跑</strong>，并把代码、输出和产物留在工作区。</p>
+<h2 id="内核与环境"><a href="#内核与环境">内核与环境</a></h2>
+<ul>
+<li>Python 与 R 都走本机解释器，不需要额外安装运行时。</li>
+<li>内核跨单元、跨轮次保留变量：上一轮建的 DataFrame，这一轮还能接着用。</li>
+<li>项目可以指定自己的虚拟环境或 <code>renv</code>，避免不同课题的依赖互相污染。</li>
+<li>环境缺失时如实报错，不会假装跑过。</li>
+</ul>
+<h2 id="笔记本标准"><a href="#笔记本标准">笔记本标准</a></h2>
+<p>每一次分析都产出成对的文件：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>experiments/3_analysis/
+├── 01_data_cleaning.ipynb          # 可执行的笔记本
+├── 01_data_cleaning.qmd            # 可读可渲染的同一份分析
+├── 02_statistical_analysis.ipynb
+└── 02_statistical_analysis.qmd
+</code></pre></figure>
+<p><code>.ipynb</code> 给机器（可以继续运行、可以导出），<code>.qmd</code> 给人（能读、能渲染成报告）。两者内容一致，不各自演化。</p>
+<h2 id="绘图"><a href="#绘图">绘图</a></h2>
+<p>发表级图形按期刊惯例来：尺寸、字号、配色、面板标注都要能直接进排版。常用的两个动作是 <code>Nature标准统计核验</code>（统计量、检验选择、报告方式）与 <code>顶刊双栏复合面板图</code>（多面板排版）。</p>
+<p>图存在 <code>experiments/4_results/figures/</code>，表存在 <code>tables/</code>。文件名用能读懂的英文短名，不要 <code>plot1_final_v3.png</code>。</p>
+<h2 id="成果与登记"><a href="#成果与登记">成果与登记</a></h2>
+<p>保存的成果进入画布的成果面板，并可以附带实验凭证：产出它的代码、声明的输入、运行环境与内容指纹。凭证汇入 <code>experiments/4_results/passport.yaml</code>。</p>
+<h2 id="导出"><a href="#导出">导出</a></h2>
+<ul>
+<li>Notebook 导出 <code>.ipynb</code> 与 <code>.qmd</code>。</li>
+<li>表格导出 CSV / TSV。</li>
+<li>图导出 PNG / PDF / SVG，按投稿要求选。</li>
+</ul>
+<h2 id="复现的最小条件"><a href="#复现的最小条件">复现的最小条件</a></h2>
+<p>一次能复现的分析需要四样东西同时存在：原始数据（未改）、清洗代码、分析代码、依赖版本。少任何一样，别人（或半年后的你）就只能重做，不能复现。</p>
+<div class="note" data-label="注意"><p>内核里跑通，不等于结论正确。执行、登记、验证是三件事，见<a href="./provenance.html">实验凭证</a>。</p></div>
+<p>下一步：<a href="./provenance.html">实验凭证</a> 说明记录到底记了什么。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./literature.html"><div class="dir">上一页</div><div class="t">文献与证据</div></a>
+        <a class="next" href="./provenance.html"><div class="dir">下一页</div><div class="t">实验凭证</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

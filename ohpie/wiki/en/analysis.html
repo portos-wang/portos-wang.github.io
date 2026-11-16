@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysis and artifacts · OhPie Wiki</title>
+<meta name="description" content="A persistent kernel, the notebook standard, publication figures and artifact registration.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/analysis.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html" aria-current="page"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">09 / 19</span>
+          <h1>Analysis and artifacts</h1>
+          <p>A persistent kernel, the notebook standard, publication figures and artifact registration.</p>
+        </header>
+        <p>Analysis in OhPie is not &quot;here is code, go run it&quot;. It runs in a local kernel and leaves the code, the output and the artefacts inside the workspace.</p>
+<h2 id="kernel-and-environment"><a href="#kernel-and-environment">Kernel and environment</a></h2>
+<ul>
+<li>Python and R use the interpreters already installed on the machine; no bundled runtime.</li>
+<li>Variables persist across cells and turns: a DataFrame built last turn is still there.</li>
+<li>A project can point at its own virtual environment or <code>renv</code>, so two studies do not fight over dependencies.</li>
+<li>A missing environment produces a real error, not a fake success.</li>
+</ul>
+<h2 id="the-notebook-standard"><a href="#the-notebook-standard">The notebook standard</a></h2>
+<p>Every analysis produces a pair of files:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>experiments/3_analysis/
+├── 01_data_cleaning.ipynb          # executable notebook
+├── 01_data_cleaning.qmd            # the same analysis, readable and renderable
+├── 02_statistical_analysis.ipynb
+└── 02_statistical_analysis.qmd
+</code></pre></figure>
+<p><code>.ipynb</code> is for the machine (re-runnable, exportable). <code>.qmd</code> is for the reader (readable, renderable). They carry the same content and are not maintained separately.</p>
+<h2 id="figures"><a href="#figures">Figures</a></h2>
+<p>Publication figures follow journal conventions: physical size, type scale, palette and panel labels must survive typesetting. Two actions cover most of it: <code>Nature-standard statistics check</code> (test choice, effect sizes, reporting format) and <code>Journal two-column composite figure</code> (multi-panel layout).</p>
+<p>Figures go to <code>experiments/4_results/figures/</code>, tables to <code>tables/</code>. Name files after what they show, not <code>plot1_final_v3.png</code>.</p>
+<h2 id="artifacts-and-registration"><a href="#artifacts-and-registration">Artifacts and registration</a></h2>
+<p>Saved artefacts appear in the artifacts panel and can carry experiment provenance: the code that produced them, the declared inputs, the runtime and a content fingerprint. Those records collect in <code>experiments/4_results/passport.yaml</code>.</p>
+<h2 id="export"><a href="#export">Export</a></h2>
+<ul>
+<li>Notebooks export as <code>.ipynb</code> and <code>.qmd</code>.</li>
+<li>Tables export as CSV or TSV.</li>
+<li>Figures export as PNG, PDF or SVG, depending on submission requirements.</li>
+</ul>
+<h2 id="minimum-for-reproducibility"><a href="#minimum-for-reproducibility">Minimum for reproducibility</a></h2>
+<p>Four things must exist at once: untouched raw data, cleaning code, analysis code, dependency versions. Lose any one and nobody — including you in six months — can reproduce the result, only redo it.</p>
+<div class="note" data-label="NOTE"><p>Running in the kernel is not the same as being correct. Execution, registration and validation are three different facts; see <a href="./provenance.html">provenance</a>.</p></div>
+<p>Next: <a href="./provenance.html">Provenance</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./literature.html"><div class="dir">Previous</div><div class="t">Literature</div></a>
+        <a class="next" href="./provenance.html"><div class="dir">Next</div><div class="t">Provenance</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>
