@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发布与更新 · OhPie Wiki</title>
+<meta name="description" content="从版本号到公开更新清单，一次 Windows 发版要碰的五处地方。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/release.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>交接与共享</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">15</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>构建与维护</span></a></li><li><a href="./release.html" aria-current="page"><span class="num">20</span><span>发布与更新</span></a></li><li><a href="./troubleshooting.html"><span class="num">21</span><span>排错</span></a></li><li><a href="./faq.html"><span class="num">22</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">20 / 22</span>
+          <h1>发布与更新</h1>
+          <p>从版本号到公开更新清单，一次 Windows 发版要碰的五处地方。</p>
+        </header>
+        <p>OhPie 的发版是<strong>本地完成</strong>的：本机打包、本机校验、手动上传安装包、手动更新公开清单。仓库里虽然有 <code>.github/workflows/release.yml</code>，但当前只作为参考保留（Actions 计费未恢复前，打 tag 触发的构建会失败）。</p>
+<h2 id="一次发版涉及五处"><a href="#一次发版涉及五处">一次发版涉及五处</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>改什么</th>
+<th>谁读它</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package.json</code> / <code>package-lock.json</code></td>
+<td>版本号</td>
+<td>打包产物、<code>resources/app/package.json</code></td>
+</tr>
+<tr>
+<td>Git tag <code>vX.Y.Z</code></td>
+<td>标记发布提交</td>
+<td>你、GitHub Release</td>
+</tr>
+<tr>
+<td><code>docs/releases/vX.Y.Z.md</code></td>
+<td>人读的发版说明</td>
+<td>用户、更新页</td>
+</tr>
+<tr>
+<td>GitHub Release</td>
+<td>安装包、校验和、blockmap</td>
+<td>下载用户</td>
+</tr>
+<tr>
+<td><code>docs/releases/site/latest.json</code> + 公开 Pages</td>
+<td>应用检查更新的唯一来源</td>
+<td>已安装的 OhPie</td>
+</tr>
+</tbody></table></div>
+<p>五处只要有一处没跟上，就会出现&quot;新版本发了但用户看不到&quot;或&quot;提示有新版但下载 404&quot;。</p>
+<h2 id="发布前"><a href="#发布前">发布前</a></h2>
+<ol>
+<li>工作区干净，<code>HEAD</code> 与 <code>origin/main</code> 一致；只包含本次要发的改动。</li>
+<li>在独立 worktree 中打包，不要用正在跑开发服务的目录。</li>
+<li>下面的检查全部通过，且目标 tag 未被占用。</li>
+<li>把计划发布的内容写进 <code>docs/releases/vX.Y.Z.md</code>，格式沿用上一版：主要更新 / 运行时与兼容性 / 下载与校验 / 上游基线。</li>
+</ol>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm ci
+node node_modules/typescript/bin/tsc --noEmit
+npm run lint
+npm test
+git ls-remote --tags origin vX.Y.Z     # 应为空
+</code></pre></figure>
+<h2 id="五步流程"><a href="#五步流程">五步流程</a></h2>
+<h3 id="1-定版本号"><a href="#1-定版本号">1. 定版本号</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm version X.Y.Z --no-git-tag-version
+</code></pre></figure>
+<p>两条命令都不创建 Git tag：tag 要打在<strong>包含说明文件的发布提交</strong>上，而不是提前打。</p>
+<h3 id="2-提交-打-tag-推送"><a href="#2-提交-打-tag-推送">2. 提交、打 tag、推送</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>git add package.json package-lock.json docs/releases/vX.Y.Z.md
+git commit -m &quot;release: vX.Y.Z ...&quot;
+git tag -a vX.Y.Z -m &quot;OhPie vX.Y.Z&quot;
+git push origin main vX.Y.Z
+</code></pre></figure>
+<p>用命名 tag 推送，不要 <code>git push --tags</code>：这份检出里可能还有上游标签。</p>
+<h3 id="3-打包"><a href="#3-打包">3. 打包</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run dist:win
+</code></pre></figure>
+<p>产物在 <code>dist/</code>：<code>OhPie Setup X.Y.Z.exe</code>、便携目录 <code>win-unpacked/</code>，以及 <code>.blockmap</code>。</p>
+<p>打包后确认两件事：安装包文件名带正确版本；<code>dist/win-unpacked/resources/app/package.json</code> 里的 <code>version</code> 与本次一致。</p>
+<h3 id="4-校验与上传"><a href="#4-校验与上传">4. 校验与上传</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>$exe = Get-Item &#39;dist/OhPie Setup X.Y.Z.exe&#39;
+&quot;$((Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower())  $($exe.Name)&quot; |
+  Out-File &quot;$($exe.FullName).sha256&quot; -Encoding ascii
+
+gh release create vX.Y.Z $exe.FullName &quot;$($exe.FullName).sha256&quot; &quot;$($exe.FullName).blockmap&quot; `
+  --title &quot;OhPie vX.Y.Z&quot; --generate-notes
+</code></pre></figure>
+<p><code>--generate-notes</code> 生成的是提交摘要，不能替代 <code>docs/releases/vX.Y.Z.md</code> 里的人读说明。</p>
+<h3 id="5-更新公开清单"><a href="#5-更新公开清单">5. 更新公开清单</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code># 1) 编辑 docs/releases/site/latest.json：
+#    version / date / notes，并在 releases 数组最前面插入同内容的一条
+# 2) 复制到公开仓库并推送
+Copy-Item docs/releases/site/latest.json D:\Coding\portos-wang.github.io\ohpie\latest.json
+</code></pre></figure>
+<p>在 <code>portos-wang.github.io</code> 里提交并推送，Pages 自动发布。清单地址：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>https://softs.portos.wang/ohpie/latest.json
+</code></pre></figure>
+<p><code>index.html</code>（更新说明页）只在改版式时才需要跟新；内容由 <code>latest.json</code> 渲染。</p>
+<h2 id="打包环境的硬性要求"><a href="#打包环境的硬性要求">打包环境的硬性要求</a></h2>
+<ul>
+<li><strong>不要在开发服务运行时执行 <code>next build</code></strong>：两者共用 <code>.next/</code>，会互相破坏。</li>
+<li>用独立 worktree，配私有 build profile 与<strong>硬链接</strong>依赖副本；Turbopack 会拒绝指向 worktree 外的依赖 junction。</li>
+<li>冒烟测试必须在产物上跑，而不是在源码目录：</li>
+</ul>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>node e2e/desktop-smoke.mjs --executable dist/win-unpacked/OhPie.exe --artifacts &lt;证据目录&gt;
+</code></pre></figure>
+<p>它检查启动、品牌身份、端口冲突、目录搬移与干净退出。</p>
+<h2 id="应用侧怎么看到更新"><a href="#应用侧怎么看到更新">应用侧怎么看到更新</a></h2>
+<ul>
+<li>已安装的 OhPie 每 12 小时拉一次清单，5 秒超时。</li>
+<li>清单 <code>version</code> 大于当前版本时，新会话页的版本行显示 <code>→ vX.Y.Z ↗</code>，链接指向更新说明页对应锚点。</li>
+<li>清单缺失或不可达时静默跳过——不会弹错误，也不会显示过期提示。</li>
+</ul>
+<h2 id="出问题怎么办"><a href="#出问题怎么办">出问题怎么办</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打包失败</td>
+<td>先确认不在开发 checkout 里；再确认依赖副本是硬链接而不是 junction</td>
+</tr>
+<tr>
+<td>传错附件</td>
+<td>删除该资产重新上传，不要重建同名 tag</td>
+</tr>
+<tr>
+<td>说明写错</td>
+<td>改 <code>docs/releases/vX.Y.Z.md</code> 与 <code>latest.json</code> 并重新提交；不要动已发布的安装包</td>
+</tr>
+<tr>
+<td>版本已发出但有严重缺陷</td>
+<td>发 <code>X.Y.Z+1</code> 补丁版，不要覆盖旧安装包或移动 tag</td>
+</tr>
+<tr>
+<td>清单指错版本</td>
+<td>修正 <code>latest.json</code> 并推送；应用下次轮询即恢复</td>
+</tr>
+</tbody></table></div>
+<div class="note" data-label="注意"><p>已发布的 tag 与安装包视为不可变。修正靠新版本，不靠覆盖——否则校验和与用户手里的文件对不上。</p></div>
+<h2 id="发布检查清单"><a href="#发布检查清单">发布检查清单</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> <code>package.json</code> 与 <code>package-lock.json</code> 版本一致</li>
+<li><input disabled="" type="checkbox"> tag 打在包含说明文件的提交上</li>
+<li><input disabled="" type="checkbox"> 类型检查、lint、测试通过并记录结果</li>
+<li><input disabled="" type="checkbox"> 打包在独立 worktree 完成</li>
+<li><input disabled="" type="checkbox"> 安装包文件名与 <code>resources/app/package.json</code> 版本一致</li>
+<li><input disabled="" type="checkbox"> <code>.sha256</code> 与 <code>.blockmap</code> 一并上传</li>
+<li><input disabled="" type="checkbox"> <code>docs/releases/vX.Y.Z.md</code> 已提交</li>
+<li><input disabled="" type="checkbox"> <code>latest.json</code> 的 <code>version</code>、<code>date</code>、<code>notes</code> 已更新并保留历史</li>
+<li><input disabled="" type="checkbox"> 公开仓库已推送，清单 URL 返回 200</li>
+<li><input disabled="" type="checkbox"> 在旧版本应用里点到&quot;有新版本&quot;，链接可打开</li>
+</ul>
+<h2 id="不要做的事"><a href="#不要做的事">不要做的事</a></h2>
+<ul>
+<li><strong>不要用 <code>npm run release</code></strong>：那是上游 npm 发布脚本，不是 OhPie 的 Windows 发版入口。</li>
+<li><strong>不要 <code>git push --tags</code></strong>：会连带推上游标签。</li>
+<li><strong>不要在开发 checkout 里 <code>npm run build</code></strong>。</li>
+<li><strong>不要把未脱敏的日志、本地绝对路径、私有服务地址写进发版说明</strong>。</li>
+</ul>
+<p>下一步：<a href="./troubleshooting.html">排错手册</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./maintenance.html"><div class="dir">上一页</div><div class="t">构建与维护</div></a>
+        <a class="next" href="./troubleshooting.html"><div class="dir">下一页</div><div class="t">排错</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

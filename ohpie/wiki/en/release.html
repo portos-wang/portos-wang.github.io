@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Release and updates · OhPie Wiki</title>
+<meta name="description" content="From the version bump to the public update manifest — the five places one Windows release touches.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/release.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./release.html" aria-current="page"><span class="num">20</span><span>Release</span></a></li><li><a href="./troubleshooting.html"><span class="num">21</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">22</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">20 / 22</span>
+          <h1>Release and updates</h1>
+          <p>From the version bump to the public update manifest — the five places one Windows release touches.</p>
+        </header>
+        <p>OhPie is released <strong>locally</strong>: build here, verify here, upload the installer by hand, update the public manifest by hand. The repository still contains <code>.github/workflows/release.yml</code>, but it is kept as reference only — until Actions billing is restored, a tag-triggered build fails.</p>
+<h2 id="five-places-one-release-touches"><a href="#five-places-one-release-touches">Five places one release touches</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Place</th>
+<th>What changes</th>
+<th>Who reads it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package.json</code> / <code>package-lock.json</code></td>
+<td>The version</td>
+<td>The build, and <code>resources/app/package.json</code></td>
+</tr>
+<tr>
+<td>Git tag <code>vX.Y.Z</code></td>
+<td>Marks the release commit</td>
+<td>You, and the GitHub Release</td>
+</tr>
+<tr>
+<td><code>docs/releases/vX.Y.Z.md</code></td>
+<td>The human-readable notes</td>
+<td>Users, the update page</td>
+</tr>
+<tr>
+<td>GitHub Release</td>
+<td>Installer, checksum, blockmap</td>
+<td>Everyone who downloads</td>
+</tr>
+<tr>
+<td><code>docs/releases/site/latest.json</code> + public Pages</td>
+<td>The only source the app polls</td>
+<td>Every installed OhPie</td>
+</tr>
+</tbody></table></div>
+<p>Miss one and you get either &quot;released but invisible&quot; or &quot;update offered, download 404&quot;.</p>
+<h2 id="before-you-start"><a href="#before-you-start">Before you start</a></h2>
+<ol>
+<li>Working tree clean, <code>HEAD</code> equal to <code>origin/main</code>, containing only this release&#39;s changes.</li>
+<li>Package from a separate worktree — never from the checkout serving development.</li>
+<li>Every check below passes, and the target tag is still free.</li>
+<li>Write <code>docs/releases/vX.Y.Z.md</code> in the same shape as the previous release: main changes / runtime and compatibility / download and verification / upstream baseline.</li>
+</ol>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm ci
+node node_modules/typescript/bin/tsc --noEmit
+npm run lint
+npm test
+git ls-remote --tags origin vX.Y.Z     # must be empty
+</code></pre></figure>
+<h2 id="the-five-steps"><a href="#the-five-steps">The five steps</a></h2>
+<h3 id="1-set-the-version"><a href="#1-set-the-version">1. Set the version</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm version X.Y.Z --no-git-tag-version
+</code></pre></figure>
+<p>Neither step creates a Git tag. The tag belongs on the <strong>release commit that includes the notes</strong>, not before it.</p>
+<h3 id="2-commit-tag-push"><a href="#2-commit-tag-push">2. Commit, tag, push</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>git add package.json package-lock.json docs/releases/vX.Y.Z.md
+git commit -m &quot;release: vX.Y.Z ...&quot;
+git tag -a vX.Y.Z -m &quot;OhPie vX.Y.Z&quot;
+git push origin main vX.Y.Z
+</code></pre></figure>
+<p>Push the named tag. Do not use <code>git push --tags</code>: this checkout may also hold upstream tags.</p>
+<h3 id="3-build"><a href="#3-build">3. Build</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>npm run dist:win
+</code></pre></figure>
+<p>Output lands in <code>dist/</code>: <code>OhPie Setup X.Y.Z.exe</code>, the portable <code>win-unpacked/</code> folder, and <code>.blockmap</code>.</p>
+<p>After building, confirm two things: the installer name carries the right version, and <code>dist/win-unpacked/resources/app/package.json</code> reports the same version.</p>
+<h3 id="4-verify-and-upload"><a href="#4-verify-and-upload">4. Verify and upload</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>$exe = Get-Item &#39;dist/OhPie Setup X.Y.Z.exe&#39;
+&quot;$((Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower())  $($exe.Name)&quot; |
+  Out-File &quot;$($exe.FullName).sha256&quot; -Encoding ascii
+
+gh release create vX.Y.Z $exe.FullName &quot;$($exe.FullName).sha256&quot; &quot;$($exe.FullName).blockmap&quot; `
+  --title &quot;OhPie vX.Y.Z&quot; --generate-notes
+</code></pre></figure>
+<p><code>--generate-notes</code> produces a commit summary. It does not replace the human-written <code>docs/releases/vX.Y.Z.md</code>.</p>
+<h3 id="5-publish-the-public-manifest"><a href="#5-publish-the-public-manifest">5. Publish the public manifest</a></h3>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code># 1) edit docs/releases/site/latest.json:
+#    version / date / notes, and insert the same entry at the top of the releases array
+# 2) copy into the public repository and push
+Copy-Item docs/releases/site/latest.json D:\Coding\portos-wang.github.io\ohpie\latest.json
+</code></pre></figure>
+<p>Commit and push in <code>portos-wang.github.io</code>; Pages deploys automatically. The manifest lives at:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>https://softs.portos.wang/ohpie/latest.json
+</code></pre></figure>
+<p><code>index.html</code> (the release-notes page) only needs updating when its layout changes; its content is rendered from <code>latest.json</code>.</p>
+<h2 id="hard-requirements-for-the-build"><a href="#hard-requirements-for-the-build">Hard requirements for the build</a></h2>
+<ul>
+<li><strong>Never run <code>next build</code> while a dev server is running</strong>: both write <code>.next/</code> and corrupt each other.</li>
+<li>Use a separate worktree with a private build profile and a <strong>hard-linked</strong> dependency copy. Turbopack rejects a dependency junction that points outside the worktree.</li>
+<li>Run the smoke test against the artefact, not the source tree:</li>
+</ul>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>powershell</span></div><pre><code>node e2e/desktop-smoke.mjs --executable dist/win-unpacked/OhPie.exe --artifacts &lt;evidence-dir&gt;
+</code></pre></figure>
+<p>It checks startup, product identity, port collision, relocation and clean shutdown.</p>
+<h2 id="how-the-app-finds-the-update"><a href="#how-the-app-finds-the-update">How the app finds the update</a></h2>
+<ul>
+<li>An installed OhPie polls the manifest every 12 hours, with a 5-second timeout.</li>
+<li>When the manifest <code>version</code> is newer, the version line on the new-session page shows <code>→ vX.Y.Z ↗</code>, linking to the matching anchor on the release-notes page.</li>
+<li>A missing or unreachable manifest is skipped silently — no error dialog, and no stale notice.</li>
+</ul>
+<h2 id="when-things-go-wrong"><a href="#when-things-go-wrong">When things go wrong</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Build fails</td>
+<td>Confirm you are not in the dev checkout; confirm the dependency copy is a hard link, not a junction</td>
+</tr>
+<tr>
+<td>Wrong asset uploaded</td>
+<td>Delete that asset and upload again; do not recreate the tag</td>
+</tr>
+<tr>
+<td>Notes are wrong</td>
+<td>Fix <code>docs/releases/vX.Y.Z.md</code> and <code>latest.json</code>, commit again; leave the installer alone</td>
+</tr>
+<tr>
+<td>Shipped with a serious defect</td>
+<td>Release <code>X.Y.Z+1</code>; do not overwrite the installer or move the tag</td>
+</tr>
+<tr>
+<td>Manifest points at the wrong version</td>
+<td>Correct <code>latest.json</code> and push; the app recovers on its next poll</td>
+</tr>
+</tbody></table></div>
+<div class="note" data-label="NOTE"><p>Published tags and installers are immutable. Fix forward with a new version — otherwise checksums and the files users already hold stop matching.</p></div>
+<h2 id="release-checklist"><a href="#release-checklist">Release checklist</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> <code>package.json</code> and <code>package-lock.json</code> agree</li>
+<li><input disabled="" type="checkbox"> The tag sits on the commit that includes the notes</li>
+<li><input disabled="" type="checkbox"> Typecheck, lint and tests pass, with results recorded</li>
+<li><input disabled="" type="checkbox"> Build ran in a separate worktree</li>
+<li><input disabled="" type="checkbox"> Installer name and <code>resources/app/package.json</code> version agree</li>
+<li><input disabled="" type="checkbox"> <code>.sha256</code> and <code>.blockmap</code> uploaded alongside the installer</li>
+<li><input disabled="" type="checkbox"> <code>docs/releases/vX.Y.Z.md</code> committed</li>
+<li><input disabled="" type="checkbox"> <code>latest.json</code> has the new <code>version</code>, <code>date</code>, <code>notes</code>, with history preserved</li>
+<li><input disabled="" type="checkbox"> Public repository pushed; the manifest URL returns 200</li>
+<li><input disabled="" type="checkbox"> An older install sees the update notice and the link opens</li>
+</ul>
+<h2 id="do-not"><a href="#do-not">Do not</a></h2>
+<ul>
+<li><strong>Do not use <code>npm run release</code></strong> — that is the upstream npm publishing script, not OhPie&#39;s Windows entry point.</li>
+<li><strong>Do not <code>git push --tags</code></strong> — it drags upstream tags along.</li>
+<li><strong>Do not <code>npm run build</code> inside the development checkout.</strong></li>
+<li><strong>Do not put unredacted logs, absolute local paths or private service addresses into release notes.</strong></li>
+</ul>
+<p>Next: <a href="./troubleshooting.html">Troubleshooting</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./maintenance.html"><div class="dir">Previous</div><div class="t">Maintenance</div></a>
+        <a class="next" href="./troubleshooting.html"><div class="dir">Next</div><div class="t">Troubleshooting</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>
