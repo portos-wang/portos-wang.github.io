@@ -559,8 +559,6 @@ img { max-width: 100%; height: auto; display: block; }
 .footer-brand span { display: block; font-family: var(--deco); font-style: italic; font-weight: 400; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--clay); margin-top: 2px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .86rem; }
 .footer-links a { color: var(--ink-light); }
-.footer-note { width: 100%; font-size: .78rem; color: var(--ink-faint); line-height: 1.7; border-top: 1px solid var(--line); padding-top: 18px; }
-.footer-note a { color: var(--ink-faint); text-decoration: underline; }
 
 /* ---------- reveal ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }

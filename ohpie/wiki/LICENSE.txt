@@ -1,0 +1,61 @@
+OhPie Wiki — licensing and attribution
+========================================
+
+Copyright (c) 2026 OhPie
+
+
+1. Design attribution (required by the design system licence)
+-------------------------------------------------------------
+
+The layout grammar, component patterns and design methodology of this site are
+adapted from **esther-design-system** by ESTHER不二:
+
+    https://github.com/esthersjw/esther-design-system
+
+That work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International (CC BY-NC-SA 4.0):
+
+    https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Modifications made for this site: the colour tokens were replaced with the OhPie
+palette, the identity (name, mark, copy and product material) was replaced with
+OhPie's own, and the page structure was rebuilt for documentation rather than
+single-page landing content.
+
+
+2. Licence of this site
+------------------------
+
+The pages, stylesheet, scripts and generated HTML published under /ohpie/wiki/
+are licensed under CC BY-NC-SA 4.0 — the same terms as the design system they
+derive from. In short:
+
+    You may share and adapt this site for non-commercial purposes, provided you
+    give appropriate credit, indicate whether changes were made, and distribute
+    your contributions under the same licence.
+
+Full legal text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Because this licence forbids commercial use, the site design may not be used for
+a paid or commercially distributed product without replacing it.
+
+
+3. What this licence does not cover
+------------------------------------
+
+The **OhPie application** (everything outside /ohpie/wiki/) is licensed
+separately under the MIT License; see the repository's LICENSE file:
+
+    https://github.com/portos-wang/OhPie/blob/main/LICENSE
+
+Third-party components bundled with the application keep their own licences.
+Documents referenced by the wiki keep the licence stated in their own repository
+files.
+
+
+4. Names and identity
+----------------------
+
+"ESTHER不二", "Esther", "不二" and "esthersjw", together with any related name,
+avatar, logo or personal likeness, are not part of the CC BY-NC-SA grant and were
+not used here. OhPie's own name, mark and product identity remain OhPie's.
