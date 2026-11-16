@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html" aria-current="page"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html" aria-current="page"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">09 / 19</span>
+          <span class="label-caps">09 / 21</span>
           <h1>Analysis and artifacts</h1>
           <p>A persistent kernel, the notebook standard, publication figures and artifact registration.</p>
         </header>
@@ -64,6 +64,149 @@
 <li>Tables export as CSV or TSV.</li>
 <li>Figures export as PNG, PDF or SVG, depending on submission requirements.</li>
 </ul>
+<h2 id="environment-setup"><a href="#environment-setup">Environment setup</a></h2>
+<p>When a project needs its own environment, create it inside the project and point at it:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>bash</span></div><pre><code>python -m venv .venv
+.venv\Scripts\activate      # Windows
+pip install -r requirements.txt
+</code></pre></figure>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>r</span></div><pre><code>renv::init()      # first time
+renv::restore()   # reproduce
+</code></pre></figure>
+<p>Keep environments out of version control: add <code>.venv/</code> and <code>renv/library/</code> to <code>.gitignore</code> and commit <code>requirements.txt</code> / <code>renv.lock</code> instead.</p>
+<h2 id="three-ways-a-study-runs"><a href="#three-ways-a-study-runs">Three ways a study runs</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>How to ask</th>
+<th>Where it lands</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First look at a dataset</td>
+<td>“Profile structure, missingness and outliers; do not modify the data”</td>
+<td>A profiling note in <code>experiments/5_report/</code></td>
+</tr>
+<tr>
+<td>The real analysis</td>
+<td>“Run this plan; write outputs to <code>4_results/</code>”</td>
+<td>Notebook, figures, provenance</td>
+</tr>
+<tr>
+<td>A reviewer-requested addition</td>
+<td>“Add only this subgroup analysis; leave the primary analysis alone”</td>
+<td>A new numbered notebook, old files untouched</td>
+</tr>
+</tbody></table></div>
+<p>The third rule matters most: new analysis, new file. A reviewer wants to see what changed.</p>
+<h2 id="minimum-for-a-reported-statistic"><a href="#minimum-for-a-reported-statistic">Minimum for a reported statistic</a></h2>
+<p>Every number needs an effect size, an uncertainty interval, the sample size and the method. A p value alone will be sent back by most journals.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>How to report</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Effect size</td>
+<td>Mean difference / HR / OR / β, with units</td>
+</tr>
+<tr>
+<td>Uncertainty</td>
+<td>95% CI</td>
+</tr>
+<tr>
+<td>Sample size</td>
+<td>n per group, and missingness</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>Test name, and whether multiple comparisons were corrected</td>
+</tr>
+<tr>
+<td>Pre-registration</td>
+<td>State it if it exists; otherwise call the analysis exploratory</td>
+</tr>
+</tbody></table></div>
+<h2 id="common-errors"><a href="#common-errors">Common errors</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ModuleNotFoundError: No module named &#39;pandas&#39;</code></td>
+<td>Running on the system interpreter</td>
+<td>Point the kernel at <code>.venv</code>, or install there</td>
+</tr>
+<tr>
+<td><code>there is no package called &#39;DESeq2&#39;</code></td>
+<td>R package missing</td>
+<td><code>BiocManager::install(&quot;DESeq2&quot;)</code></td>
+</tr>
+<tr>
+<td>Variables gone after a restart</td>
+<td>The kernel process exited</td>
+<td>Variables are memory-only; re-run upstream cells</td>
+</tr>
+<tr>
+<td>Errors on a non-ASCII path</td>
+<td>Encoding</td>
+<td>Use an ASCII path, or set <code>encoding=&quot;utf-8&quot;</code></td>
+</tr>
+<tr>
+<td>Chinese labels render as boxes</td>
+<td>Missing font</td>
+<td>Use an installed CJK font, or English labels</td>
+</tr>
+</tbody></table></div>
+<h2 id="figure-settings-at-a-glance"><a href="#figure-settings-at-a-glance">Figure settings at a glance</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Single column</th>
+<th>Double column</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Width</td>
+<td>85 mm</td>
+<td>180 mm</td>
+<td>Journal layout</td>
+</tr>
+<tr>
+<td>Type size</td>
+<td>7–8 pt</td>
+<td>7–8 pt</td>
+<td>Legible after scaling</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>300 dpi</td>
+<td>300 dpi</td>
+<td>Minimum for bitmap submission</td>
+</tr>
+<tr>
+<td>Line weight</td>
+<td>0.5–0.75 pt</td>
+<td>0.5–0.75 pt</td>
+<td>Survives printing</td>
+</tr>
+<tr>
+<td>Palette</td>
+<td>Colour-blind safe, grey-distinguishable</td>
+<td>Same</td>
+<td>Print and accessibility</td>
+</tr>
+</tbody></table></div>
+<p>Export vector (PDF/SVG) first; supply 300 dpi+ PNG/TIFF only when the journal demands a bitmap.</p>
 <h2 id="minimum-for-reproducibility"><a href="#minimum-for-reproducibility">Minimum for reproducibility</a></h2>
 <p>Four things must exist at once: untouched raw data, cleaning code, analysis code, dependency versions. Lose any one and nobody — including you in six months — can reproduce the result, only redo it.</p>
 <div class="note" data-label="NOTE"><p>Running in the kernel is not the same as being correct. Execution, registration and validation are three different facts; see <a href="./provenance.html">provenance</a>.</p></div>

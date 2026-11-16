@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">目录</span>
-        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html" aria-current="page"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">14</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>构建与维护</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>常见问题</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html" aria-current="page"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>交接与共享</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">15</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>构建与维护</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>排错</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>常见问题</span></a></li></ol></div>
         <a class="back" href="./index.html">← 返回总览</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">03 / 19</span>
+          <span class="label-caps">03 / 21</span>
           <h1>对话与工具</h1>
           <p>一轮对话包含什么、工具权限怎么给、长对话怎么收。</p>
         </header>
@@ -84,6 +84,45 @@
 <td>需要检索与批量改动</td>
 </tr>
 </tbody></table></div>
+<h2 id="四种好用的请求写法"><a href="#四种好用的请求写法">四种好用的请求写法</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>怎么写</th>
+<th>为什么有效</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>指明产物位置</td>
+<td>&quot;把清洗结果写到 <code>experiments/2_cleaned_data/</code>&quot;</td>
+<td>避免文件落在奇怪的地方</td>
+</tr>
+<tr>
+<td>先要计划再执行</td>
+<td>&quot;先给我分析方案，等我确认后再跑&quot;</td>
+<td>把错误拦在花钱之前</td>
+</tr>
+<tr>
+<td>要求回指文件</td>
+<td>&quot;每个结论后面标出它出自哪份文件的哪一段&quot;</td>
+<td>可核对、可复制</td>
+</tr>
+<tr>
+<td>要求说明缺项</td>
+<td>&quot;缺什么就直说，不要补全&quot;</td>
+<td>比看起来完整更有用</td>
+</tr>
+</tbody></table></div>
+<p>反例：“帮我分析一下这个数据”——不指明变量、终点和输出位置，结果只能靠猜。</p>
+<h2 id="怎么读工具卡片"><a href="#怎么读工具卡片">怎么读工具卡片</a></h2>
+<p>工具卡片不是装饰，快速瞄三个地方就能判断这轮靠不靠谱：</p>
+<ul>
+<li><strong>路径</strong>：改动的是不是你期望的那个文件。</li>
+<li><strong>退出状态</strong>：命令失败时不要相信后面的结论。</li>
+<li><strong>截断标记</strong>：输出被截断时，后面的推断可能建立在半个结果上。</li>
+</ul>
+<p>发现不对，直接停下来纠正，比让它一路往下跑再收拾便宜。</p>
 <h2 id="模型与推理强度"><a href="#模型与推理强度">模型与推理强度</a></h2>
 <p>模型选择器同时决定两件事：用哪个模型，以及推理强度。可用档位由模型目录提供，切换模型会重置为它支持的默认档。同一段对话里换模型是允许的，但换过之后的行为差异要自己留意。</p>
 <h2 id="附件与图片"><a href="#附件与图片">附件与图片</a></h2>

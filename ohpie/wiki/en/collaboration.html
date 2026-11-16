@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handover and sharing · OhPie Wiki</title>
+<meta name="description" content="What to hand to a collaborator, what to archive, and what a reviewer actually needs.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/collaboration.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html" aria-current="page"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">12 / 21</span>
+          <h1>Handover and sharing</h1>
+          <p>What to hand to a collaborator, what to archive, and what a reviewer actually needs.</p>
+        </header>
+        <p>Every study eventually leaves your hands: a collaborator takes over, a supervisor checks it, a reviewer tries to reproduce it, or you reopen it six months later. Whether that works depends on one thing — can the other person redo the work from the workspace alone?</p>
+<h2 id="three-deliveries-three-scopes"><a href="#three-deliveries-three-scopes">Three deliveries, three scopes</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Include</th>
+<th>Leave out</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Same-group handover</td>
+<td>The whole workspace, including <code>.ohpie/agent/sessions/</code></td>
+<td>Nothing extra</td>
+</tr>
+<tr>
+<td>Cross-institution collaboration</td>
+<td>Workspace plus a handover note and a data inventory</td>
+<td>Credentials under <code>~/.ohpie/</code></td>
+</tr>
+<tr>
+<td>Submission supplements</td>
+<td><code>figures/</code> <code>tables/</code> <code>passport.yaml</code> and code</td>
+<td>Session records, private raw data</td>
+</tr>
+</tbody></table></div>
+<p>For cross-institution handover, clean <code>~/.ohpie/</code> and private session content out first. That is local configuration, not study material.</p>
+<h2 id="what-a-handover-note-contains"><a href="#what-a-handover-note-contains">What a handover note contains</a></h2>
+<p>A usable note is five paragraphs, under one page:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>1. One sentence on the study, plus where it stands and what is blocking
+2. Data: where raw data lives, how cleaned data is produced, what was done by hand
+3. Analysis: which notebook to start from, dependency versions, environment requirements
+4. Claims: which are verified, which are still hypotheses
+5. Open items: missing controls, citations still to find, likely reviewer objections
+</code></pre></figure>
+<p>Sections 2 and 5 are the ones people skip, and the ones that cost the next person the most.</p>
+<h2 id="exporting-a-session"><a href="#exporting-a-session">Exporting a session</a></h2>
+<p>A single session exports as static HTML with messages, tool calls and results. Use it to answer &quot;how did I arrive at this figure&quot; — not as a data delivery. It is a process record, not data.</p>
+<p>Export a session when the reasoning chain matters; hand over the workspace when the work has to run again.</p>
+<h2 id="a-reviewer-39-s-reproduction-pack"><a href="#a-reviewer-39-s-reproduction-pack">A reviewer&#39;s reproduction pack</a></h2>
+<p>A reviewer wants to know whether the figure can be rebuilt. The minimum set:</p>
+<ul>
+<li>Raw data, untouched</li>
+<li>Cleaning scripts and parameters</li>
+<li>Analysis scripts or notebooks</li>
+<li>Dependency manifests (<code>requirements.txt</code>, <code>renv.lock</code>, or equivalent)</li>
+<li><code>experiments/4_results/passport.yaml</code></li>
+</ul>
+<p>The passport is what turns &quot;this figure corresponds to which code&quot; into a file instead of an email thread.</p>
+<h2 id="what-belongs-in-version-control"><a href="#what-belongs-in-version-control">What belongs in version control</a></h2>
+<p>A workspace can live in Git, but not everything in it should:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Suggestion</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>literature/</code> <code>experiments/</code> <code>manuscript/</code> <code>notes/</code></td>
+<td>Commit</td>
+</tr>
+<tr>
+<td><code>experiments/1_original_data/</code></td>
+<td>Depends on the data agreement; large files go to external storage with recorded fingerprints</td>
+</tr>
+<tr>
+<td><code>.ohpie/agent/sessions/</code></td>
+<td>Depends on content: do not publish if it holds unpublished data or paths</td>
+</tr>
+<tr>
+<td><code>.ohpie/mcp.json</code></td>
+<td>May contain service addresses and variable names — review before committing</td>
+</tr>
+<tr>
+<td><code>~/.ohpie/</code></td>
+<td>Never in version control</td>
+</tr>
+</tbody></table></div>
+<div class="note" data-label="NOTE"><p>Read every file under <code>.ohpie/</code> before making a repository public. Local absolute paths, unpublished results and temporary keys all stay in the JSONL as written.</p></div>
+<p>Next: <a href="./skill-packs.html">Skill packs</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./writing.html"><div class="dir">Previous</div><div class="t">Writing</div></a>
+        <a class="next" href="./skill-packs.html"><div class="dir">Next</div><div class="t">Skill packs</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

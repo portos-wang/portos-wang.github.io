@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting · OhPie Wiki</title>
+<meta name="description" content="Locate the layer first — startup, models, MCP, kernel, canvas or packaging.">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">Start</a>
+      <a class="hide-sm" href="./faq.html">FAQ</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">EN</span><a href="../zh/troubleshooting.html" hreflang="zh">中文</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">Contents</span>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html" aria-current="page"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
+        <a class="back" href="./index.html">← Back to overview</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">20 / 21</span>
+          <h1>Troubleshooting</h1>
+          <p>Locate the layer first — startup, models, MCP, kernel, canvas or packaging.</p>
+        </header>
+        <p>When something breaks, find <strong>which layer</strong> is broken before reinstalling anything. The chain is: desktop / server → model → tools (MCP) → kernel → canvas → packaging. Each layer fails differently.</p>
+<h2 id="startup"><a href="#startup">Startup</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The address will not open</td>
+<td>Port taken, or startup failed</td>
+<td>Read the terminal; check the port in <code>.next/ohpie-server.json</code></td>
+</tr>
+<tr>
+<td>A second <code>npm run dev</code> hangs</td>
+<td>One dev server per checkout</td>
+<td>Reuse the running server, or stop it first</td>
+</tr>
+<tr>
+<td>Desktop window is blank</td>
+<td>Backend did not start</td>
+<td>Quit and relaunch, or run <code>npm run dev</code> first</td>
+</tr>
+<tr>
+<td><code>Module ... factory is not available</code></td>
+<td>Stale HMR graph in that tab</td>
+<td>Hard-reload the page before restarting the server</td>
+</tr>
+</tbody></table></div>
+<h2 id="models"><a href="#models">Models</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>401 / 403</td>
+<td>Expired token or wrong key</td>
+<td>Sign in again or re-enter the key, then test</td>
+</tr>
+<tr>
+<td>Spinner with no output</td>
+<td>Proxy blocking, unreachable host</td>
+<td>Check <code>HTTP_PROXY</code> / <code>NO_PROXY</code>, keep local addresses outside</td>
+</tr>
+<tr>
+<td>Model missing from the list</td>
+<td>Catalog not refreshed, or switch off</td>
+<td>Refresh the catalog; check the model switch</td>
+</tr>
+<tr>
+<td>Context fills up fast</td>
+<td>Small window or very long tool output</td>
+<td>Pick a larger-window model, or compact first</td>
+</tr>
+</tbody></table></div>
+<h2 id="mcp"><a href="#mcp">MCP</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Test times out</td>
+<td>Service not running or wrong address</td>
+<td>Run the service command manually outside the app</td>
+</tr>
+<tr>
+<td><code>command not found</code></td>
+<td>Desktop app inherited an old <code>PATH</code></td>
+<td>Use the absolute path, then test again</td>
+</tr>
+<tr>
+<td>Connected but no tools</td>
+<td>Service failed on startup or needs credentials</td>
+<td>Read the service log; add <code>env</code> to the connection</td>
+</tr>
+<tr>
+<td>Project scope ignored</td>
+<td>Workspace trust not granted</td>
+<td>Reopen the project and confirm the trust prompt</td>
+</tr>
+</tbody></table></div>
+<h2 id="kernel"><a href="#kernel">Kernel</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ModuleNotFoundError</code></td>
+<td>Package missing in that environment</td>
+<td>Install into the project environment, or switch interpreter</td>
+</tr>
+<tr>
+<td>Variables gone after a restart</td>
+<td>The kernel process exited</td>
+<td>Variables live only while it runs; re-run upstream cells</td>
+</tr>
+<tr>
+<td>Python / R not found</td>
+<td>Not installed, or not on <code>PATH</code></td>
+<td>Install it, or point to the interpreter in settings</td>
+</tr>
+<tr>
+<td>Errors on a non-ASCII path</td>
+<td>Encoding</td>
+<td>Use an ASCII path, or set the encoding explicitly</td>
+</tr>
+</tbody></table></div>
+<h2 id="canvas"><a href="#canvas">Canvas</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A large CSV opens slowly</td>
+<td>Row count beyond the comfortable range</td>
+<td>Filter or aggregate first, then view</td>
+</tr>
+<tr>
+<td>Notebook output is empty</td>
+<td>Cells were never executed</td>
+<td>Run them in the analysis studio</td>
+</tr>
+<tr>
+<td>XLSX shows only sheet names</td>
+<td>That is by design</td>
+<td>The sheet list is read-only; export CSV for data</td>
+</tr>
+</tbody></table></div>
+<h2 id="packaging"><a href="#packaging">Packaging</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dist:win</code> fails</td>
+<td>A dev server is writing to <code>.next/</code></td>
+<td>Package from a separate worktree</td>
+</tr>
+<tr>
+<td>Installer stalls preparing MCP</td>
+<td>Network or download failure</td>
+<td>Retry in the installer; log at <code>~/.ohpie/mcp/install.log</code></td>
+</tr>
+<tr>
+<td>Packaged app starts blank</td>
+<td>Missing packaged resource</td>
+<td>Run <code>npm run test:desktop</code> as a smoke test</td>
+</tr>
+</tbody></table></div>
+<h2 id="what-to-include-in-a-report"><a href="#what-to-include-in-a-report">What to include in a report</a></h2>
+<p>Collect these before asking, and you skip half the round trips:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>1. Version (the version line in Settings)
+2. OS and architecture
+3. Which layer from the tables above
+4. Exact steps, plus the full error text
+5. Logs: terminal output / install.log / MCP test result
+</code></pre></figure>
+<div class="note" data-label="NOTE"><p>Be conservative with cache clearing. Deleting <code>.next/</code> fixes a corrupted build but forces a dev-server rebuild; do not make &quot;reinstall / clear everything&quot; the first step — locate the layer first.</p></div>
+<p>Next: <a href="./faq.html">FAQ</a>.</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./maintenance.html"><div class="dir">Previous</div><div class="t">Maintenance</div></a>
+        <a class="next" href="./faq.html"><div class="dir">Next</div><div class="t">FAQ</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">Home</a>
+      <a href="./quick-start.html">Quick start</a>
+      <a href="https://github.com/portos-wang/OhPie">Source</a>
+      <a href="https://softs.portos.wang/ohpie/">Releases</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

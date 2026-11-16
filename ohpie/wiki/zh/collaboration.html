@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交接与共享 · OhPie Wiki</title>
+<meta name="description" content="把课题交给合作者、存档、或让审稿人能复现，各自该带什么、不该带什么。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/collaboration.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./collaboration.html" aria-current="page"><span class="num">12</span><span>交接与共享</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">15</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>构建与维护</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>排错</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">12 / 21</span>
+          <h1>交接与共享</h1>
+          <p>把课题交给合作者、存档、或让审稿人能复现，各自该带什么、不该带什么。</p>
+        </header>
+        <p>一个人做的课题，迟早要交给别人：合作者接手、导师检查、审稿人复现、或者半年后的你自己重新打开。交接做得好不好，取决于<strong>对方能不能只靠工作区把事情重做一遍</strong>。</p>
+<h2 id="三种交付-三种范围"><a href="#三种交付-三种范围">三种交付，三种范围</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>交付场景</th>
+<th>带什么</th>
+<th>不带什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同组合作者接手</td>
+<td>整个工作区（含 <code>.ohpie/agent/sessions/</code>）</td>
+<td>不需要额外的东西</td>
+</tr>
+<tr>
+<td>跨机构合作</td>
+<td>工作区 + 一份交接说明 + 数据清单</td>
+<td><code>~/.ohpie/</code> 里的凭据</td>
+</tr>
+<tr>
+<td>投稿补充材料</td>
+<td><code>figures/</code> <code>tables/</code> <code>passport.yaml</code> + 代码</td>
+<td>会话记录、原始私有数据</td>
+</tr>
+</tbody></table></div>
+<p>跨机构合作时，先把 <code>~/.ohpie/</code> 和会话里的私密内容清掉——那是本机配置，不是课题材料。</p>
+<h2 id="交接说明写什么"><a href="#交接说明写什么">交接说明写什么</a></h2>
+<p>一份能用的交接说明只有五段，长度不超过一页：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>1. 课题一句话与当前状态（到哪一步、卡在哪）
+2. 数据：原始数据在哪、清洗产物怎么生成、有哪些未记录的手工操作
+3. 分析：从哪份 notebook 开始重跑、依赖版本、环境要求
+4. 结论：哪些已经核实，哪些还是假设
+5. 未解决：缺的对照组、待补的文献、审稿人可能问的问题
+</code></pre></figure>
+<p>第 2 段和第 5 段最容易被省略，也最容易让接手的人踩坑。</p>
+<h2 id="会话导出"><a href="#会话导出">会话导出</a></h2>
+<p>单条会话可以导出为静态 HTML：消息、工具调用、结果都在里面。适合&quot;我是怎么得出这个图&quot;的说明，不适合当作数据交付——它不是数据，是过程记录。</p>
+<p>需要对方看到完整推理链时导出会话；需要对方重跑时给工作区。</p>
+<h2 id="审稿人复现包"><a href="#审稿人复现包">审稿人复现包</a></h2>
+<p>审稿人要的是&quot;能不能重做出这张图&quot;，最小集合是：</p>
+<ul>
+<li>原始数据（未清洗）</li>
+<li>清洗脚本与参数</li>
+<li>分析脚本 / notebook</li>
+<li>依赖清单（<code>requirements.txt</code>、<code>renv.lock</code> 或等价物）</li>
+<li><code>experiments/4_results/passport.yaml</code></li>
+</ul>
+<p><code>passport.yaml</code> 在这里的价值是把&quot;这张图对应哪段代码&quot;直接写死，省掉一轮邮件往返。</p>
+<h2 id="版本库边界"><a href="#版本库边界">版本库边界</a></h2>
+<p>工作区可以进 Git，但不是所有内容都适合进：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>literature/</code> <code>experiments/</code> <code>manuscript/</code> <code>notes/</code></td>
+<td>进版本库</td>
+</tr>
+<tr>
+<td><code>experiments/1_original_data/</code></td>
+<td>视数据协议而定，大文件用外部存储并记录指纹</td>
+</tr>
+<tr>
+<td><code>.ohpie/agent/sessions/</code></td>
+<td>看内容：含未公开数据或路径时不要公开</td>
+</tr>
+<tr>
+<td><code>.ohpie/mcp.json</code></td>
+<td>可能含服务地址与变量名，检查后再提交</td>
+</tr>
+<tr>
+<td><code>~/.ohpie/</code></td>
+<td>永远不进版本库</td>
+</tr>
+</tbody></table></div>
+<div class="note" data-label="注意"><p>公开仓库前把 <code>.ohpie/</code> 逐个文件读一遍。会话里出现过的本地绝对路径、未发表的结果、临时密钥，都会原样留在 JSONL 里。</p></div>
+<p>下一步：<a href="./skill-packs.html">技能包</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./writing.html"><div class="dir">上一页</div><div class="t">写作与投稿</div></a>
+        <a class="next" href="./skill-packs.html"><div class="dir">下一页</div><div class="t">技能包</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

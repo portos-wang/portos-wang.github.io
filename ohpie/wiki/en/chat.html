@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html" aria-current="page"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html" aria-current="page"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">03 / 19</span>
+          <span class="label-caps">03 / 21</span>
           <h1>Conversation and tools</h1>
           <p>What one turn contains, how much tool permission to grant, and how long threads are compacted.</p>
         </header>
@@ -84,6 +84,45 @@
 <td>Search and bulk edits</td>
 </tr>
 </tbody></table></div>
+<h2 id="four-request-patterns-that-work"><a href="#four-request-patterns-that-work">Four request patterns that work</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>How to phrase it</th>
+<th>Why it helps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name the destination</td>
+<td>“Write the cleaned data to <code>experiments/2_cleaned_data/</code>”</td>
+<td>Stops files landing somewhere odd</td>
+</tr>
+<tr>
+<td>Plan before execution</td>
+<td>“Give me the analysis plan first, run it after I confirm”</td>
+<td>Catches mistakes before they cost tokens</td>
+</tr>
+<tr>
+<td>Demand traceability</td>
+<td>“After each conclusion, name the file and section it came from”</td>
+<td>Checkable and copyable</td>
+</tr>
+<tr>
+<td>Ask for gaps</td>
+<td>“If something is missing, say so — do not fill it in”</td>
+<td>More useful than apparent completeness</td>
+</tr>
+</tbody></table></div>
+<p>The anti-pattern is “analyse this data for me”: no variable, no endpoint, no output location, so the result can only be a guess.</p>
+<h2 id="reading-tool-cards"><a href="#reading-tool-cards">Reading tool cards</a></h2>
+<p>Tool cards are not decoration. Three things tell you whether the turn is trustworthy:</p>
+<ul>
+<li><strong>Path</strong> — is it the file you expected?</li>
+<li><strong>Exit status</strong> — a failed command invalidates whatever follows it.</li>
+<li><strong>Truncation</strong> — if output was cut, the next inference may rest on half a result.</li>
+</ul>
+<p>When something looks wrong, stop and correct it; that is cheaper than cleaning up after a chain of wrong steps.</p>
 <h2 id="models-and-reasoning"><a href="#models-and-reasoning">Models and reasoning</a></h2>
 <p>The model picker sets two things at once: which model, and how hard it thinks. Available reasoning levels come from the model catalog, and switching models resets to that model&#39;s default level. You can switch mid-conversation — just remember the behaviour changes with it.</p>
 <h2 id="attachments"><a href="#attachments">Attachments</a></h2>

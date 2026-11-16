@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html" aria-current="page"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html" aria-current="page"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">14 / 19</span>
+          <span class="label-caps">15 / 21</span>
           <h1>Models and providers</h1>
           <p>Sign in or paste a key, choose which models show up, set the default and the reasoning level.</p>
         </header>
@@ -74,6 +74,34 @@
 <p>Available reasoning levels come from the model catalog and differ per model. Switching models resets to that model&#39;s supported default.</p>
 <h2 id="refreshing-the-catalog"><a href="#refreshing-the-catalog">Refreshing the catalog</a></h2>
 <p>Providers add and retire models regularly. Refreshing re-fetches the list and keeps your existing switches; newly discovered models start disabled.</p>
+<h2 id="the-shape-of-models-json"><a href="#the-shape-of-models-json">The shape of models.json</a></h2>
+<p>Custom providers can also be written by hand. An excerpt of the real schema:</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>json</span></div><pre><code>{
+  &quot;providers&quot;: {
+    &quot;my-gateway&quot;: {
+      &quot;name&quot;: &quot;My Gateway&quot;,
+      &quot;baseUrl&quot;: &quot;https://llm.example.com&quot;,
+      &quot;api&quot;: &quot;anthropic-messages&quot;,
+      &quot;apiKey&quot;: &quot;sk-…&quot;,
+      &quot;models&quot;: [
+        {
+          &quot;id&quot;: &quot;my-model-1&quot;,
+          &quot;name&quot;: &quot;My Model 1&quot;,
+          &quot;reasoning&quot;: true,
+          &quot;input&quot;: [&quot;text&quot;, &quot;image&quot;],
+          &quot;contextWindow&quot;: 200000,
+          &quot;maxTokens&quot;: 64000,
+          &quot;cost&quot;: { &quot;input&quot;: 2, &quot;output&quot;: 10 }
+        }
+      ]
+    }
+  },
+  &quot;defaultModel&quot;: { &quot;provider&quot;: &quot;my-gateway&quot;, &quot;modelId&quot;: &quot;my-model-1&quot; },
+  &quot;defaultThinkingLevel&quot;: &quot;medium&quot;
+}
+</code></pre></figure>
+<p>Fields worth getting right: <code>api</code> selects the request format (<code>anthropic-messages</code> is not the OpenAI-compatible shape), <code>contextWindow</code> and <code>maxTokens</code> decide when compaction starts, and a model without <code>image</code> in <code>input</code> cannot receive images.</p>
+<p>Reasoning has two layers: <code>thinkingLevels</code> declares which levels a model accepts, and <code>thinkingLevelMaps</code> maps the interface level onto the provider&#39;s real value (<code>null</code> means unsupported). A wrong map produces &quot;I picked high but nothing changed&quot;.</p>
 <h2 id="credentials"><a href="#credentials">Credentials</a></h2>
 <p>Model keys and research database keys are managed separately: models under <strong>Settings → Models</strong>, research APIs under <strong>Settings → Credentials</strong>. The latter is picked up automatically by ToolUniverse, BioMCP and <code>w77-nfsc-pipeline</code>.</p>
 <h2 id="proxy"><a href="#proxy">Proxy</a></h2>

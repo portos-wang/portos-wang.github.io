@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html" aria-current="page"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html" aria-current="page"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">01 / 19</span>
+          <span class="label-caps">01 / 21</span>
           <h1>Quick start</h1>
           <p>Install from source or the Windows package, configure a model, and open your first workspace.</p>
         </header>
@@ -108,6 +108,66 @@ npm run dev
 <li><strong>Ask for something real.</strong> Type a request or pick a Quick Action, then open the generated document, notebook, diagram or figure in the canvas beside the conversation.</li>
 </ol>
 <div class="note" data-label="NOTE"><p>The interface is available in English, Simplified Chinese and Traditional Chinese. Changing the language does not change where files are stored or which model is selected.</p></div>
+<h2 id="verify-the-install"><a href="#verify-the-install">Verify the install</a></h2>
+<p>Four checks catch almost every &quot;installed but unusable&quot; case:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>node -v</code></td>
+<td><code>v22.19.0</code> or newer</td>
+</tr>
+<tr>
+<td>The dev server output</td>
+<td>A URL, and no errors</td>
+</tr>
+<tr>
+<td><code>.next/ohpie-server.json</code></td>
+<td>Exists, and its port matches the terminal</td>
+</tr>
+<tr>
+<td>Ask the conversation &quot;hello&quot;</td>
+<td>A reply, and no 401</td>
+</tr>
+</tbody></table></div>
+<p>For the desktop build, add one more: after quitting from the tray, no <code>OhPie.exe</code> should remain in the task manager.</p>
+<h2 id="upgrading"><a href="#upgrading">Upgrading</a></h2>
+<p>From source: <code>git pull</code> → <code>npm ci</code> → restart the dev server. Versions follow <code>package-lock.json</code>; do not <code>npm update</code> by hand.</p>
+<p>Desktop: quit the app before installing a newer build. The installer preserves <code>~/.ohpie/</code>, so model configuration, credentials and global skills survive. Workspaces are untouched.</p>
+<h2 id="common-install-failures"><a href="#common-install-failures">Common install failures</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm ci</code> fails in postinstall</td>
+<td>Native build tooling missing</td>
+<td>Install the toolchain named in the error, or use the packaged build</td>
+</tr>
+<tr>
+<td>Port already in use</td>
+<td>A previous process did not exit</td>
+<td>Stop it, or pick another port with <code>OHPIE_PORT</code></td>
+</tr>
+<tr>
+<td>Browser opens a blank page</td>
+<td>First compile still running</td>
+<td>Wait for the compile, then refresh</td>
+</tr>
+<tr>
+<td>Installer reports a network failure</td>
+<td>MCP service download failed</td>
+<td>Retry in the installer; log at <code>~/.ohpie/mcp/install.log</code></td>
+</tr>
+</tbody></table></div>
 <h2 id="where-to-go-next"><a href="#where-to-go-next">Where to go next</a></h2>
 <ul>
 <li><a href="./workspace.html">The workspace</a> explains every folder and both configuration scopes.</li>

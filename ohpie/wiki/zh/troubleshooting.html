@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>排错手册 · OhPie Wiki</title>
+<meta name="description" content="按层定位：启动、模型、MCP、内核、画布、打包，各自的症状与处理。">
+<!-- Page design adapted from esther-design-system (CC BY-NC-SA 4.0) by ESTHER不二; rebuilt with the OhPie palette. -->
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html">OhPie<em>Wiki</em></a>
+    <nav>
+      <a class="hide-sm" href="./quick-start.html">开始</a>
+      <a class="hide-sm" href="./faq.html">常见问题</a>
+      <a href="https://github.com/portos-wang/OhPie" target="_blank" rel="noopener">GitHub</a>
+      <span class="lang-switch"><span class="on">中文</span><a href="../en/troubleshooting.html" hreflang="en">EN</a></span>
+    </nav>
+  </div>
+</header>
+<div class="container"><div class="shell">
+      <aside class="sidenav">
+        <span class="label-caps">目录</span>
+        <div class="nav-group"><span class="label-caps">开始</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>快速开始</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>界面导览</span></a></li></ol></div><div class="nav-group"><span class="label-caps">日常使用</span><ol><li><a href="./chat.html"><span class="num">03</span><span>对话与工具</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>会话管理</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>画布与文件</span></a></li></ol></div><div class="nav-group"><span class="label-caps">科研</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>研究工作区</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>科研流程</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>文献与证据</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>数据分析</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>实验凭证</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>写作与投稿</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>交接与共享</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>技能包</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>生物信息 MCP</span></a></li></ol></div><div class="nav-group"><span class="label-caps">配置</span><ol><li><a href="./models.html"><span class="num">15</span><span>模型与供应商</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP 服务</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>扩展与子代理</span></a></li></ol></div><div class="nav-group"><span class="label-caps">桌面与运维</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>桌面与更新</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>构建与维护</span></a></li><li><a href="./troubleshooting.html" aria-current="page"><span class="num">20</span><span>排错</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>常见问题</span></a></li></ol></div>
+        <a class="back" href="./index.html">← 返回总览</a>
+      </aside>
+      <article class="article">
+        <header class="article-head">
+          <span class="label-caps">20 / 21</span>
+          <h1>排错手册</h1>
+          <p>按层定位：启动、模型、MCP、内核、画布、打包，各自的症状与处理。</p>
+        </header>
+        <p>出问题时先确定<strong>哪一层断了</strong>，比反复重装有效。OhPie 的链路是：桌面/服务 → 模型 → 工具（MCP）→ 内核 → 画布 → 打包。每一层的症状不一样。</p>
+<h2 id="启动层"><a href="#启动层">启动层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>浏览器打不开地址</td>
+<td>端口被占用、启动失败</td>
+<td>看终端输出；确认 <code>.next/ohpie-server.json</code> 里的端口</td>
+</tr>
+<tr>
+<td>第二次 <code>npm run dev</code> 卡住</td>
+<td>同一检出目录只允许一个开发服务</td>
+<td>复用已运行的服务，或先停掉再启动</td>
+</tr>
+<tr>
+<td>桌面窗口空白</td>
+<td>后端服务没起来</td>
+<td>关掉窗口重新启动，或先手动跑 <code>npm run dev</code></td>
+</tr>
+<tr>
+<td><code>Module ... factory is not available</code></td>
+<td>浏览器里的旧 HMR 图</td>
+<td>硬刷新页面，不要急着重启服务</td>
+</tr>
+</tbody></table></div>
+<h2 id="模型层"><a href="#模型层">模型层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>401 / 403</td>
+<td>令牌过期或密钥错误</td>
+<td>重新登录或重填 Key，再点测试</td>
+</tr>
+<tr>
+<td>一直转圈无输出</td>
+<td>代理拦截、网络不可达</td>
+<td>检查 <code>HTTP_PROXY</code> / <code>NO_PROXY</code>，本地地址要排除</td>
+</tr>
+<tr>
+<td>模型不在列表里</td>
+<td>供应商目录没刷新或模型被关掉</td>
+<td>刷新目录；检查模型开关</td>
+</tr>
+<tr>
+<td>上下文很快耗尽</td>
+<td>模型窗口小或工具结果太长</td>
+<td>换更大窗口的模型，或先压缩</td>
+</tr>
+</tbody></table></div>
+<h2 id="mcp-层"><a href="#mcp-层">MCP 层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Test 超时</td>
+<td>服务没启动或地址不对</td>
+<td>先在应用外手动跑一次服务命令</td>
+</tr>
+<tr>
+<td><code>command not found</code></td>
+<td>桌面应用没继承新 <code>PATH</code></td>
+<td>填绝对路径，重新 Test</td>
+</tr>
+<tr>
+<td>连上了但没工具</td>
+<td>服务启动失败或需要凭据</td>
+<td>看服务自身日志；补连接 <code>env</code></td>
+</tr>
+<tr>
+<td>项目作用域不生效</td>
+<td>未通过工作区信任</td>
+<td>重新打开项目，确认信任提示</td>
+</tr>
+</tbody></table></div>
+<h2 id="内核层"><a href="#内核层">内核层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ModuleNotFoundError</code></td>
+<td>该环境没装包</td>
+<td>在项目环境里装，或切换解释器</td>
+</tr>
+<tr>
+<td>内核重启后变量丢失</td>
+<td>进程退出了</td>
+<td>变量只在运行期保留，重跑上游单元</td>
+</tr>
+<tr>
+<td>找不到 Python / R</td>
+<td>未安装或不在 <code>PATH</code></td>
+<td>安装解释器，或在设置里指定路径</td>
+</tr>
+<tr>
+<td>中文路径报错</td>
+<td>编码问题</td>
+<td>路径改用 ASCII，或显式设置编码</td>
+</tr>
+</tbody></table></div>
+<h2 id="画布层"><a href="#画布层">画布层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大 CSV 打开很慢</td>
+<td>行数超出舒适范围</td>
+<td>用分页/抽样，或先聚合再查看</td>
+</tr>
+<tr>
+<td>笔记本输出空白</td>
+<td>未执行的单元</td>
+<td>在分析工作室里执行一次</td>
+</tr>
+<tr>
+<td>XLSX 只有表名</td>
+<td>这是设计如此</td>
+<td>工作表清单只读，数据请导出 CSV</td>
+</tr>
+</tbody></table></div>
+<h2 id="打包层"><a href="#打包层">打包层</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>多半原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dist:win</code> 失败</td>
+<td>开发服务正在写 <code>.next/</code></td>
+<td>在独立 worktree 里打包</td>
+</tr>
+<tr>
+<td>安装器卡在 MCP 准备</td>
+<td>网络不通或下载失败</td>
+<td>安装器可重试，日志在 <code>~/.ohpie/mcp/install.log</code></td>
+</tr>
+<tr>
+<td>打包后启动白屏</td>
+<td>打包资源缺失</td>
+<td>用 <code>npm run test:desktop</code> 做冒烟测试</td>
+</tr>
+</tbody></table></div>
+<h2 id="该提供什么信息"><a href="#该提供什么信息">该提供什么信息</a></h2>
+<p>报问题前先收齐这几样，能省掉一半往返：</p>
+<figure class="win"><div class="win-bar"><i></i><i></i><i></i><span>text</span></div><pre><code>1. 版本（设置里的版本行）
+2. 操作系统与架构
+3. 出问题的层（上面哪张表）
+4. 具体操作步骤与完整报错
+5. 相关日志：终端输出 / install.log / MCP Test 结果
+</code></pre></figure>
+<div class="note" data-label="注意"><p>清缓存要克制。删 <code>.next/</code> 能解决&quot;构建产物坏了&quot;，但也会让开发服务重建；不要把&quot;重装/清空&quot;当第一步，先定位是哪一层。</p></div>
+<p>下一步：<a href="./faq.html">常见问题</a>。</p>
+
+        <nav class="pagenav">
+        <a class="prev" href="./maintenance.html"><div class="dir">上一页</div><div class="t">构建与维护</div></a>
+        <a class="next" href="./faq.html"><div class="dir">下一页</div><div class="t">常见问题</div></a>
+      </nav>
+      </article>
+    </div></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">OhPie<span>AI Research Workbench</span></div>
+    <div class="footer-links">
+      <a href="./index.html">首页</a>
+      <a href="./quick-start.html">快速开始</a>
+      <a href="https://github.com/portos-wang/OhPie">源码</a>
+      <a href="https://softs.portos.wang/ohpie/">发行说明</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/wiki.js" defer></script>
+</body>
+</html>

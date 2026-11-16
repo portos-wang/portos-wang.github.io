@@ -141,10 +141,11 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.45;
 }
 .sidenav a .num {
-  font-family: var(--deco);
-  font-style: italic;
-  font-size: .82rem;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .02em;
   color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
 }
 .sidenav a:hover { background: var(--cream-dark); color: var(--ink); text-decoration: none; }
 .sidenav a[aria-current="page"] { background: var(--paper); border: 1px solid var(--line); color: var(--ink); font-weight: 700; }

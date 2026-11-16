@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html" aria-current="page"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html" aria-current="page"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">05 / 19</span>
+          <span class="label-caps">05 / 21</span>
           <h1>Canvas and files</h1>
           <p>Which formats the right panel opens, and which of them refresh on disk changes.</p>
         </header>
@@ -99,6 +99,75 @@
 <p><code>.ipynb</code> opens cell by cell — Markdown, code and output (text, table, image) fold separately. In the analysis studio you can keep executing cells, with variables persisting in the kernel.</p>
 <h2 id="terminal"><a href="#terminal">Terminal</a></h2>
 <p>A terminal tab starts in the workspace directory, so <code>git status</code>, file inspection and scripts work immediately. Its environment is isolated from the app&#39;s own command environment: host secrets are not passed through.</p>
+<h2 id="what-opens-from-where"><a href="#what-opens-from-where">What opens from where</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Starting point</th>
+<th>Opens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>File tree</td>
+<td>Any previewable file, in a tab</td>
+</tr>
+<tr>
+<td>A path in the conversation</td>
+<td>The same file, positioned in the canvas</td>
+</tr>
+<tr>
+<td>An <code>@</code> reference</td>
+<td>The file in context; click to open its tab</td>
+</tr>
+<tr>
+<td>Artifacts panel</td>
+<td>Registered figures, tables, reports</td>
+</tr>
+<tr>
+<td>Analysis studio</td>
+<td><code>.ipynb</code> / <code>.qmd</code> and their outputs</td>
+</tr>
+<tr>
+<td>Subagent card</td>
+<td>That subagent&#39;s full transcript</td>
+</tr>
+</tbody></table></div>
+<h2 id="editing-versus-read-only"><a href="#editing-versus-read-only">Editing versus read-only</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Canvas</th>
+<th>Tools in the conversation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read a file</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit text</td>
+<td>Read-only by default</td>
+<td>Yes (<code>edit</code> / <code>write</code>)</td>
+</tr>
+<tr>
+<td>Save a Draw.io diagram</td>
+<td>Yes</td>
+<td>Not recommended</td>
+</tr>
+<tr>
+<td>Execute code</td>
+<td>In the analysis studio</td>
+<td>Through the kernel tool</td>
+</tr>
+<tr>
+<td>Delete a file</td>
+<td>No</td>
+<td>Yes, with tool permission</td>
+</tr>
+</tbody></table></div>
+<p>The design intent: the canvas is where you look, edits go through the conversation. That way every write stays in the session record and can be traced later.</p>
 <h2 id="artifacts-panel"><a href="#artifacts-panel">Artifacts panel</a></h2>
 <p>The artifacts panel collects figures, tables and reports from <code>experiments/4_results/</code> in one place, grouped by type. It is an index, not a new copy — the files stay in their directories.</p>
 <div class="note" data-label="NOTE"><p>The canvas does not tidy files for you. Where an artefact lands depends on what the request (or the skill pack) says — see <a href="./workspace.html">the workspace</a>.</p></div>

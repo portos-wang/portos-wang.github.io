@@ -27,12 +27,12 @@
 <div class="container"><div class="shell">
       <aside class="sidenav">
         <span class="label-caps">Contents</span>
-        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html" aria-current="page"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./skill-packs.html"><span class="num">12</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">13</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">14</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">15</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">16</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">17</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">18</span><span>Maintenance</span></a></li><li><a href="./faq.html"><span class="num">19</span><span>FAQ</span></a></li></ol></div>
+        <div class="nav-group"><span class="label-caps">Start</span><ol><li><a href="./quick-start.html"><span class="num">01</span><span>Quick start</span></a></li><li><a href="./interface.html"><span class="num">02</span><span>Interface</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Daily use</span><ol><li><a href="./chat.html"><span class="num">03</span><span>Conversation</span></a></li><li><a href="./sessions.html"><span class="num">04</span><span>Sessions</span></a></li><li><a href="./canvas.html"><span class="num">05</span><span>Canvas</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Research</span><ol><li><a href="./workspace.html" aria-current="page"><span class="num">06</span><span>Workspace</span></a></li><li><a href="./workflow.html"><span class="num">07</span><span>Workflow</span></a></li><li><a href="./literature.html"><span class="num">08</span><span>Literature</span></a></li><li><a href="./analysis.html"><span class="num">09</span><span>Analysis</span></a></li><li><a href="./provenance.html"><span class="num">10</span><span>Provenance</span></a></li><li><a href="./writing.html"><span class="num">11</span><span>Writing</span></a></li><li><a href="./collaboration.html"><span class="num">12</span><span>Handover</span></a></li><li><a href="./skill-packs.html"><span class="num">13</span><span>Skill packs</span></a></li><li><a href="./bioinformatics.html"><span class="num">14</span><span>Bioinformatics</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Configuration</span><ol><li><a href="./models.html"><span class="num">15</span><span>Models</span></a></li><li><a href="./mcp.html"><span class="num">16</span><span>MCP</span></a></li><li><a href="./extensions.html"><span class="num">17</span><span>Extensions</span></a></li></ol></div><div class="nav-group"><span class="label-caps">Desktop & operations</span><ol><li><a href="./desktop.html"><span class="num">18</span><span>Desktop</span></a></li><li><a href="./maintenance.html"><span class="num">19</span><span>Maintenance</span></a></li><li><a href="./troubleshooting.html"><span class="num">20</span><span>Troubleshooting</span></a></li><li><a href="./faq.html"><span class="num">21</span><span>FAQ</span></a></li></ol></div>
         <a class="back" href="./index.html">← Back to overview</a>
       </aside>
       <article class="article">
         <header class="article-head">
-          <span class="label-caps">06 / 19</span>
+          <span class="label-caps">06 / 21</span>
           <h1>The workspace</h1>
           <p>Ordinary folders hold the research; one hidden folder holds the agent's state.</p>
         </header>
@@ -112,6 +112,65 @@
 <td>Per-paper working notes.</td>
 </tr>
 </tbody></table></div>
+<h2 id="naming-conventions"><a href="#naming-conventions">Naming conventions</a></h2>
+<p>The folders are fixed; names are not. These habits keep a workspace readable six months later:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Pattern</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Paper PDF</td>
+<td>date-author-journal</td>
+<td><code>2026-03-Chen-Nature.pdf</code></td>
+</tr>
+<tr>
+<td>Reading note</td>
+<td>date-author-topic</td>
+<td><code>2026-03-Chen-methylome.md</code></td>
+</tr>
+<tr>
+<td>Cleaning code</td>
+<td>number-action</td>
+<td><code>01_data_cleaning.ipynb</code></td>
+</tr>
+<tr>
+<td>Analysis code</td>
+<td>number-question</td>
+<td><code>02_deseq2_tumor_vs_normal.ipynb</code></td>
+</tr>
+<tr>
+<td>Figure</td>
+<td>figN-content</td>
+<td><code>fig2_volcano_all_genes.png</code></td>
+</tr>
+<tr>
+<td>Table</td>
+<td>sN-content</td>
+<td><code>tableS1_sample_metadata.csv</code></td>
+</tr>
+</tbody></table></div>
+<p>Avoid <code>final</code>, <code>v2</code>, <code>new</code>: versions belong in Git, not in file names.</p>
+<h2 id="converting-an-existing-project"><a href="#converting-an-existing-project">Converting an existing project</a></h2>
+<p>If the study already exists as loose files, move it in this order:</p>
+<ol>
+<li>Create the skeleton (a new workspace generates it).</li>
+<li>Copy raw data into <code>1_original_data/</code> unchanged; it is read-only from then on.</li>
+<li>Cleaning scripts to <code>3_analysis/</code>, cleaned output to <code>2_cleaned_data/</code>.</li>
+<li>Figures, tables and reports into <code>4_results/</code>.</li>
+<li>Manuscripts, proposals and review material into <code>manuscript/</code>.</li>
+<li>Search records scattered across desktops and email into <code>literature/reviews/</code>.</li>
+</ol>
+<p>Commit after each step so the migration itself is traceable.</p>
+<h2 id="what-does-not-belong-inside"><a href="#what-does-not-belong-inside">What does not belong inside</a></h2>
+<ul>
+<li>Multi-hundred-megabyte sequencing files: external storage, with the path and fingerprint recorded in <code>notes/</code>.</li>
+<li>Keys and tokens: <code>~/.ohpie/</code> or environment variables, never a notebook.</li>
+<li>Unpublished referee material: fine inside the workspace, not in a public repository.</li>
+</ul>
 <h2 id="two-configuration-scopes"><a href="#two-configuration-scopes">Two configuration scopes</a></h2>
 <div class="table-wrap"><table>
 <thead>
