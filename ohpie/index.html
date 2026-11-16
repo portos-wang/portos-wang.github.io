@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OhPie 更新说明</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      background: light-dark(#fafafa, #16181d);
+      color: light-dark(#1f2328, #e6e6e6);
+      line-height: 1.7;
+    }
+    main { max-width: 680px; margin: 0 auto; padding: 48px 20px 80px; }
+    h1 { font-size: 26px; margin: 0 0 4px; }
+    .latest { color: #555; margin: 0 0 32px; }
+    .latest strong { color: #0969da; }
+    @media (prefers-color-scheme: dark) { .latest { color: #9ea7b3; } }
+    section.release { border-top: 1px solid light-dark(#e4e6ea, #2d3138); padding: 24px 0; }
+    section.release h2 { font-size: 19px; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+    section.release h2 small { font-weight: 400; font-size: 13px; color: #8b949e; margin-left: 10px; }
+    section.release ul { margin: 10px 0 0; padding-left: 20px; }
+    section.release li { margin: 4px 0; }
+    .hint { font-size: 13px; color: #8b949e; border-top: 1px solid light-dark(#e4e6ea, #2d3138); margin-top: 8px; padding-top: 20px; }
+    #error { color: #cf222e; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>OhPie 更新说明</h1>
+    <p class="latest" id="latest"></p>
+    <noscript>此页面需要启用 JavaScript 读取版本清单。</noscript>
+    <div id="releases"></div>
+    <p class="hint">安装包由作者直接分发；此页面仅记录版本与更新内容。</p>
+  </main>
+  <script>
+    "use strict";
+    const $latest = document.getElementById("latest");
+    const $releases = document.getElementById("releases");
+    const $error = document.createElement("p");
+    $error.id = "error";
+
+    const esc = (text) => text.replace(/[&<>"']/g, (ch) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    })[ch]);
+
+    fetch("./latest.json", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        return response.json();
+      })
+      .then((manifest) => {
+        if (typeof manifest.version !== "string") throw new Error("清单缺少 version");
+        $latest.innerHTML = "最新版本：<strong>v" + esc(manifest.version) + "</strong>"
+          + (typeof manifest.date === "string" ? "（" + esc(manifest.date) + " 发布）" : "");
+        const releases = Array.isArray(manifest.releases) ? manifest.releases : [];
+        const list = releases.length > 0 ? releases
+          : [{ version: manifest.version, date: manifest.date, notes: manifest.notes }];
+        for (const release of list) {
+          if (typeof release.version !== "string") continue;
+          const section = document.createElement("section");
+          section.className = "release";
+          section.id = "v" + release.version;
+          const heading = "<h2>v" + esc(release.version)
+            + (typeof release.date === "string" ? "<small>" + esc(release.date) + "</small>" : "")
+            + "</h2>";
+          const notes = Array.isArray(release.notes) ? release.notes : [];
+          section.innerHTML = heading
+            + (notes.length > 0
+              ? "<ul>" + notes.map((note) => "<li>" + esc(String(note)) + "</li>").join("") + "</ul>"
+              : "");
+          $releases.appendChild(section);
+        }
+      })
+      .catch((error) => {
+        $latest.textContent = "";
+        $error.textContent = "读取版本清单失败：" + error.message;
+        $releases.appendChild($error);
+      });
+  </script>
+</body>
+</html>
