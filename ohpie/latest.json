@@ -1,12 +1,21 @@
 {
-  "version": "0.18.1",
+  "version": "0.18.2",
   "date": "2026-11-25",
   "notes": [
-    "「顶刊结构化论文起草」新增去 AI 味润色步骤：nature-writing 起草后自动衔接润色（英文用 humanizer 与 nature-polishing，中文用 humanizer-zh），固定输出 Manuscript_zh.md 与 Manuscript_en.md 中英双语手稿。",
-    "顶刊呈现规范升级：结构式摘要不超过 250 words，正文不超过 4000 words 且参考文献不超过 40 篇；主图表统一文末插入且图例紧随图片，补充图表仅正文引用；全文禁用列表、连贯段落行文。",
-    "旧版起草预设自动升级到新流水线（预设版本 21）；自定义过的动作保持原样，可在设置中一键复制新预设。"
+    "「顶刊结构化论文起草」升级为三步流水线：nature-writing 起草后先由 nature-citation 审核并修正参考文献，再执行去 AI 味处理（英文用 humanizer 与 nature-polishing，中文用 humanizer-zh）。",
+    "正文篇幅契约升级为 3000–4000 words（新增下限），参考文献仍不超过 40 篇；中英双语手稿 Manuscript_zh.md 与 Manuscript_en.md 交付不变。",
+    "旧版起草预设自动升级到新流水线（预设版本 22）；自定义过的动作保持原样，可在设置中一键复制新预设。"
   ],
   "releases": [
+    {
+      "version": "0.18.2",
+      "date": "2026-11-25",
+      "notes": [
+        "「顶刊结构化论文起草」升级为三步流水线：nature-writing 起草后先由 nature-citation 审核并修正参考文献，再执行去 AI 味处理（英文用 humanizer 与 nature-polishing，中文用 humanizer-zh）。",
+        "正文篇幅契约升级为 3000–4000 words（新增下限），参考文献仍不超过 40 篇；中英双语手稿 Manuscript_zh.md 与 Manuscript_en.md 交付不变。",
+        "旧版起草预设自动升级到新流水线（预设版本 22）；自定义过的动作保持原样，可在设置中一键复制新预设。"
+      ]
+    },
     {
       "version": "0.18.1",
       "date": "2026-11-25",
